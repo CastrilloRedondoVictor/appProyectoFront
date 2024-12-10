@@ -17,7 +17,7 @@
 }
 
 .logo {
-  background: #fff;
+  background: transparent;
   text-align: center;
   width: 3rem;
   min-width: 3rem;
@@ -31,7 +31,7 @@
 
 .logo-text {
   margin-left: 1.5rem;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: #fff;
 }
@@ -44,6 +44,7 @@
   border-radius: 50%;
   background-color: transparent;
   border: none;
+  padding-top: 7.5px;
 }
 
 .fa-times {
@@ -68,7 +69,7 @@
 }
 
 .sidenav-nav-item {
-  width: 100;
+  width: 100%;
   margin-bottom: 0.625rem;
 }
 
@@ -78,7 +79,44 @@
   height: 3rem;
   color: #f3f3f3;
   text-decoration: none;
-  transition: color .3s ease;
+  border-radius: 0.625rem;
+  transition: all .3s ease;
+
 }
 
+.sidenav-link-icon {
+  font-size: 22px;
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 0.5rem;
+  text-align: center;
+}
+
+.sidenav-link-text {
+  margin-left: 1.5rem;
+}
+
+
+.sidenav-nav-item:hover .sidenav-nav-link {
+  background-color: #fff;
+  color: #000;
+}
+
+
+.active {
+  background-color: #fff;
+}
+
+
+.active .sidenav-link-icon {
+  color: #000;
+}
+
+.active .sidenav-link-text {
+  color: #000;
+}
+
+.logoImg {
+  width: 100%;
+}
 
