@@ -76,6 +76,13 @@ export class MenuComponent implements OnInit {
     this.onToggleSidenav.emit({screenwidth: this.screenWidth, collapsed: this.collapsed})
   }
 
+  toggleCollapseWhenClick(): void {
+    if(this.collapsed){
+      this.collapsed = !this.collapsed
+      this.onToggleSidenav.emit({screenwidth: this.screenWidth, collapsed: this.collapsed})
+    }
+  }
+
   closeSidenav(): void {
     this.collapsed = false
     this.onToggleSidenav.emit({screenwidth: this.screenWidth, collapsed: this.collapsed})
