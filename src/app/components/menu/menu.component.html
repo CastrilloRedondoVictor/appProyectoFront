@@ -9,7 +9,7 @@
   <ul class="sidenav-nav">
     @for(data of navData; track data){
       <li class="sidenav-nav-item">
-        <a [routerLink]="[data.routeLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidenav-nav-link">
+        <a [routerLink]="[data.routeLink]" routerLinkActive="active" (click)="toggleCollapse()" [routerLinkActiveOptions]="{exact: true}" class="sidenav-nav-link">
           <i class="sidenav-link-icon" [class]="data.icon"></i>
           <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
             {{data.label}}

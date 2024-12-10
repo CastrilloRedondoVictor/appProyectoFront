@@ -47,7 +47,12 @@ export class MenuComponent implements OnInit {
       routeLink: '',
       icon: 'fa fa-home',
       label: 'Home'
-    }
+    },
+    {
+      routeLink: 'profile',
+      icon: 'fa fa-user',
+      label: 'Profile'
+    },
   ]
 
   @HostListener('window:resize', ['$event'])
