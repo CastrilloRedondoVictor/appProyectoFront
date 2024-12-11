@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
-*{
+* {
   overflow-x: hidden;
 }
 
 mat-toolbar {
-  background-color: #4A6FA5;
-  color: #E5E5E5;
+  background-color: #4a6fa5;
+  color: #e5e5e5;
 }
 
 mat-sidenav {
@@ -14,21 +14,21 @@ mat-sidenav {
   padding: 16px 0;
 }
 
-
 mat-list-item {
-  color: #4A6FA5;
+  color: #4a6fa5;
   padding: 20px 0;
   margin: 15px 25px;
 }
 mat-list-item:hover .mat-list-item-text {
-  color: #4A6FA5;
+  color: #4a6fa5;
 }
 
 mat-list-item.active {
   background-color: #4a6ea5b7;
 }
-mat-list-item.active .mat-list-item-text, mat-list-item.active mat-icon {
-  color: #FFFFFF;
+mat-list-item.active .mat-list-item-text,
+mat-list-item.active mat-icon {
+  color: #ffffff;
 }
 
 .content {

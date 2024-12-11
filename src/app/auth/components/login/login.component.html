@@ -1,3 +1,25 @@
-<div>
-    <p>Login</p>
+<div class="cajita">
+  <form class="form" (ngSubmit)="hacerLogin()">
+    <div class="title">Welcome,<br /><span>sign in to continue</span></div>
+    <input
+      class="input"
+      name="cajaUserName"
+      placeholder="UserName"
+      type="text"
+      #cajaUserName
+    />
+    <input
+      class="input"
+      name="cajaPassword"
+      #cajaPassword
+      placeholder="Password"
+      type="password"
+    />
+    <div class="login-with">
+      <span class="span"
+        >Don't have an account? <a href="/auth/register">Sign up</a></span
+      >
+    </div>
+    <button class="button-confirm">LOG IN →</button>
+  </form>
 </div>

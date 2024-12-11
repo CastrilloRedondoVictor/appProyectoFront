@@ -16,6 +16,8 @@ import { MatListModule } from '@angular/material/list';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient } from '@angular/common/http';
+import { ServiceLogin } from './services/service.login';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +33,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatListModule,
     LayoutModule,
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [provideAnimationsAsync(), provideHttpClient(), ServiceLogin],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
