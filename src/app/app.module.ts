@@ -15,12 +15,10 @@ import { MatListModule } from '@angular/material/list';
 
 import { LayoutModule } from '@angular/cdk/layout';
 
-import { MenuComponent } from './components/menu/menu.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { BodyComponent } from './components/body/body.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, BodyComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
