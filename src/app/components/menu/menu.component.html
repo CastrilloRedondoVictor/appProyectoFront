@@ -1,21 +1,27 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
-  <div class="logo-container">
-    <button class="logo"  (click)="toggleCollapse()"><img class="logoImg" src="assets/images/LogoAppFront.png" alt="logo"></button>
-    <div class="logo-text" @fadeInOut *ngIf="collapsed">Encuestas</div>
-    <button class="btn-close" @rotate (click)="closeSidenav()" *ngIf="collapsed">
-      <i class="fa fa-times close-icon"></i>
-    </button>
-  </div>
-  <ul class="sidenav-nav">
-    @for(data of navData; track data){
-      <li class="sidenav-nav-item">
-        <a [routerLink]="[data.routeLink]" routerLinkActive="active" (click)="toggleCollapseWhenClick()" [routerLinkActiveOptions]="{exact: true}" class="sidenav-nav-link">
-          <i class="sidenav-link-icon" [class]="data.icon"></i>
-          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
-            {{data.label}}
-          </span>
-        </a>
-      </li>
-    }
-  </ul>
-</div>
+<mat-toolbar>
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+  My Page
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav>
+    <mat-nav-list>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="">
+        <mat-icon matListItemIcon>home</mat-icon>
+        Home
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="profile">
+        <mat-icon matListItemIcon>person</mat-icon>
+        Pofile
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

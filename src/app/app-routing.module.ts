@@ -4,13 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () =>
-      import('./auth/auth.module').then((m) => m.AuthModule), // Lazy load AuthModule
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule), // Lazy load AuthModule
   },
   {
     path: '',
-    loadChildren: () =>
-      import('./main/main.module').then((m) => m.MainModule), // Lazy load MainModule
+    loadChildren: () => import('./main/main.module').then((m) => m.MainModule), // Lazy load MainModule
   },
   {
     path: '**',
@@ -20,6 +18,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

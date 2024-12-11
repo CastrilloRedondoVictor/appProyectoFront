@@ -1,9 +1,36 @@
-<div *ngIf="showMenu">
-  <app-menu (onToggleSideNav)="onToggleSideNav($any($event))"></app-menu>
-</div>
-<!-- <app-menu (onToggleSideNav)="onToggleSideNav($event as SidenavToggle)" *ngIf="showMenu"></app-menu> -->
-
-<app-body
-    [collapsed]="isSideNavCollapsed"
-    [screenWidth]="screenWidth"
-></app-body>
+<mat-toolbar *ngIf="showMenu">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+  My Page
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav>
+    <mat-nav-list *ngIf="showMenu">
+      <mat-list-item
+        (click)="sidenav.mode === 'over' && sidenav.toggle()"
+        routerLink=""
+      >
+        <mat-icon matListItemIcon>home</mat-icon>
+        Home
+      </mat-list-item>
+      <mat-list-item
+        (click)="sidenav.mode === 'over' && sidenav.toggle()"
+        routerLink="profile"
+      >
+        <mat-icon matListItemIcon>person</mat-icon>
+        Pofile
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

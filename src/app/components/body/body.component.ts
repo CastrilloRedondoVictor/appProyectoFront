@@ -6,11 +6,9 @@ import { Router } from '@angular/router';
   standalone: false,
 
   templateUrl: './body.component.html',
-  styleUrl: './body.component.css'
+  styleUrl: './body.component.css',
 })
 export class BodyComponent implements OnInit {
-
-
   showMenu = true; // Controla si se muestra el menú
 
   constructor(private router: Router) {}
@@ -25,19 +23,17 @@ export class BodyComponent implements OnInit {
   @Input() collapsed = false;
   @Input() screenWidth = 0;
 
-
-
-
-
-
   getBodyClass(): string {
     let styleClass = '';
     if (this.collapsed && this.screenWidth > 768) {
       styleClass = 'body-trimmed';
-    } else if (this.collapsed && this.screenWidth <= 768 && this.screenWidth > 0){
-      styleClass = 'body-md-screen'
+    } else if (
+      this.collapsed &&
+      this.screenWidth <= 768 &&
+      this.screenWidth > 0
+    ) {
+      styleClass = 'body-md-screen';
     }
     return styleClass;
   }
-
 }
