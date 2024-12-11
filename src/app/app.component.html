@@ -4,33 +4,41 @@
     *ngIf="sidenav.mode === 'over'"
     (click)="sidenav.toggle()"
   >
-    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    <mat-icon class="menu-icons" *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon class="menu-icons" *ngIf="sidenav.opened">close</mat-icon>
   </button>
-  My Page
+  APP VOTACIONES
 </mat-toolbar>
-<mat-sidenav-container>
+
+<mat-sidenav-container [ngClass]="showMenu ? '' : 'displayNone'">
   <mat-sidenav>
-    <mat-nav-list *ngIf="showMenu">
+    <mat-nav-list>
       <mat-list-item
         (click)="sidenav.mode === 'over' && sidenav.toggle()"
         routerLink=""
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <mat-icon matListItemIcon>home</mat-icon>
-        Home
+        <span class="mat-list-item-text">Home</span>
       </mat-list-item>
       <mat-list-item
         (click)="sidenav.mode === 'over' && sidenav.toggle()"
         routerLink="profile"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <mat-icon matListItemIcon>person</mat-icon>
-        Pofile
+        <span class="mat-list-item-text">Profile</span>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <div class="content">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<router-outlet *ngIf="!showMenu"></router-outlet>
