@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Login } from '../../../models/login';
 import { ServiceLogin } from '../../../services/service.login';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,7 @@ import { environment } from '../../../../environments/environment.development';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   @ViewChild('cajaUserName') cajaUserName!: ElementRef;
   @ViewChild('cajaPassword') cajaPassword!: ElementRef;
   public login!: Login;
@@ -25,8 +24,9 @@ export class LoginComponent implements OnInit {
     this.login = new Login(email, password);
     this._service.login(this.login).subscribe(
       (response) => {
-        environment.token = response.response;
-        console.log(environment.token);
+        // environment.token = response.response;
+        localStorage.setItem('authToken', response.response);
+        this._router.navigate(['/']);
       },
       () => {
         alert(
@@ -34,9 +34,5 @@ export class LoginComponent implements OnInit {
         );
       }
     );
-  }
-
-  ngOnInit(): void {
-    environment.token = '';
   }
 }
