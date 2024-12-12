@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     // Si hay un token y estás en la página de login, redirige a la página principal o perfil
     if (token) {
       if (next.routeConfig?.path === 'auth') {
-        this.router.navigate(['/main']);  // O la ruta que quieras redirigir, por ejemplo '/home'
+        this.router.navigate(['/']);  // O la ruta que quieras redirigir, por ejemplo '/home'
         return false;  // Impide el acceso a /login
       }
       return true;  // Permite el acceso a las rutas protegidas si hay token
