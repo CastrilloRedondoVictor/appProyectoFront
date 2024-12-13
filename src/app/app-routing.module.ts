@@ -9,6 +9,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'charlas',
+    loadChildren: () => import('./charlas/charlas.module').then((m) => m.CharlasModule), // Lazy load MainModule
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule), // Lazy load MainModule
     canActivate: [AuthGuard]
