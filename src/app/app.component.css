@@ -67,3 +67,8 @@ mat-sidenav {
   border-bottom-right-radius: 1%;
   border-right: #4a6ea5b7 1px solid;
 }
+
+
+.hidden {
+  display: none;
+}
