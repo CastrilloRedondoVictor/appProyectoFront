@@ -7,7 +7,7 @@
     <mat-icon class="menu-icons" *ngIf="!sidenav.opened">menu</mat-icon>
     <mat-icon class="menu-icons" *ngIf="sidenav.opened">close</mat-icon>
   </button>
-  <img class="img-toolbar" src="assets/images/votacion-en-linea2.png" />
+  <img class="img-toolbar" src="assets/images/logo.png" />
   APP VOTACIONES
 </mat-toolbar>
 
@@ -20,7 +20,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <mat-icon matListItemIcon>home</mat-icon>
+        <mat-icon class="mat-list-item-icon" matListItemIcon>home</mat-icon>
         <span class="mat-list-item-text">Home</span>
       </mat-list-item>
       <mat-list-item
@@ -29,7 +29,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <mat-icon matListItemIcon>person</mat-icon>
+        <mat-icon class="mat-list-item-icon" matListItemIcon>person</mat-icon>
         <span class="mat-list-item-text">Profile</span>
       </mat-list-item>
       <mat-list-item
@@ -38,7 +38,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <mat-icon matListItemIcon>chat</mat-icon>
+        <mat-icon class="mat-list-item-icon" matListItemIcon>chat</mat-icon>
         <span class="mat-list-item-text">Charlas</span>
       </mat-list-item>
     </mat-nav-list>
