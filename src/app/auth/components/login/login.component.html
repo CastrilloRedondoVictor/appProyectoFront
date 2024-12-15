@@ -3,15 +3,15 @@
     <div class="row full-height justify-content-center">
       <div class="col-12 text-center align-self-center py-5">
         <div class="section pb-5 pt-5 pt-sm-2 text-center">
-          <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
-          <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+          <h6 class="mb-0 pb-3"><span>Iniciar Sesión </span><span>Registrarse</span></h6>
+          <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" #regLogCheckbox />
           <label for="reg-log"></label>
           <div class="card-3d-wrap mx-auto">
             <div class="card-3d-wrapper">
               <div class="card-front">
                 <div class="center-wrap">
                   <div class="section text-center">
-                    <h4 class="mb-4 pb-3">Log In</h4>
+                    <h4 class="mb-4 pb-3">Iniciar sesión</h4>
                     <div class="form-group">
                       <input
                         name="cajaUserName"
@@ -27,13 +27,13 @@
                         name="cajaPassword"
                         type="password"
                         class="form-style"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         #cajaLoginPassword
                       />
                       <i class="input-icon uil uil-lock-alt"></i>
                     </div>
                     <button (click)="hacerLogin()" class="btn mt-4">
-                      Login
+                      Iniciar Sesión
                     </button>
                   </div>
                 </div>
@@ -41,13 +41,13 @@
               <div class="card-back">
                 <div class="center-wrap">
                   <div class="section text-center">
-                    <h4 class="mb-3 pb-3">Sign Up</h4>
+                    <h4 class="mb-3 pb-3">Registrarse</h4>
                     <div class="form-group">
                       <input
                         name="cajaRegisterNombre"
                         type="text"
                         class="form-style"
-                        placeholder="Name"
+                        placeholder="Nombre"
                         #cajaRegisterNombre
                       />
                       <i class="input-icon uil uil-user"></i>
@@ -57,10 +57,20 @@
                         name="cajaRegisterApellidos"
                         type="text"
                         class="form-style"
-                        placeholder="Surname"
+                        placeholder="Apellidos"
                         #cajaRegisterApellidos
                       />
                       <i class="input-icon uil uil-user-plus"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                      <input
+                        name="cajaRegisterCurso"
+                        type="text"
+                        class="form-style"
+                        placeholder="Curso"
+                        #cajaRegisterCurso
+                      />
+                      <i class="input-icon uil uil-clipboard-alt"></i>
                     </div>
                     <div class="form-group mt-2">
                       <input
@@ -77,13 +87,13 @@
                         name="cajaRegisterPassword"
                         type="password"
                         class="form-style"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         #cajaRegisterPassword
                       />
                       <i class="input-icon uil uil-lock-alt"></i>
                     </div>
                     <button (click)="hacerRegister()" class="btn mt-4">
-                      Sign Up
+                      Registrarse
                     </button>
                   </div>
                 </div>

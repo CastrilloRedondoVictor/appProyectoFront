@@ -4,6 +4,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { filter } from 'rxjs/operators';
 import { AuthService } from './services/auth-service.service';
+import { Perfil, UsuarioProfesor } from './models/perfil';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +18,18 @@ export class AppComponent implements OnInit {
   @ViewChild(MatSidenav, { static: true })
   sidenav!: MatSidenav;
 
-  showMenu = true; // Controla si se muestra el menú
+  showMenu = true;
+
+  profile!: Observable<Perfil>;
+  rolUsuario: number = 2;
+  userProfesor!: Observable<UsuarioProfesor>
 
   constructor(private router: Router, private observer: BreakpointObserver, private authService: AuthService) {}
+
+  logOut() {
+    localStorage.removeItem('authToken');
+    this.router.navigate(['/auth'])
+  }
 
   ngOnInit(): void {
     // Inicializar showMenu según el estado de autenticación
@@ -41,6 +52,12 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         // Actualizar el estado de showMenu según tus reglas
         this.showMenu = this.authService.isLogged();
+        if (this.showMenu) {
+          this.authService.getRolUsuario().subscribe((rol) => {
+            console.log('Rol del usuario:', rol);
+            this.rolUsuario = rol;
+          });
+        }
       });
   }
 }
