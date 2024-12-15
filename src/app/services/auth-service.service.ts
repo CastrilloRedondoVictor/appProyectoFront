@@ -28,6 +28,16 @@ export class AuthService {
     return this._http.post(environment.urlApiCharlas + request, JSON.stringify(login), { headers: headers });
   }
 
+  getPerfil(): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    let request = 'api/Usuarios/Perfil';
+    return this._http.post(environment.urlApiCharlas + request, { headers })
+  }
+
 
 
 
