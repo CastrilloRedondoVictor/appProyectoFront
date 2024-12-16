@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AlumnoRegister } from '../../../models/alumno';
 import { AuthService } from '../../../services/auth-service.service';
+import { Perfil } from '../../../models/perfil';
 
 
 @Component({

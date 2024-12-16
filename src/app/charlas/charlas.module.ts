@@ -4,11 +4,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PostCharlaComponent } from './components/post-charla/post-charla.component';
 import { CharlasRoutingModule } from './charlas-routing.module';
 import { FormsModule } from '@angular/forms';
+import { CharlasRondaComponent } from './components/charlas-ronda/charlas-ronda.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    PostCharlaComponent
+    PostCharlaComponent,
+    CharlasRondaComponent
   ],
   imports: [CommonModule, CharlasRoutingModule, FormsModule],
 })
