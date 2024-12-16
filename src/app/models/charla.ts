@@ -1,7 +1,19 @@
 export class Charla {
   constructor(
-    public idCharla: number, // O lo que necesites, por ahora vacío
-    public titulo: string,    // Título de la charla, por ejemplo
-    public descripcion: string // Descripción de la charla
+    public idCharla: number,
+    public titulo: string,
+    public descripcion: string
+  ) {}
+}
+
+export class Ronda {
+  constructor(
+    public idRonda: number,
+    public idCursoUsuario: number,
+    public fechaPresentacion: string,
+    public fechaCierre: string,
+    public duracion: number,
+    public descripcionModulo: string,
+    public fechaLimiteVotacion: string,
   ) {}
 }

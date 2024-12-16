@@ -50,10 +50,8 @@ export class AuthService {
     return this._http.get(environment.urlApiCharlas + request, { headers })
   }
 
-  getRolUsuario(): Observable<number> {
-    return this.getPerfil().pipe(
-      map((p: Perfil) => p.usuario.idRole) // Transformar el perfil en el rol
-    );
+  getRolUsuario(): string | null {
+    return localStorage.getItem('idRole');
   }
 
   postAlumno(alumno: AlumnoRegister, idCurso: string): Observable<any> {
@@ -63,6 +61,17 @@ export class AuthService {
 
     let request = 'api/Usuarios/NewAlumno/' + idCurso;
       return this._http.post(environment.urlApiCharlas + request, JSON.stringify(alumno), { headers })
+  }
+
+
+  getRondasCurso(): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    let request = 'api/Rondas/RondasCurso';
+    return this._http.get(environment.urlApiCharlas + request, { headers })
   }
 
 
