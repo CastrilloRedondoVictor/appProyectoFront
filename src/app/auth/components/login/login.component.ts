@@ -38,6 +38,7 @@ export class LoginComponent{
     this._service.login(this.login).subscribe(
       (response) => {
         localStorage.setItem('authToken', response.response);
+        localStorage.setItem('idRole', response.idrole);
         this._router.navigate(['/']);
       },
       () => {

@@ -50,10 +50,8 @@ export class AuthService {
     return this._http.get(environment.urlApiCharlas + request, { headers })
   }
 
-  getRolUsuario(): Observable<number> {
-    return this.getPerfil().pipe(
-      map((p: Perfil) => p.usuario.idRole) // Transformar el perfil en el rol
-    );
+  getRolUsuario(): string | null {
+    return localStorage.getItem('idRole');
   }
 
   postAlumno(alumno: AlumnoRegister, idCurso: string): Observable<any> {

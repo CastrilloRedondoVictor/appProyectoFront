@@ -77,7 +77,7 @@ mat-sidenav {
 }
 
 .container {
-  background-color: rgba(255, 255, 255,0.5);
+  background-color: rgba(255, 255, 255,0.75);
   padding: 20px;
   margin: 15px auto;
   min-height: 90%;

@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   showMenu = true;
 
   profile!: Observable<Perfil>;
-  rolUsuario: number = 2;
+  rolUsuario!: string | null;
   userProfesor!: Observable<UsuarioProfesor>
 
   constructor(private router: Router, private observer: BreakpointObserver, private authService: AuthService) {}
@@ -53,10 +53,8 @@ export class AppComponent implements OnInit {
         // Actualizar el estado de showMenu según tus reglas
         this.showMenu = this.authService.isLogged();
         if (this.showMenu) {
-          this.authService.getRolUsuario().subscribe((rol) => {
-            console.log('Rol del usuario:', rol);
-            this.rolUsuario = rol;
-          });
+          this.rolUsuario =this.authService.getRolUsuario()
+          console.log('Rol: ' + this.rolUsuario)
         }
       });
   }
