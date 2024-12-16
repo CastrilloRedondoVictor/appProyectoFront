@@ -1,17 +1,47 @@
 <div class="container">
-  <h2>HOME</h2>
-
-  <a routerLink="charlas/new">Nueva charla</a>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In officiis, harum
-    atque exercitationem sapiente unde? Veritatis cum placeat nisi commodi quasi
-    tempora atque laborum voluptatibus sint? Velit ipsa nisi sed?
-  </p>
-  <div class="">
-    <ul>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-    </ul>
-  </div>
+  <form #profileForm="ngForm">
+    <div class="form-group mt-2">
+      <img [src]="alumno?.imagen" alt="Imagen no disponible" class="card-img" />
+    </div>
+    <div class="form-group mt-2">
+      <input
+        name="cajaNombre"
+        type="text"
+        class="form-style"
+        #cajaNombre
+        value="{{ alumno?.nombre }}"
+      />
+      <i class="input-icon uil uil-user"></i>
+    </div>
+    <div class="form-group mt-2">
+      <input
+        name="cajaApellidos"
+        type="text"
+        class="form-style"
+        #cajaApellidos
+        value="{{ alumno?.apellidos }}"
+      />
+      <i class="input-icon uil uil-user"></i>
+    </div>
+    <div class="form-group mt-2">
+      <input
+        name="cajaEmail"
+        type="text"
+        class="form-style"
+        #cajaEmail
+        value="{{ alumno?.email }}"
+      />
+      <i class="input-icon uil uil-at"></i>
+    </div>
+    <div class="form-group mt-2">
+      <input
+        name="cajaCurso"
+        type="text"
+        class="form-style"
+        #cajaCurso
+        value="{{ alumno?.curso }}"
+      />
+      <i class="input-icon uil uil-book"></i>
+    </div>
+  </form>
 </div>
