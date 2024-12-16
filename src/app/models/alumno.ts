@@ -11,7 +11,7 @@ export class AlumnoRegister {
   ) {}
 }
 
-export class Alumno {
+export class Perfil {
   constructor(
     public idUsuario: number,
     public nombre: string,
@@ -19,8 +19,23 @@ export class Alumno {
     public email: string,
     public estadoUsuario: boolean,
     public imagen: string,
-    public password: string,
     public idRole: number,
+    public role: string,  // Se agregó el campo 'role' en lugar de 'idRole'
+    public idCurso: number,
+    public curso: string,
+    public idCursoUsuario: number  // Cambié 'idCursosUsuarios' a 'idCursoUsuario'
+  ) {}
+}
+
+export class PerfilAlumnoCurso {
+  constructor(
+    public idUsuario: number,
+    public usuario: string,
+    public estadoUsuario: boolean,
+    public imagen: string,
+    public email: string,
+    public idRole: number,
+    public role: string,
     public idCurso: number,
     public curso: string,
     public fechaInicioCurso: string,
@@ -29,12 +44,15 @@ export class Alumno {
   ) {}
 }
 
+
+
 export class AlumnoCurso {
   constructor(
-    public alumno: Alumno,
-    public charlasTotales: number,
-    public charlasPropuestas: number,
-    public charlasAceptadas: number,
-    public charlas: any[] // Puedes definir un tipo más específico para charlas
+    public alumno: PerfilAlumnoCurso, // Datos del alumno basado en la clase Perfil
+    public charlasTotales: number, // Total de charlas que el alumno ha tenido
+    public charlasPropuestas: number, // Total de charlas propuestas por el alumno
+    public charlasAceptadas: number, // Total de charlas aceptadas por el alumno
+    public charlas: any[] // Lista de charlas del alumno (puedes definir un tipo específico)
   ) {}
 }
+

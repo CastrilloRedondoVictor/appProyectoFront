@@ -21,7 +21,7 @@ h1 {
 }
 
 .charla:hover {
-  background-color: rgba(43, 46, 56, 0.9);
+  background-color: rgba(43, 46, 56, 0.95);
   transform: scale(1.025);
 }
 
@@ -63,6 +63,10 @@ h1 {
 
 .spanPropuesta {
   color: #f39c12;
+}
+
+.spanAceptada {
+  color: #2ecc71;
 }
 
 .charla-footer {

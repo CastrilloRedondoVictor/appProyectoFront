@@ -4,7 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { filter } from 'rxjs/operators';
 import { AuthService } from './services/auth-service.service';
-import { Perfil, UsuarioProfesor } from './models/perfil';
+import { Perfil } from './models/perfil';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
 
   profile!: Observable<Perfil>;
   rolUsuario!: string | null;
-  userProfesor!: Observable<UsuarioProfesor>
 
   constructor(private router: Router, private observer: BreakpointObserver, private authService: AuthService) {}
 
@@ -54,7 +53,6 @@ export class AppComponent implements OnInit {
         this.showMenu = this.authService.isLogged();
         if (this.showMenu) {
           this.rolUsuario =this.authService.getRolUsuario()
-          console.log('Rol: ' + this.rolUsuario)
         }
       });
   }

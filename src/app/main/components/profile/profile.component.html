@@ -1,64 +1,38 @@
 <div class="container">
-  <h2>PROFILE</h2>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In officiis, harum
-    atque exercitationem sapiente unde? Veritatis cum placeat nisi commodi quasi
-    tempora atque laborum voluptatibus sint? Velit ipsa nisi sed?
-  </p>
-  <div class="">
-    <ul>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-    </ul>
-  </div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In officiis, harum
-    atque exercitationem sapiente unde? Veritatis cum placeat nisi commodi quasi
-    tempora atque laborum voluptatibus sint? Velit ipsa nisi sed?
-  </p>
-  <div class="">
-    <ul>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-    </ul>
-  </div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In officiis, harum
-    atque exercitationem sapiente unde? Veritatis cum placeat nisi commodi quasi
-    tempora atque laborum voluptatibus sint? Velit ipsa nisi sed?
-  </p>
-  <div class="">
-    <ul>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-    </ul>
-  </div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In officiis, harum
-    atque exercitationem sapiente unde? Veritatis cum placeat nisi commodi quasi
-    tempora atque laborum voluptatibus sint? Velit ipsa nisi sed?
-  </p>
-  <div class="">
-    <ul>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-    </ul>
-  </div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In officiis, harum
-    atque exercitationem sapiente unde? Veritatis cum placeat nisi commodi quasi
-    tempora atque laborum voluptatibus sint? Velit ipsa nisi sed?
-  </p>
-  <div class="">
-    <ul>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-    </ul>
+  <h1>PERFIL DE USUARIO</h1>
+
+  <div class="perfil-card">
+    <div class="perfil-header">
+      <img *ngIf="perfil.imagen" [src]="perfil.imagen" alt="Imagen de perfil" class="perfil-img" />
+      <div class="perfil-info">
+        <h2>{{ perfil.nombre }} {{ perfil.apellidos }}</h2>
+        <p><strong>Correo: </strong> {{ perfil.email }}</p>
+        <p><strong>Estado: </strong> <span [ngClass]="perfil.estadoUsuario ? 'active' : 'inactive'">{{ perfil.estadoUsuario ? 'Activo' : 'Inactivo' }}</span></p>
+        <p><strong>Rol: </strong> {{ perfil.role }}</p>
+        <p><strong>Curso: </strong> {{ perfil.curso }}</p>
+        <p><strong>ID Curso: </strong> {{ perfil.idCurso }}</p>
+      </div>
+    </div>
+
+    <div class="perfil-footer">
+      <a [routerLink]="['edit', perfil.idUsuario]" class="btn btn-large">Editar Perfil</a>
+    </div>
   </div>
 
+
+  <div class="mt-5" *ngIf="rolUsuario == '1'">
+    <div *ngFor="let alumnosCurso of alumnosCursos">
+      <h2>Alumnos de {{ alumnosCurso.curso.nombre }} ({{ alumnosCurso.numeroAlumnos }})</h2>
+
+      <div class="perfil-alumno-card mb-1" *ngFor="let alumno of alumnosCurso.alumnos">
+        <div class="perfil-header">
+          <img *ngIf="perfil.imagen" [src]="perfil.imagen" alt="Imagen de perfil" class="perfil-img" />
+          <div class="perfil-info">
+            <h3>{{ alumno.alumno.usuario }}</h3>
+            <p><strong>Correo: </strong> {{ alumno.alumno.email }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
