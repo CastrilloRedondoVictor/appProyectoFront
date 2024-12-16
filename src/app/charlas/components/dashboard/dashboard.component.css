@@ -1,7 +1,50 @@
-.container {
-  background-color: #FFFFFF;
-  padding: 20px;
-  margin: 15px auto;
-  min-height: 90%;
-  border-radius: 10px;
+h1 {
+  text-align: center;
+  color: #1f2029;
+  margin-bottom: 15px;
+}
+
+.ronda {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #2b2e38;
+}
+
+.ronda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.txtLabel{
+  color: #ffeba7;
+}
+
+.ronda-header h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #444;
+}
+
+.ronda-header span {
+  font-size: 14px;
+  color: #ffeba7;
+}
+
+.ronda-details {
+  margin-top: 10px;
+}
+
+.ronda-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.ronda-details p span {
+  font-weight: bold;
+  color: #ffeba7;
 }
