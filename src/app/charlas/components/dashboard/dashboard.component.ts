@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ronda } from '../../../models/charla';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../services/auth-service.service';
+import { CharlasService } from '../../../services/charlas-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +17,12 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(
-    private authService: AuthService
+    private charlasService: CharlasService
   ){}
 
 
   ngOnInit(): void {
-    this.authService.getRondasCurso().subscribe((response: Ronda[]) => {
+    this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
       this.rondas = response;
     });
   }

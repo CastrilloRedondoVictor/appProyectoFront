@@ -12,5 +12,8 @@
       <p><span>Fecha de Cierre:</span> {{ ronda.fechaCierre | date:'longDate':'es' }}</p>
       <p><span>Fecha Límite de Votación:</span> {{ ronda.fechaLimiteVotacion | date:'longDate':'es' }}</p>
     </div>
+    <div class="ronda-footer">
+      <a [routerLink]="['charlasRonda', ronda.idRonda]" class="btn">Ver charlas</a>
+    </div>
   </div>
 </div>

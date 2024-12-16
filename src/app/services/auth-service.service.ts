@@ -64,17 +64,6 @@ export class AuthService {
   }
 
 
-  getRondasCurso(): Observable<any> {
-    const token = this.getToken();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
-    let request = 'api/Rondas/RondasCurso';
-    return this._http.get(environment.urlApiCharlas + request, { headers })
-  }
-
-
 
 
   // getAlumnos(): Observable<any> {
