@@ -40,7 +40,7 @@ export class AuthService {
     return this._http.get(environment.urlApiCharlas + request, { headers })
   }
 
-  getUserProfesor(): Observable<any> {
+  getAlumnosCursoProfesor(): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,

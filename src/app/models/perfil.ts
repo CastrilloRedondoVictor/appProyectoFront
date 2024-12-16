@@ -19,7 +19,7 @@ export class Usuario {
   ) {}
 }
 
-export class UsuarioProfesor {
+export class AlumnosCursoProfesor {
   constructor(
     public numeroAlumnos: number,
     public curso: Curso,
