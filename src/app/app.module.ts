@@ -22,6 +22,7 @@ import { registerLocaleData } from '@angular/common';
 
 
 import localeEs from '@angular/common/locales/es';
+import { FormsModule } from '@angular/forms';
 
 
 registerLocaleData(localeEs, 'es');
@@ -39,6 +40,7 @@ registerLocaleData(localeEs, 'es');
     MatDividerModule,
     MatListModule,
     LayoutModule,
+    FormsModule,
   ],
   providers: [provideAnimationsAsync(), provideHttpClient(), ServiceLogin, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],
