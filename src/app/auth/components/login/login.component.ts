@@ -38,8 +38,16 @@ export class LoginComponent{
     this.login = new Login(email, password);
     this._service.login(this.login).subscribe(
       (response) => {
+        // Tiempo actual en milisegundos
+        const now = new Date().getTime();
+
+        // 30 minutos en milisegundos
+        const expiresIn = 30 * 60 * 1000;
+
+        // Almacena el token y la expiración
         localStorage.setItem('authToken', response.response);
         localStorage.setItem('idRole', response.idrole);
+        localStorage.setItem('tokenExpiresAt', JSON.stringify(now + expiresIn));
         this._router.navigate(['/']);
       },
       () => {
