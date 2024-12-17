@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <h1 class="text-center mb-4">Editar Perfil</h1>
+
+      <!-- Imagen de perfil con vista previa -->
+      <div class="text-center mb-4">
+        <img
+          [src]="fileContent || perfil.imagen"
+          alt="Imagen de perfil"
+          class="perfil-imagen"
+          (click)="cambiarImagen()"
+        />
+        <!-- Input oculto para seleccionar archivo -->
+        <input
+          type="file"
+          #cajaFile
+          accept="image/*"
+          style="display: none"
+          (change)="subirFichero($event)"
+        />
+      </div>
+
+      <!-- Formulario de edición -->
+      <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" class="form-control"
+                 formControlName="nombre" placeholder="Ingrese su nombre" />
+        </div>
+
+        <!-- Apellidos -->
+        <div class="form-group mb-3">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" id="apellidos" class="form-control"
+                 formControlName="apellidos" placeholder="Ingrese sus apellidos" />
+        </div>
+
+        <!-- Botón Submit -->
+        <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+</div>

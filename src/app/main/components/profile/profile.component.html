@@ -26,7 +26,7 @@
 
       <div class="perfil-alumno-card mb-1" *ngFor="let alumno of alumnosCurso.alumnos">
         <div class="perfil-header">
-          <img *ngIf="perfil.imagen" [src]="perfil.imagen" alt="Imagen de perfil" class="perfil-img" />
+          <img *ngIf="perfil.imagen" [src]="alumno.alumno.imagen" alt="Imagen de perfil" class="perfil-img" />
           <div class="perfil-info">
             <h3>{{ alumno.alumno.usuario }}</h3>
             <p><strong>Correo: </strong> {{ alumno.alumno.email }}</p>
