@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { AlumnoRegister } from '../models/alumno';
 import { Perfil } from '../models/perfil';
+import { FileModel } from '../models/fileModel';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,18 @@ export class AuthService {
     let request = 'api/Usuarios/NewAlumno/' + idCurso;
       return this._http.post(environment.urlApiCharlas + request, JSON.stringify(alumno), { headers })
   }
+
+
+  postFile(fileModel: FileModel, id: number): Observable<any>{
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    let request = "api/Files/UploadImagenUsuario/" + id;
+    return this._http.post(environment.urlApiCharlas + request, JSON.stringify(fileModel), { headers });
+}
 
 
 

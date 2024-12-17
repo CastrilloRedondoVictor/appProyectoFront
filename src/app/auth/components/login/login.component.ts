@@ -42,7 +42,7 @@ export class LoginComponent{
         const now = new Date().getTime();
 
         // 30 minutos en milisegundos
-        const expiresIn = 30 * 60 * 1000;
+        const expiresIn = 4 * 60 * 60 * 1000;
 
         // Almacena el token y la expiración
         localStorage.setItem('authToken', response.response);
