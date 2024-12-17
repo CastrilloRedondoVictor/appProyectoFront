@@ -82,4 +82,5 @@ mat-sidenav {
   margin: 15px auto;
   min-height: 90%;
   border-radius: 10px;
+  position: relative;
 }

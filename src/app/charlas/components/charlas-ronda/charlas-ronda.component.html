@@ -1,18 +1,50 @@
 <div class="container">
-
   <h1>CHARLAS DE LA RONDA {{ idRonda }}</h1>
-  <div class="right-button" *ngIf="!hasCharla"><a [routerLink]="['/new', idRonda]" class="btn btn-large"><i class="uis uil-plus"></i></a></div>
+  <div class="right-button" *ngIf="!hasCharla">
+    <a
+      [routerLink]="['/charlas/charlasRonda/new', idRonda]"
+      class="btn btn-large"
+      ><i class="uis uil-plus"></i
+    ></a>
+  </div>
+  <div class="left-button" *ngIf="!hasCharla">
+    <a [routerLink]="['/charlas']" class="btn btn-large"
+      ><i class="uil-arrow-left"></i
+    ></a>
+  </div>
 
   <div *ngFor="let charlaRonda of charlasRonda; let i = index" class="charla">
     <div class="charla-header">
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
-      <span>Tiempo: {{ (charlaRonda.tiempo / 60) | number: '1.0-0' }} horas {{ charlaRonda.tiempo % 60 }} minutos</span>
+      <span
+        >Tiempo: {{ charlaRonda.tiempo / 60 | number : "1.0-0" }} horas
+        {{ charlaRonda.tiempo % 60 }} minutos</span
+      >
     </div>
     <div class="charla-details">
-      <p><span class="span-charla-details">Descripción: </span>{{ charlaRonda.descripcion }}</p>
-      <p><span class="span-charla-details">Fecha Propuesta: </span>{{ charlaRonda.fechaPropuesta | date:'longDate':'es' }}</p>
-      <p><span class="span-charla-details">Estado: </span> <span [ngClass]="charlaRonda.estadoCharla == 'PROPUESTA' ? 'spanPropuesta' : 'spanAceptada'">{{ charlaRonda.estadoCharla }}</span></p>
-      <p><span class="span-charla-details">Propuesta por: </span>{{ charlaRonda.usuario }}</p>
+      <p>
+        <span class="span-charla-details">Descripción: </span
+        >{{ charlaRonda.descripcion }}
+      </p>
+      <p>
+        <span class="span-charla-details">Fecha Propuesta: </span
+        >{{ charlaRonda.fechaPropuesta | date : "longDate" : "es" }}
+      </p>
+      <p>
+        <span class="span-charla-details">Estado: </span>
+        <span
+          [ngClass]="
+            charlaRonda.estadoCharla == 'PROPUESTA'
+              ? 'spanPropuesta'
+              : 'spanAceptada'
+          "
+          >{{ charlaRonda.estadoCharla }}</span
+        >
+      </p>
+      <p>
+        <span class="span-charla-details">Propuesta por: </span
+        >{{ charlaRonda.usuario }}
+      </p>
     </div>
     <div class="charla-footer">
       <!-- <img *ngIf="charla.imagenCharla" [src]="charlaRonda.imagenCharla" alt="Imagen de la charla" class="charla-img" /> -->

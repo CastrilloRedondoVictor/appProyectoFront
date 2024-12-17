@@ -5,7 +5,6 @@ h1 {
 }
 
 .header {
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +16,7 @@ h1 {
   padding: 15px;
   margin: 15px 2.5%;
   background-color: #2b2e38; /* Gris oscuro con toques azules */
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .charla:hover {
@@ -91,6 +90,13 @@ h1 {
   margin-right: 2.5%;
 }
 
+.left-button {
+  position: absolute; /* Lo posiciona relativo al contenedor padre */
+  top: 0; /* Alinea con la parte superior del contenedor */
+  left: 0; /* Alinea con la esquina izquierda */
+  margin: 15px; /* Espaciado para no pegarlo totalmente */
+}
+
 .btn {
   border-radius: 4px;
   font-size: 12px;
@@ -113,7 +119,6 @@ h1 {
   padding: 4px 6px;
   font-weight: 800;
 }
-
 
 .btn:hover {
   background-color: #2b2e38; /* Negro para el fondo */
