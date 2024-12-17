@@ -19,8 +19,21 @@ export class AuthService {
     return localStorage.getItem('authToken');
   }
 
+  isTokenExpired(): boolean {
+    const expiresAt = localStorage.getItem('tokenExpiresAt');
+    if (!expiresAt) return true;
+    return new Date().getTime() > JSON.parse(expiresAt);
+  }
+
+  clearToken(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('idRole');
+    localStorage.removeItem('tokenExpiresAt');
+  }
+
+
   isLogged(): boolean {
-    return !!localStorage.getItem('authToken');
+    return !!(this.getToken() && !this.isTokenExpired());
   }
 
 

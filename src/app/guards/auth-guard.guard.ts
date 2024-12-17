@@ -15,10 +15,10 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
 
-    const token = this.authService.getToken();  // Obtener el token desde el servicio
+    const token = this.authService.getToken();
 
     // Si hay un token y estás en la página de login, redirige a la página principal o perfil
-    if (token) {
+    if (this.authService.isLogged()) {
       if (next.routeConfig?.path === 'auth') {
         this.router.navigate(['/']);  // O la ruta que quieras redirigir, por ejemplo '/home'
         return false;  // Impide el acceso a /login
@@ -28,6 +28,7 @@ export class AuthGuard implements CanActivate {
 
     // Si no hay token, redirige a login solo si no estás ya en la página de login
     if (next.routeConfig?.path !== 'auth') {
+      this.authService.clearToken();
       this.router.navigate(['/auth']);  // Redirige al login si no hay token
       return false;  // Impide el acceso a cualquier ruta protegida
     }
@@ -35,3 +36,4 @@ export class AuthGuard implements CanActivate {
     return true;  // Si estamos en /login y no hay token, permitir el acceso (no hacer nada)
   }
 }
+

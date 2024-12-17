@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'charlas',
-    loadChildren: () => import('./charlas/charlas.module').then((m) => m.CharlasModule), // Lazy load MainModule
+    loadChildren: () => import('./charlas/charlas.module').then((m) => m.CharlasModule), // Lazy load CharlasModule
     canActivate: [AuthGuard]
   },
   {
@@ -23,6 +23,7 @@ const routes: Routes = [
     redirectTo: '',
   },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
