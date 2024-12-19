@@ -3,11 +3,10 @@
 
   <div *ngFor="let ronda of rondas; let i = index" class="ronda">
     <div class="ronda-header">
-      <h4 class="txtLabel">Ronda {{ i }}</h4>
+      <h4 class="txtLabel">Ronda {{ ronda.descripcionModulo }}</h4>
       <span>Duración: {{ ronda.duracion / 60 }} hrs {{ ronda.duracion % 60 }} mins</span>
     </div>
     <div class="ronda-details">
-      <p><span>Descripción del Módulo:</span> {{ ronda.descripcionModulo }}</p>
       <p><span>Fecha de Presentación:</span> {{ ronda.fechaPresentacion | date:'longDate':'es' }}</p>
       <p><span>Fecha de Cierre:</span> {{ ronda.fechaCierre | date:'longDate':'es' }}</p>
       <p><span>Fecha Límite de Votación:</span> {{ ronda.fechaLimiteVotacion | date:'longDate':'es' }}</p>
