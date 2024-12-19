@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
       this._service.getAlumnosCursoProfesor().subscribe((response: AlumnosCursoProfesor[]) => {
         this.alumnosCursos= response
       });
+      // this.alumnosCursos.filter(alumno => alumno.alumnos.alumno.idRole == 2)
     }
   }
 }

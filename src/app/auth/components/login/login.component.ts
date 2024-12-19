@@ -75,11 +75,11 @@ export class LoginComponent {
               // Hover con JavaScript
               confirmButton.addEventListener('mouseover', () => {
                 confirmButton.style.backgroundColor = '#000000';
-                confirmButton.style.color = '#ffeba7';
+                confirmButton.style.color = '#e74c3c';
               });
 
               confirmButton.addEventListener('mouseout', () => {
-                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.backgroundColor = '#e74c3c';
                 confirmButton.style.color = '#000000';
               });
             }
