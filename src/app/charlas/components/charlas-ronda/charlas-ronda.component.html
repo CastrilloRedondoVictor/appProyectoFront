@@ -17,7 +17,7 @@
     <div class="charla-header">
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
       <span
-        >Tiempo: {{ charlaRonda.tiempo / 60 | number : "1.0-0" }} horas
+        >Tiempo: {{ getHoras(charlaRonda.tiempo) }} horas
         {{ charlaRonda.tiempo % 60 }} minutos</span
       >
     </div>

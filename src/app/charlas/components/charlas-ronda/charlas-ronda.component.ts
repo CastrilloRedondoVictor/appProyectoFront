@@ -54,4 +54,8 @@ export class CharlasRondaComponent implements OnInit {
       this.hasCharla = false;
     });
   }
+
+  getHoras(tiempo: number): number {
+    return Math.floor(tiempo / 60);
+  }
 }
