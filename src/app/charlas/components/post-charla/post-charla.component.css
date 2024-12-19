@@ -1,7 +1,81 @@
 .container {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 20px;
   margin: 15px auto;
   min-height: 90%;
   border-radius: 10px;
+}
+
+/* Imagen de perfil centrada */
+.perfil-imagen {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #ffeba7;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+/* Formulario */
+form {
+  background-color: #1f2029;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  color: #1f2029; /* Tono gris oscuro, ligeramente frío */
+  margin-bottom: 30px;
+}
+
+label {
+  font-weight: bold;
+  color: #ffeba7;
+}
+
+input {
+  background-color: rgba(43, 46, 56);
+  color: #c4c3ca;
+  font-size: 15px;
+}
+
+input:focus {
+  background-color: rgba(43, 46, 56);
+  color: #c4c3ca;
+}
+
+.btn {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  background-color: #ffeba7; /* Amarillo cálido */
+  color: #2b2e38; /* Negro para el texto */
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center; /* Opcional, para mayor consistencia */
+}
+
+.btn-large {
+  font-size: 25px;
+  padding: 4px 6px;
+  font-weight: 800;
+}
+
+.btn:hover {
+  background-color: #2b2e38; /* Negro para el fondo */
+  color: #ffeba7; /* Amarillo cálido para el texto */
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
 }
