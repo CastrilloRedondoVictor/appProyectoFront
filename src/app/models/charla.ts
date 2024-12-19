@@ -16,6 +16,19 @@ export class Charla {
   ) {}
 }
 
+export class CharlaSin {
+  constructor(
+    public idCharla: number,
+    public titulo: string,
+    public descripcion: string,
+    public tiempo: number,
+    public fechaPropuesta: string,
+    public idUsuario: number,
+    public idEstadoCharla: number,
+    public idRonda: number,
+    public imagenCharla: string
+  ) {}
+}
 
 export class Ronda {
   constructor(
@@ -25,6 +38,6 @@ export class Ronda {
     public fechaCierre: string,
     public duracion: number,
     public descripcionModulo: string,
-    public fechaLimiteVotacion: string,
+    public fechaLimiteVotacion: string
   ) {}
 }
