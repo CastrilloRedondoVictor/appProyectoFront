@@ -27,4 +27,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  getHoras(tiempo: number): number {
+    return Math.floor(tiempo / 60);
+  }
+
 }
