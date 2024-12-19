@@ -1,9 +1,6 @@
-
 * {
   overflow-x: hidden;
 }
-
-
 
 mat-toolbar {
   background-color: #2b2e38;
@@ -71,15 +68,15 @@ mat-sidenav {
   border-right: #1f2029 1px solid;
 }
 
-
 .hidden {
   display: none;
 }
 
 .container {
-  background-color: rgba(255, 255, 255,0.75);
+  background-color: rgba(255, 255, 255, 0.75);
   padding: 20px;
   margin: 15px auto;
   min-height: 90%;
   border-radius: 10px;
+  position: relative;
 }
