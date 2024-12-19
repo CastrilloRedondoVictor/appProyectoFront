@@ -6,7 +6,6 @@ import { AlumnoRegister } from '../../../models/alumno';
 import { AuthService } from '../../../services/auth-service.service';
 import { Perfil } from '../../../models/perfil';
 
-
 @Component({
   selector: 'app-login',
   standalone: false,
@@ -14,7 +13,7 @@ import { Perfil } from '../../../models/perfil';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent{
+export class LoginComponent {
   @ViewChild('cajaLoginUserName') cajaLoginUserName!: ElementRef;
   @ViewChild('cajaLoginPassword') cajaLoginPassword!: ElementRef;
 
@@ -61,7 +60,9 @@ export class LoginComponent{
           focusConfirm: false,
           buttonsStyling: false,
           didOpen: () => {
-            const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+            const confirmButton = document.querySelector(
+              '.swal2-confirm'
+            ) as HTMLElement;
             if (confirmButton) {
               // Estilos iniciales
               confirmButton.style.backgroundColor = '#ffeba7';
@@ -88,52 +89,64 @@ export class LoginComponent{
     );
   }
 
-
   hacerRegister(): void {
     var nombre = this.cajaRegisterNombre.nativeElement.value;
     var apellidos = this.cajaRegisterApellidos.nativeElement.value;
     var emaul = this.cajaRegisterEmail.nativeElement.value;
     var password = this.cajaRegisterPassword.nativeElement.value;
 
-    this.alumno = new AlumnoRegister(1, nombre, apellidos, emaul, true, '', password, 2);
-    this._service.postAlumno(this.alumno, this.cajaRegisterCurso.nativeElement.value).subscribe(
-      (response) => {
-        this.regLogCheckbox.nativeElement.checked = false;
-      },
-      () => {
-        Swal.fire({
-          title: 'Error de creación',
-          text: 'Ha habido un error al crear el usuario',
-          icon: 'error',
-          confirmButtonText: 'ACEPTAR',
-          background: '#2b2e38',
-          color: '#c4c3ca',
-          focusConfirm: false,
-          buttonsStyling: false,
-          didOpen: () => {
-            const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-            if (confirmButton) {
-              // Estilos iniciales
-              confirmButton.style.backgroundColor = '#ffeba7';
-              confirmButton.style.color = '#2b2e38';
-              confirmButton.style.padding = '10px 20px';
-              confirmButton.style.border = 'none';
-              confirmButton.style.borderRadius = '4px';
-              confirmButton.style.transition = 'all 0.3s ease';
-
-              confirmButton.addEventListener('mouseover', () => {
-                confirmButton.style.backgroundColor = '#000000';
-                confirmButton.style.color = '#ffeba7';
-              });
-
-              confirmButton.addEventListener('mouseout', () => {
-                confirmButton.style.backgroundColor = '#ffeba7';
-                confirmButton.style.color = '#000000';
-              });
-            }
-          },
-        });
-      }
+    this.alumno = new AlumnoRegister(
+      1,
+      nombre,
+      apellidos,
+      emaul,
+      true,
+      '',
+      password,
+      2
     );
+    this._service
+      .postAlumno(this.alumno, this.cajaRegisterCurso.nativeElement.value)
+      .subscribe(
+        (response) => {
+          this.regLogCheckbox.nativeElement.checked = false;
+        },
+        () => {
+          Swal.fire({
+            title: 'Error de creación',
+            text: 'Ha habido un error al crear el usuario',
+            icon: 'error',
+            confirmButtonText: 'ACEPTAR',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
+            didOpen: () => {
+              const confirmButton = document.querySelector(
+                '.swal2-confirm'
+              ) as HTMLElement;
+              if (confirmButton) {
+                // Estilos iniciales
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
+
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#000000';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#000000';
+                });
+              }
+            },
+          });
+        }
+      );
   }
 }
