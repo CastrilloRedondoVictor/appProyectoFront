@@ -37,6 +37,11 @@ export class CharlasRondaComponent implements OnInit {
       this.charlasRonda = response;
     })
 
+    if(localStorage.getItem("idRole") != "2"){
+      this.hasCharla = true;
+      return;
+    }
+
     this.charlasService.getCharlasAlumno().subscribe((response) => {
       this.charlasAlumno = response;
       for(let charla of this.charlasAlumno) {

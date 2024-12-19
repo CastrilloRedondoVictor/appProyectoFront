@@ -1,15 +1,15 @@
 <div class="container">
   <h1>CHARLAS DE LA RONDA {{ idRonda }}</h1>
-  <div class="right-button" *ngIf="!hasCharla">
+  <div class="upper-buttons">
+
+    <a [routerLink]="['/charlas']" class="btn btn-large"
+      ><i class="uil-arrow-left"></i
+    ></a>
     <a
+      *ngIf="!hasCharla"
       [routerLink]="['/charlas/charlasRonda/new', idRonda]"
       class="btn btn-large"
       ><i class="uis uil-plus"></i
-    ></a>
-  </div>
-  <div class="left-button" *ngIf="!hasCharla">
-    <a [routerLink]="['/charlas']" class="btn btn-large"
-      ><i class="uil-arrow-left"></i
     ></a>
   </div>
 
