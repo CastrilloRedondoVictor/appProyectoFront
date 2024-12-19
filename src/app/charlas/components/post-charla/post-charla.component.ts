@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CharlaSin, Ronda } from '../../../models/charla';
 import { CharlasService } from '../../../services/charlas-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Perfil } from '../../../models/alumno';
 import { AuthService } from '../../../services/auth-service.service';
 
@@ -21,15 +21,20 @@ export class PostCharlaComponent implements OnInit {
   public perfil!: Perfil;
   public ronda!: Ronda;
 
+  idRonda!: number;
+
   constructor(
     private _service: CharlasService,
     private _servicePerfil: AuthService,
-    private _router: Router
+    private _router: Router,
+    private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this._servicePerfil.getPerfil().subscribe((response) => {
       this.perfil = response.usuario;
     });
+
+    this.idRonda = Number(this.route.snapshot.paramMap.get('idRonda'));
 
     this._service.getRondasCurso().subscribe((response) => {
       this.ronda = response;
@@ -49,12 +54,11 @@ export class PostCharlaComponent implements OnInit {
       this.ronda.fechaPresentacion,
       this.perfil.idUsuario,
       1,
-      this.ronda.idRonda,
+      this.idRonda,
       ''
     );
     console.log(this.charla);
 
-    
     this._service.postCharla(this.charla).subscribe((response) => {
       console.log('creado exitosamente');
     });
