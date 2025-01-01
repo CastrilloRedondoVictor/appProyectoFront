@@ -188,7 +188,7 @@ input:-webkit-autofill:not(:focus)
   color: #000000;
 }
 .btn:hover {
-  background-color: #000000;
-  color: #ffeba7;
-  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+  background-color: #2b2e38; /* Negro para el fondo */
+  color: #ffeba7; /* Amarillo cálido para el texto */
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
 }
