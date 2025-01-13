@@ -1,7 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Perfil } from '../../../models/alumno';
-import { AuthService } from '../../../services/auth-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -10,4 +7,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css', '../../../app.component.css'],
 })
 export class HomeComponent {
+  currentMonth: Date;
+
+  constructor() {
+    this.currentMonth = new Date();
+  }
+
+  navigatePrevious(): void {
+    this.currentMonth = new Date(this.currentMonth.setMonth(this.currentMonth.getMonth() - 1));
+  }
+
+  navigateNext(): void {
+    this.currentMonth = new Date(this.currentMonth.setMonth(this.currentMonth.getMonth() + 1));
+  }
 }
