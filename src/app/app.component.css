@@ -84,3 +84,44 @@ mat-sidenav {
   border-radius: 10px;
   position: relative;
 }
+
+/* Estilos mejorados para el título */
+.titulo {
+  text-align: center;
+  font-family: 'Poppins', sans-serif; /* Fuente moderna */
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: transparent; /* Hacemos el texto base transparente */
+  background-clip: text; /* Aplicamos el gradiente al texto */
+  -webkit-background-clip: text; /* Compatibilidad con navegadores Webkit */
+}
+
+.titulo {
+
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: transparent; /* Hacemos el texto base transparente */
+  background-clip: text; /* Aplicamos el gradiente al texto */
+  -webkit-background-clip: text; /* Compatibilidad con navegadores Webkit */
+  background-image: linear-gradient(90deg, #ffeba7, #2b2e38, #ffeba7);
+  background-blend-mode: overlay;
+  animation: moveGradient 10s infinite linear; /* Animación del gradiente */
+  background-size: 300%; /* Duplica el tamaño para la animación fluida */
+}
+
+
+/* Animación del gradiente */
+@keyframes moveGradient {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
