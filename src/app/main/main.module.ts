@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { MainRoutingModule } from './main-routing.module';
@@ -12,5 +12,6 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
   declarations: [HomeComponent, ProfileComponent, EditProfileComponent],
   imports: [CommonModule, MainRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [provideHttpClient(), ServiceLogin],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainModule {}

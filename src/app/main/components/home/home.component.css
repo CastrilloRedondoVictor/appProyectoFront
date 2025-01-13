@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    /* Asegura que los elementos estén en fila */
+    justify-content: center;
+    /* Centra los elementos horizontalmente */
+    align-items: flex-start;
+    /* Alinea los elementos en la parte superior */
+    gap: 20px;
+    /* Espaciado entre los calendarios */
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
+    max-width: 1000px;
+    /* Máximo ancho para contener los calendarios */
+    margin: 0 auto;
+    /* Centra el contenedor en la página */
+}
+
+calendar-month {
+    flex: 1 1 auto;
+    /* Permite que los calendarios se ajusten */
+    max-width: 400px;
+    /* Ajusta el ancho máximo del calendario */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+}
