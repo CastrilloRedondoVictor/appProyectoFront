@@ -5,12 +5,17 @@
 
       <!-- Imagen de perfil con vista previa -->
       <div class="text-center mb-4">
-        <img
-          [src]="fileContent || perfil.imagen"
-          alt="Imagen de perfil"
-          class="perfil-imagen"
-          (click)="cambiarImagen()"
-        />
+        <div class="imagen-contenedor">
+          <img
+            [src]="fileContent || getImagenPerfil()"
+            alt="Imagen de perfil"
+            class="perfil-imagen"
+            (click)="cambiarImagen()"
+          />
+          <button class="editar-boton" (click)="cambiarImagen()">Editar</button>
+        </div>
+
+
         <!-- Input oculto para seleccionar archivo -->
         <input
           type="file"
