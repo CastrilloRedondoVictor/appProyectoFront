@@ -12,10 +12,8 @@ h1 {
   margin-right: 2.5%;
   margin-bottom: 15px;
   background-color: rgba(43, 46, 56);
-  transition: all .5s;
+  transition: all 0.5s;
 }
-
-
 
 .ronda:hover {
   background-color: rgba(43, 46, 56, 0.95);
@@ -28,8 +26,7 @@ h1 {
   align-items: center;
 }
 
-
-.txtLabel{
+.txtLabel {
   color: #ffeba7;
 }
 
@@ -59,12 +56,10 @@ h1 {
   color: #ffeba7;
 }
 
-
-.ronda-footer{
+.ronda-footer {
   display: flex;
   justify-content: end;
 }
-
 
 .btn {
   border-radius: 4px;
@@ -85,4 +80,35 @@ h1 {
   background-color: #2b2e38;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+
+.upper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+}
+
+.btn {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  background-color: #ffeba7; /* Amarillo cálido */
+  color: #2b2e38; /* Negro para el texto */
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center; /* Opcional, para mayor consistencia */
+}
+
+.btn-large {
+  font-size: 25px;
+  padding: 4px 6px;
+  font-weight: 800;
 }
