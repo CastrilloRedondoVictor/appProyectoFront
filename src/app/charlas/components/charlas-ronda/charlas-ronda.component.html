@@ -1,7 +1,6 @@
 <div class="container">
   <h1 class="titulo">CHARLAS DE LA RONDA {{ idRonda }}</h1>
   <div class="upper-buttons">
-
     <a [routerLink]="['/charlas']" class="btn btn-large"
       ><i class="uil-arrow-left"></i
     ></a>
@@ -46,9 +45,17 @@
         >{{ charlaRonda.usuario }}
       </p>
     </div>
-    <div class="charla-footer">
-      <!-- <img *ngIf="charla.imagenCharla" [src]="charlaRonda.imagenCharla" alt="Imagen de la charla" class="charla-img" /> -->
-      <!-- <a [routerLink]="['detalleCharla', charlaRonda.idCharla]" class="btn">Ver Detalle</a> -->
+    <div class="ronda-footer">
+      <a class="btn-round">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3375/3375274.png"
+          alt="Votar Icono"
+          class="icon-img"
+        />
+      </a>
+      <a [routerLink]="['/charlas/charlasRonda/detallesCharla']" class="btn"
+        >Ver detalles</a
+      >
     </div>
   </div>
 </div>

@@ -1,18 +1,37 @@
 <div class="container">
   <h1 class="titulo">LISTA DE RONDAS</h1>
+  <div class="upper-buttons">
+    <a [routerLink]="['/charlas/charlasRonda/newRonda']" class="btn btn-large"
+      ><i class="uis uil-plus"></i
+    ></a>
+  </div>
 
   <div *ngFor="let ronda of rondas; let i = index" class="ronda">
     <div class="ronda-header">
       <h4 class="txtLabel">Ronda {{ ronda.descripcionModulo }}</h4>
-      <span>Duración: {{  getHoras(ronda.duracion) }} hrs {{ ronda.duracion % 60 }} mins</span>
+      <span
+        >Duración: {{ getHoras(ronda.duracion) }} hrs
+        {{ ronda.duracion % 60 }} mins</span
+      >
     </div>
     <div class="ronda-details">
-      <p><span>Fecha de Presentación:</span> {{ ronda.fechaPresentacion | date:'longDate':'es' }}</p>
-      <p><span>Fecha de Cierre:</span> {{ ronda.fechaCierre | date:'longDate':'es' }}</p>
-      <p><span>Fecha Límite de Votación:</span> {{ ronda.fechaLimiteVotacion | date:'longDate':'es' }}</p>
+      <p>
+        <span>Fecha de Presentación:</span>
+        {{ ronda.fechaPresentacion | date : "longDate" : "es" }}
+      </p>
+      <p>
+        <span>Fecha de Cierre:</span>
+        {{ ronda.fechaCierre | date : "longDate" : "es" }}
+      </p>
+      <p>
+        <span>Fecha Límite de Votación:</span>
+        {{ ronda.fechaLimiteVotacion | date : "longDate" : "es" }}
+      </p>
     </div>
     <div class="ronda-footer">
-      <a [routerLink]="['charlasRonda', ronda.idRonda]" class="btn">Ver charlas</a>
+      <a [routerLink]="['charlasRonda', ronda.idRonda]" class="btn"
+        >Ver charlas</a
+      >
     </div>
   </div>
 </div>
