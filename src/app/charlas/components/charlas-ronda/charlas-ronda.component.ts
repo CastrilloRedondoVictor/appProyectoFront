@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Charla } from '../../../models/charla';
 import { CharlasService } from '../../../services/charlas-service.service';
+import { Voto } from '../../../models/voto';
 
 @Component({
   selector: 'app-charlas-ronda',
@@ -15,6 +16,8 @@ export class CharlasRondaComponent implements OnInit {
   charlasRonda!: Charla[];
   charlasAlumno!: any[];
   hasCharla!: boolean;
+  hasVoted!: boolean;
+  voto!: Voto;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,10 +27,12 @@ export class CharlasRondaComponent implements OnInit {
   ngOnInit(): void {
     this.idRonda = Number(this.route.snapshot.paramMap.get('idRonda'));
     this.getCharlas();
+    this.canVote();
 
     this.route.paramMap.subscribe((params) => {
       this.idRonda = Number(params.get('idRonda'));
       this.getCharlas();
+      this.canVote();
     });
   }
 
@@ -54,6 +59,16 @@ export class CharlasRondaComponent implements OnInit {
       this.hasCharla = false;
     });
   }
+
+  canVote(){
+    this.charlasService
+      .getVotosRondaAlumno(this.idRonda)
+      .subscribe((response: Voto) => {
+        this.voto = response;
+        this.voto.idVoto ? this.hasVoted = true : this.hasVoted = false;
+      })
+  }
+
 
   getHoras(tiempo: number): number {
     return Math.floor(tiempo / 60);

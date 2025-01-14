@@ -21,13 +21,13 @@ export class CharlasService {
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 
-  getCharlasRonda(ronda: number): Observable<any> {
+  getCharlasRonda(idRonda: number): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-    let request = 'api/Charlas/CharlasRonda/' + ronda;
+    let request = 'api/Charlas/CharlasRonda/' + idRonda;
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 
@@ -38,6 +38,16 @@ export class CharlasService {
       'Content-Type': 'application/json',
     });
     let request = 'api/Charlas/CharlasAlumno';
+    return this._http.get(environment.urlApiCharlas + request, { headers });
+  }
+
+  getVotosRondaAlumno(idRonda: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    let request = 'api/Votos/VotoAlumnoRonda/' + idRonda;
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 

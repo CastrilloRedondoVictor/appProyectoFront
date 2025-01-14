@@ -122,8 +122,8 @@ h1 {
 
 .ronda-footer {
   display: flex;
-  justify-content: end;
-  gap: 10px; /* Espacio entre los botones */
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .icon-img {
@@ -160,3 +160,39 @@ h1 {
   margin-left: 4px;
   margin-top: 2px;
 }
+
+
+/* From Uiverse.io by SelfMadeSystem */
+.containerCheckbox {
+  cursor: pointer;
+}
+
+.containerCheckbox input {
+  display: none;
+}
+
+.containerCheckbox svg {
+  overflow: visible;
+}
+
+.path {
+  fill: none;
+  stroke: #ffeba7;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.containerCheckbox input:checked ~ svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}
+
+
+
+
+
+
