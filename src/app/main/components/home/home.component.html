@@ -1,19 +1,6 @@
 <div class="container">
-  <h1 class="titulo">HOME</h1>
+  <h1>HOME</h1>
   <sl-card>
-    <calendar-range months="2">
-      <!-- Botón para retroceder al mes anterior -->
-      <button slot="previous" aria-label="Previous Month" class="nav-button">
-        &#x276E; <!-- Carácter para la flecha hacia la izquierda -->
-      </button>
-      <!-- Botón para avanzar al siguiente mes -->
-      <button slot="next" aria-label="Next Month" class="nav-button">
-        &#x276F; <!-- Carácter para la flecha hacia la derecha -->
-      </button>
-      <div class="grid">
-        <calendar-month></calendar-month>
-        <calendar-month offset="1"></calendar-month>
-      </div>
-    </calendar-range>
+    <full-calendar [options]="calendarOptions"></full-calendar>
   </sl-card>
 </div>
