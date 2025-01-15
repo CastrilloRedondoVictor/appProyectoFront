@@ -55,4 +55,24 @@ export class CharlasService {
       { headers }
     );
   }
+
+  getCharlaById(id: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    const url = `${environment.urlApiCharlas}api/Charlas/${id}?idcharla=${id}`;
+    return this._http.get(url, { headers });
+  }
+
+  getCharlasCurso(): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    let request = 'api/Charlas/CharlasCurso';
+    return this._http.get(environment.urlApiCharlas + request, { headers });
+  }
 }
