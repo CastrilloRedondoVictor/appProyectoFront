@@ -29,4 +29,8 @@ export class ProfileComponent implements OnInit {
       // this.alumnosCursos.filter(alumno => alumno.alumnos.alumno.idRole == 2)
     }
   }
+
+  getImagenPerfil(): string {
+    return this.perfil.imagen || 'assets/images/default-profile.png';
+  }
 }

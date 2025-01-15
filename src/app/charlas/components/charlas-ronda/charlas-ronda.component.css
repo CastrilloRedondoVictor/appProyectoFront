@@ -55,10 +55,12 @@ h1 {
   color: #ffffff; /* Blanco */
 }
 
-.charla-details p .span-charla-details {
+.span-charla-details {
   font-weight: bold;
   color: #ffeba7;
 }
+
+
 
 .spanPropuesta {
   color: #f39c12;
@@ -173,6 +175,7 @@ h1 {
 
 .containerCheckbox svg {
   overflow: visible;
+  margin-left: 7.5px;
 }
 
 .path {

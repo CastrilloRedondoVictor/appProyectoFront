@@ -4,6 +4,7 @@ import { AuthService } from './auth-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Charla, CharlaSin } from '../models/charla';
+import { Voto } from '../models/voto'
 
 @Injectable({
   providedIn: 'root',
@@ -64,5 +65,31 @@ export class CharlasService {
       JSON.stringify(charla),
       { headers }
     );
+  }
+
+  postVoto(voto: Voto): Observable<any>{
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/Votos';
+    return this._http.post(
+      environment.urlApiCharlas + request,
+      JSON.stringify(voto),
+      { headers }
+    );
+  }
+
+  getRonda(id: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/Rondas/' + id;
+    return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 }
