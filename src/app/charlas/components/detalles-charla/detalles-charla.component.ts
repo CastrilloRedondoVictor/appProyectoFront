@@ -16,6 +16,8 @@ export class DetallesCharlaComponent implements OnInit {
   charlasRonda!: Charla[];
   charlaDetalles!: CharlaDetalles;
   idRonda!: number;
+  comentariosAbiertos: boolean = false;
+  recursosAbiertos: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,5 +54,13 @@ export class DetallesCharlaComponent implements OnInit {
 
   getHoras(tiempo: number): number {
     return Math.floor(tiempo / 60);
+  }
+
+  toggleComentarios(): void {
+    this.comentariosAbiertos = !this.comentariosAbiertos;
+  }
+
+  toggleRecursos(): void {
+    this.recursosAbiertos = !this.recursosAbiertos;
   }
 }

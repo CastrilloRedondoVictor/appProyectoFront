@@ -27,28 +27,46 @@
         </p>
       </div>
     </div>
-    <div class="perfil-info">
-      <p>
-        <strong>COMENTARIOS</strong>
-      </p>
-      <div *ngFor="let comentario of charlaDetalles.comentarios">
-        <p><strong>Usuario: </strong>{{ comentario.usuario }} </p>
-        <p><strong>Contenido: </strong>{{ comentario.contenido }} </p>
-        <p>
-          <strong>Fecha: </strong
-          >{{ comentario.fecha | date : "longDate" : "es" }}
-        </p>
+    <div class="comentarios-section">
+      <h3>
+        Comentarios
+        <button (click)="toggleComentarios()" class="comentarios-toggle">
+          <i
+            [class]="comentariosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'"
+          ></i>
+        </button>
+      </h3>
+
+      <div *ngIf="comentariosAbiertos">
+        <div
+          *ngFor="let comentario of charlaDetalles.comentarios"
+          class="comentario"
+        >
+          <p><strong>Usuario: </strong>{{ comentario.usuario }}</p>
+          <p><strong>Contenido: </strong>{{ comentario.contenido }}</p>
+          <p>
+            <strong>Fecha: </strong
+            >{{ comentario.fecha | date : "longDate" : "es" }}
+          </p>
+        </div>
       </div>
     </div>
-    <div class="perfil-info">
-      <p>
-        <strong>RECURSOS</strong>
-      </p>
-      <div *ngFor="let recurso of charlaDetalles.recursos">
-        <p><strong>Url: </strong>{{ recurso.url }} </p>
-        <p><strong>Nombre: </strong>{{ recurso.nombre }} </p>
-        <p><strong>Descripcion: </strong>{{ recurso.descripcion }} </p>
-       
+    <div class="recursos-section">
+      <h3>
+        Recursos
+        <button (click)="toggleRecursos()" class="recursos-toggle">
+          <i
+            [class]="recursosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'"
+          ></i>
+        </button>
+      </h3>
+
+      <div *ngIf="recursosAbiertos">
+        <div *ngFor="let recurso of charlaDetalles.recursos" class="recurso">
+          <p><strong>Url: </strong>{{ recurso.url }}</p>
+          <p><strong>Nombre: </strong>{{ recurso.nombre }}</p>
+          <p><strong>Descripción: </strong>{{ recurso.descripcion }}</p>
+        </div>
       </div>
     </div>
   </div>
