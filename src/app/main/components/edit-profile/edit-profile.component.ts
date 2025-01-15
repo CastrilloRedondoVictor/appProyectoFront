@@ -27,6 +27,10 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
+  getImagenPerfil(): string {
+    return this.perfil.imagen || 'assets/images/default-profile.png';
+  }
+
   initForm() {
     this.perfilForm = this.fb.group({
       idUsuario: [{ value: this.perfil.idUsuario, disabled: true }],

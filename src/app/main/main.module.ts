@@ -7,10 +7,11 @@ import { provideHttpClient } from '@angular/common/http';
 import { ServiceLogin } from '../services/service.login';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [HomeComponent, ProfileComponent, EditProfileComponent],
-  imports: [CommonModule, MainRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, MainRoutingModule, FormsModule, ReactiveFormsModule, FullCalendarModule],
   providers: [provideHttpClient(), ServiceLogin],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

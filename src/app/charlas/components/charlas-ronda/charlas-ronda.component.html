@@ -11,7 +11,7 @@
       ><i class="uis uil-plus"></i
     ></a>
   </div>
-
+ 
   <div *ngFor="let charlaRonda of charlasRonda; let i = index" class="charla">
     <div class="charla-header">
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
@@ -46,13 +46,21 @@
       </p>
     </div>
     <div class="ronda-footer">
-      <a class="btn-round">  
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/3375/3375274.png"
-          alt="Votar Icono"
-          class="icon-img"
+ 
+      <label class="containerCheckbox" *ngIf="!hasVoted">
+        <span class="span-charla-details">Votar: </span>
+        <input
+          type="checkbox"
+          #chkVote
+          id="chkVote{{i}}"
+          (click)="votarCharla(charlaRonda, i)"
         />
-      </a>
+ 
+        <svg viewBox="0 0 64 64" height="2em" width="2em">
+          <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
+        </svg>
+      </label>
+ 
       <a [routerLink]="['/charlas/charlasRonda/detallesCharla', idRonda, charlaRonda.idCharla]" class="btn"
         >Ver detalles</a
       >
