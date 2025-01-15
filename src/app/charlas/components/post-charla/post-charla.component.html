@@ -6,9 +6,23 @@
             <div class="form">
               <div class="form-group">
                 <div class="form">
-                  <div class="imagen-contenedor">
-                    <img src="assets/images/charlaImagen.jpg" class="imagenCharla">
-                    <button class="editar-boton">Editar</button>
+                  <div class="text-center mb-4">
+                    <div class="imagen-contenedor">
+                      <img
+                        [src]="fileContent || 'assets/images/charlaImagen.jpg'"
+                        class="imagenCharla"
+                        (click)="cambiarImagen()"
+                      />
+                      <button class="editar-boton" (click)="cambiarImagen()">Editar</button>
+                    </div>
+                    <!-- Input oculto para seleccionar archivo -->
+                    <input
+                      type="file"
+                      #cajaFile
+                      accept="image/*"
+                      style="display: none"
+                      (change)="subirFichero($event)"
+                    />
                   </div>
                   <div class="form-group mt-2">
                     <input
