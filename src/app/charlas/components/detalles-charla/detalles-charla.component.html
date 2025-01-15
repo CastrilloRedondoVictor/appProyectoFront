@@ -1,1 +1,55 @@
-<p>detalles-charla works!</p>
+<div class="container">
+  <h1 class="titulo">{{ charlaDetalles.charla.titulo }}</h1>
+  <div class="upper-buttons">
+    <a [routerLink]="['/charlas/charlasRonda', idRonda]" class="btn btn-large">
+      <i class="uil-arrow-left"></i>
+    </a>
+  </div>
+
+  <div class="perfil-card">
+    <div class="perfil-header">
+      <img
+        *ngIf="charlaDetalles.charla.imagenCharla"
+        [src]="charlaDetalles.charla.imagenCharla"
+        alt="Imagen de la charla"
+        class="perfil-img"
+      />
+      <div class="perfil-info">
+        <p>
+          <strong>Descripción: </strong>{{ charlaDetalles.charla.descripcion }}
+        </p>
+        <p>
+          <strong>Tiempo: </strong>{{ charlaDetalles.charla.tiempo }} minutos
+        </p>
+        <p>
+          <strong>Fecha propuesta: </strong
+          >{{ charlaDetalles.charla.fechaPropuesta | date : "longDate" : "es" }}
+        </p>
+      </div>
+    </div>
+    <div class="perfil-info">
+      <p>
+        <strong>COMENTARIOS</strong>
+      </p>
+      <div *ngFor="let comentario of charlaDetalles.comentarios">
+        <p><strong>Usuario: </strong>{{ comentario.usuario }} </p>
+        <p><strong>Contenido: </strong>{{ comentario.contenido }} </p>
+        <p>
+          <strong>Fecha: </strong
+          >{{ comentario.fecha | date : "longDate" : "es" }}
+        </p>
+      </div>
+    </div>
+    <div class="perfil-info">
+      <p>
+        <strong>RECURSOS</strong>
+      </p>
+      <div *ngFor="let recurso of charlaDetalles.recursos">
+        <p><strong>Url: </strong>{{ recurso.url }} </p>
+        <p><strong>Nombre: </strong>{{ recurso.nombre }} </p>
+        <p><strong>Descripcion: </strong>{{ recurso.descripcion }} </p>
+       
+      </div>
+    </div>
+  </div>
+</div>
