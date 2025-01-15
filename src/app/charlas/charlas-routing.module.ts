@@ -9,7 +9,10 @@ import { DetallesCharlaComponent } from './components/detalles-charla/detalles-c
 const routes: Routes = [
   { path: 'charlasRonda/new/:idRonda', component: PostCharlaComponent },
   { path: 'charlasRonda/newRonda', component: PostRondaComponent },
-  { path: 'charlasRonda/detallesCharla', component: DetallesCharlaComponent },
+  {
+    path: 'charlasRonda/detallesCharla/:idRonda/:idCharla',
+    component: DetallesCharlaComponent,
+  },
   { path: 'charlasRonda/:idRonda', component: CharlasRondaComponent },
   { path: '', component: DashboardComponent },
   { path: '**', redirectTo: '' },

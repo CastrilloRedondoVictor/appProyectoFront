@@ -1,0 +1,162 @@
+/* Estilo de la tarjeta del perfil */
+.perfil-card {
+  background-color: rgba(43, 46, 56, 0.95);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all .5s;
+}
+
+/* Encabezado del perfil */
+.perfil-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.perfil-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ffeba7;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.perfil-info {
+  flex: 1;
+}
+
+.perfil-info h2 {
+  color: #ffeba7;
+  margin: 0;
+}
+
+.perfil-info h3 {
+  color: #ffeba7;
+  margin: 0;
+}
+
+.perfil-info p {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 8px 0;
+}
+
+.perfil-info strong {
+  font-weight: 600;
+  color: #ffeba7;
+}
+
+/* Estado del perfil */
+.active {
+  color: #2ecc71; /* Verde */
+}
+
+.inactive {
+  color: #e74c3c; /* Rojo */
+}
+
+/* Pie de perfil */
+.perfil-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  background-color: #ffeba7; /* Amarillo cálido */
+  color: #2b2e38; /* Negro para el texto */
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center; /* Opcional, para mayor consistencia */
+}
+
+.btn-large {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+.btn:hover {
+  background-color: #2b2e38; /* Negro para el fondo */
+  color: #ffeba7; /* Amarillo cálido para el texto */
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
+}
+/* MEDIA QUERIES PARA PANTALLAS PEQUEÑAS (MÓVILES) */
+
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+  .perfil-header {
+    flex-direction: column; /* Apila la imagen y la información en dispositivos móviles */
+    align-items: center;
+  }
+
+  .perfil-img {
+    margin-bottom: 15px; /* Agrega espacio entre la imagen y el texto */
+  }
+
+  .perfil-info {
+    text-align: center; /* Centra la información */
+  }
+
+  .perfil-info h2 {
+    font-size: 20px; /* Reducimos el tamaño del título en móviles */
+  }
+
+  .perfil-info p {
+    font-size: 14px; /* Reducimos el tamaño del texto en móviles */
+  }
+}
+
+/* Pantallas extra pequeñas (por ejemplo, móviles en modo vertical) */
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 24px; /* Reducimos el tamaño del título en pantallas muy pequeñas */
+  }
+
+  .btn {
+    font-size: 14px; /* Reducimos el tamaño del botón en pantallas pequeñas */
+    padding: 8px 12px;
+  }
+}
+
+.upper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+}
+
+.btn {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  background-color: #ffeba7; /* Amarillo cálido */
+  color: #2b2e38; /* Negro para el texto */
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center; /* Opcional, para mayor consistencia */
+}
+
+.btn-large {
+  font-size: 25px;
+  padding: 4px 6px;
+  font-weight: 800;
+}
