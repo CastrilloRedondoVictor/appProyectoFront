@@ -80,6 +80,8 @@ export class CharlasRondaComponent implements OnInit {
     const today = new Date();
     const votingDate = new Date(this.ronda.fechaLimiteVotacion);
 
+    console.log(votingDate)
+
     // Compara solo el año, mes y día
     const isToday =
       today.getFullYear() === votingDate.getFullYear() &&

@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="titulo">LISTA DE RONDAS</h1>
   <div class="upper-buttons">
-    <a [routerLink]="['/charlas/charlasRonda/newRonda']" class="btn btn-large"
+    <a *ngIf="rolUsuario == '1'" [routerLink]="['/charlas/charlasRonda/newRonda']" class="btn btn-large"
       ><i class="uis uil-plus"></i
     ></a>
   </div>

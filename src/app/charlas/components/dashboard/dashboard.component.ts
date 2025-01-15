@@ -14,10 +14,12 @@ import { CharlasService } from '../../../services/charlas-service.service';
 export class DashboardComponent implements OnInit {
 
   public rondas!: Ronda[];
+  public rolUsuario!: string | null;
 
 
   constructor(
-    private charlasService: CharlasService
+    private charlasService: CharlasService,
+    private authService: AuthService,
   ){}
 
 
@@ -25,6 +27,7 @@ export class DashboardComponent implements OnInit {
     this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
       this.rondas = response;
     });
+    this.rolUsuario = this.authService.getRolUsuario()
   }
 
   getHoras(tiempo: number): number {
