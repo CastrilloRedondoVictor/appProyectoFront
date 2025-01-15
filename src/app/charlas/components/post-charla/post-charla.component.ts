@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   standalone: false,
 
   templateUrl: './post-charla.component.html',
-  styleUrls: ['./post-charla.component.css', '../../../app.component.css'],
+  styleUrls: ['./post-charla.component.css', '../../../app.component.css', '../../../auth/components/login/login.component.css'],
 })
 export class PostCharlaComponent implements OnInit {
   @ViewChild('cajaTitulo') cajaTitulo!: ElementRef;
@@ -21,6 +21,10 @@ export class PostCharlaComponent implements OnInit {
   public charla!: CharlaSin;
   public perfil!: Perfil;
   public ronda!: Ronda;
+
+  tiempoIngresado!: number;
+  errors: boolean[] = [false, false, false];
+  errorTiempo: boolean = false;
 
   idRonda!: number;
 
@@ -38,9 +42,24 @@ export class PostCharlaComponent implements OnInit {
     this.idRonda = Number(this.route.snapshot.paramMap.get('idRonda'));
 
     this._service.getRondasCurso().subscribe((response) => {
-      this.ronda = response;
+      this.ronda = response.filter((ronda: Ronda) => ronda.idRonda == this.idRonda)[0];
     });
   }
+
+  adjustHeight(textarea: HTMLTextAreaElement): void {
+    textarea.style.height = 'auto'; // Resetea la altura para recalcular
+    textarea.style.height = textarea.scrollHeight + 'px'; // Ajusta la altura al contenido
+  }
+
+  validarTiempo(): void {
+    if (this.tiempoIngresado > this.ronda.duracion) {
+      this.errors[2] = true;
+    } else{
+
+      this.errors[2] = false;
+    }
+  }
+
 
   nuevaCharla(): void {
     var titulo = this.cajaTitulo.nativeElement.value;
