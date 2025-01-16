@@ -95,6 +95,17 @@ export class AuthService {
     );
   }
 
+  updatePassword(newPassword: string): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    const request = 'api/Usuarios/UpdatePasswordUsuario';
+    const body = { newPassword };
+    return this._http.put(environment.urlApiCharlas + request, JSON.stringify(body), { headers });
+  }
+
   // getAlumnos(): Observable<any> {
 
   //   const token = this.getToken();

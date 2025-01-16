@@ -1,29 +1,19 @@
-/* Imagen de perfil centrada */
-.perfil-imagen {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 3px solid #ffeba7;
-  margin-right: 20px;
-  object-fit: cover;
-}
-
 /* Formulario */
-form {
-  background-color: #1f2029;
+.form {
+  background-color: #2b2e38;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
 
-form:hover {
+.form:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
   text-align: center;
-  color: #1f2029; /* Tono gris oscuro, ligeramente frío */
+  color: #1f2029;
   margin-bottom: 30px;
 }
 
@@ -35,6 +25,7 @@ label {
 input {
   background-color: rgba(43, 46, 56);
   color: #c4c3ca;
+  font-size: 15px;
 }
 
 input:focus {
@@ -49,27 +40,26 @@ input:focus {
   text-transform: uppercase;
   transition: all 200ms linear;
   letter-spacing: 1px;
-  display: inline-flex;
-  align-items: center; /* Centra el texto verticalmente */
-  justify-content: center; /* Centra el texto horizontalmente */
-  background-color: #ffeba7; /* Amarillo cálido */
-  color: #2b2e38; /* Negro para el texto */
-  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffeba7;
+  color: #2b2e38;
+  padding: 10px 15px;
   text-decoration: none;
-  text-align: center; /* Opcional, para mayor consistencia */
+  text-align: center;
 }
-
-.btn-large {
-  font-size: 25px;
-  padding: 4px 6px;
-  font-weight: 800;
-}
-
 
 .btn:hover {
-  background-color: #2b2e38; /* Negro para el fondo */
-  color: #ffeba7; /* Amarillo cálido para el texto */
-  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
+  background-color: #2b2e38;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+
+.btn-submit {
+  display: block;
+  margin: 20px auto 0;
+  width: 100%;
 }
 
 .imagen-contenedor {
@@ -98,20 +88,33 @@ input:focus {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 16px;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
+
 .editar-boton i {
   color: #ffeba7;
   font-size: 24px;
   line-height: 48px;
-  text-align: left;
-  -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
 
 .imagen-contenedor:hover .editar-boton {
   display: flex;
+}
+
+.upper-buttons {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 15px;
+}
+
+.input-icon {
+  color: #ffeba7 !important;
+}
+
+.back {
+  font-size: 20px;
 }
