@@ -31,16 +31,9 @@
       <h3>
         Comentarios
         <div class="comentarios-buttons">
-          <a
-            [routerLink]="[
-              '/charlas/charlasRonda/newComentario',
-              idRonda,
-              charlaDetalles.charla.idCharla
-            ]"
-            class="comentarios-add"
-          >
+          <button (click)="toggleNuevoComentario()" class="comentarios-add">
             <i class="uil uil-plus"></i>
-          </a>
+          </button>
           <button (click)="toggleComentarios()" class="comentarios-toggle">
             <i
               [class]="
@@ -51,6 +44,16 @@
         </div>
       </h3>
 
+      <div *ngIf="nuevoComentarioAbierto" class="nuevo-comentario-form">
+        <textarea
+          [(ngModel)]="nuevoComentarioContenido"
+          placeholder="Ingrese el contenido"
+          class="form-style"
+        ></textarea>
+        <button (click)="crearComentario()" class="btn mt-2">
+          Crear comentario
+        </button>
+      </div>
       <div *ngIf="comentariosAbiertos">
         <div
           *ngFor="let comentario of charlaDetalles.comentarios"

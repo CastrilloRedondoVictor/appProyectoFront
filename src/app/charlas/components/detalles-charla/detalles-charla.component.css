@@ -494,3 +494,26 @@
     font-size: 16px; /* Reducir el tamaño aún más en pantallas muy pequeñas */
   }
 }
+
+.nuevo-comentario-form {
+  background-color: #2b2e38;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.nuevo-comentario-form textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  border: 1px solid #ffeba7;
+  border-radius: 4px;
+  padding: 10px;
+  color: #c4c3ca;
+  background-color: rgba(43, 46, 56);
+}
+
+.nuevo-comentario-form button {
+  float: right;
+}
+
