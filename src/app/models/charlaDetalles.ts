@@ -20,12 +20,23 @@ export class Comentarios {
   constructor(
     public idComentario: number,
     public idCharla: number,
-    public idUsuario: 0,
+    public idUsuario: number,
     public usuario: string,
     public contenido: string,
     public fecha: string
   ) {}
 }
+
+export class ComentariosSin {
+  constructor(
+    public idComentario: number,
+    public idCharla: number,
+    public idUsuario: number,
+    public contenido: string,
+    public fecha: string
+  ) {}
+}
+
 
 export class Recursos {
   constructor(

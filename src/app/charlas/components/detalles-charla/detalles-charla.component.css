@@ -425,3 +425,72 @@
 .uil-arrow-right {
   transform: rotate(0deg);
 }
+
+.comentarios-add {
+  background: none;
+  border: none;
+  color: #ffeba7;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 800px; /* Separación del botón de la flecha */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  transition: transform 0.3s ease;
+}
+
+.comentarios-add:hover {
+  transform: scale(1.1);
+  color: #ffffff; /* Cambia el color al pasar el mouse */
+}
+
+.comentarios-section h3 {
+  display: flex;
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  align-items: center; /* Centra verticalmente los botones y el texto */
+  color: #ffeba7;
+  margin-bottom: 10px;
+}
+
+.comentarios-add,
+.comentarios-toggle {
+  background: none;
+  border: none;
+  color: #ffeba7;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.comentarios-add {
+  margin-left: 0; /* Elimina el margen fijo */
+  margin-right: 10px; /* Añade separación si es necesario */
+}
+
+.comentarios-add:hover,
+.comentarios-toggle:hover {
+  transform: scale(1.1);
+  color: #ffffff; /* Cambia el color al pasar el mouse */
+}
+
+/* Asegura que los botones sean visibles en todas las pantallas */
+@media (max-width: 768px) {
+  .comentarios-section h3 {
+    flex-wrap: wrap; /* Permite que los elementos se ajusten si el espacio es limitado */
+  }
+
+  .comentarios-add,
+  .comentarios-toggle {
+    font-size: 18px; /* Ajusta el tamaño de los botones para pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .comentarios-section h3 {
+    justify-content: space-between;
+    flex-direction: row; /* Mantén los botones en una fila */
+  }
+
+  .comentarios-add,
+  .comentarios-toggle {
+    font-size: 16px; /* Reducir el tamaño aún más en pantallas muy pequeñas */
+  }
+}

@@ -2,75 +2,80 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
       <h1 class="text-center mb-4 titulo">Nueva charla</h1>
-          <div class="section">
+      <div class="section">
+        <div class="form">
+          <div class="form-group">
             <div class="form">
-              <div class="form-group">
-                <div class="form">
-                  <div class="text-center mb-4">
-                    <div class="imagen-contenedor">
-                      <img
-                        [src]="fileContent || 'assets/images/charlaImagen.jpg'"
-                        class="imagenCharla"
-                        (click)="cambiarImagen()"
-                      />
-                      <button class="editar-boton" (click)="cambiarImagen()">Editar</button>
-                    </div>
-                    <!-- Input oculto para seleccionar archivo -->
-                    <input
-                      type="file"
-                      #cajaFile
-                      accept="image/*"
-                      style="display: none"
-                      (change)="subirFichero($event)"
-                    />
-                  </div>
-                  <div class="form-group mt-2">
-                    <input
-                    name="cajaTitulo"
-                    type="text"
-                    class="form-style"
-                    placeholder="Ingrese el título"
-                    #cajaTitulo
-                    />
-                    <i style="color: #ffeba7;" class="input-icon uil uil-award"></i>
-                  </div>
-                  <div class="form-group mt-2">
-                    <textarea
-                    name="cajaDescripcion"
-                    type="text"
-                    class="form-style"
-                    placeholder="Ingrese la descripción"
-                    #cajaDescripcion
-                    (input)="adjustHeight(cajaDescripcion)"
-                    ></textarea>
-                    <i style="color: #ffeba7;" class="input-icon uil uil-wrap-text"></i>
-                  </div>
-                  <div class="form-group mt-2">
-                    <input
-                      name="cajaTiempo"
-                      type="number"
-                      class="form-style"
-                      placeholder="Ingrese el tiempo en minutos"
-                      [(ngModel)]="tiempoIngresado"
-                      (input)="validarTiempo()"
-                      #cajaTiempo
-                    />
-                    <small *ngIf="errors[2]" style="color: #D9534F; padding: 0 15px;">
-                      El tiempo no puede ser mayor a {{ ronda.duracion }} minutos.
-                    </small>
-                    <i style="color: #ffeba7;" class="input-icon uil uil-clock"></i>
-                  </div>
-
-
-                  <button (click)="nuevaCharla()" class="btn mt-4">
-                    Crear charla
+              <div class="text-center mb-4">
+                <div class="imagen-contenedor">
+                  <img
+                    [src]="fileContent || 'assets/images/charlaImagen.jpg'"
+                    class="imagenCharla"
+                    (click)="cambiarImagen()"
+                  />
+                  <button class="editar-boton" (click)="cambiarImagen()">
+                    Editar
                   </button>
+                </div>
+                <!-- Input oculto para seleccionar archivo -->
+                <input
+                  type="file"
+                  #cajaFile
+                  accept="image/*"
+                  style="display: none"
+                  (change)="subirFichero($event)"
+                />
               </div>
+              <div class="form-group mt-2">
+                <input
+                  name="cajaTitulo"
+                  type="text"
+                  class="form-style"
+                  placeholder="Ingrese el título"
+                  #cajaTitulo
+                />
+                <i style="color: #ffeba7" class="input-icon uil uil-award"></i>
+              </div>
+              <div class="form-group mt-2">
+                <textarea
+                  name="cajaDescripcion"
+                  type="text"
+                  class="form-style"
+                  placeholder="Ingrese la descripción"
+                  #cajaDescripcion
+                  (input)="adjustHeight(cajaDescripcion)"
+                ></textarea>
+                <i
+                  style="color: #ffeba7"
+                  class="input-icon uil uil-wrap-text"
+                ></i>
+              </div>
+              <div class="form-group mt-2">
+                <input
+                  name="cajaTiempo"
+                  type="number"
+                  class="form-style"
+                  placeholder="Ingrese el tiempo en minutos"
+                  [(ngModel)]="tiempoIngresado"
+                  (input)="validarTiempo()"
+                  #cajaTiempo
+                />
+                <small
+                  *ngIf="errors[2]"
+                  style="color: #d9534f; padding: 0 15px"
+                >
+                  El tiempo no puede ser mayor a {{ ronda.duracion }} minutos.
+                </small>
+                <i style="color: #ffeba7" class="input-icon uil uil-clock"></i>
+              </div>
+
+              <button (click)="nuevaCharla()" class="btn mt-4">
+                Crear charla
+              </button>
             </div>
           </div>
-          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-

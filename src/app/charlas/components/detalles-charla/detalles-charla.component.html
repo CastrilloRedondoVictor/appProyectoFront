@@ -30,11 +30,25 @@
     <div class="comentarios-section">
       <h3>
         Comentarios
-        <button (click)="toggleComentarios()" class="comentarios-toggle">
-          <i
-            [class]="comentariosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'"
-          ></i>
-        </button>
+        <div class="comentarios-buttons">
+          <a
+            [routerLink]="[
+              '/charlas/charlasRonda/newComentario',
+              idRonda,
+              charlaDetalles.charla.idCharla
+            ]"
+            class="comentarios-add"
+          >
+            <i class="uil uil-plus"></i>
+          </a>
+          <button (click)="toggleComentarios()" class="comentarios-toggle">
+            <i
+              [class]="
+                comentariosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'
+              "
+            ></i>
+          </button>
+        </div>
       </h3>
 
       <div *ngIf="comentariosAbiertos">
