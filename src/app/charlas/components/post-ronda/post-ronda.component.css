@@ -89,11 +89,16 @@ input:focus {
 }
 
 .back{
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .imagen-contenedor:hover .editar-boton {
   display: flex;
+}
+
+a{
+
+  overflow-y: hidden;
 }
 
 
@@ -108,10 +113,11 @@ input[type="date"] {
   border-radius: 4px;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   color: rgb(120, 120, 120);
+
 }
 
 input[type="date"]:focus {
-  background-color: #1f2029; /* Fondo gris más oscuro al enfocar */
+  background-color: #2b2e38; /* Fondo gris más oscuro al enfocar */
   color: rgb(164, 164, 164);
   outline: none; /* Elimina el contorno predeterminado */
 }
