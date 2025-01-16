@@ -90,6 +90,7 @@ input:focus {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 2.5%;
 }
 .editar-boton i {
   color: #ffeba7;
@@ -100,6 +101,17 @@ input:focus {
   transition: all 200ms linear;
 }
 
+.back{
+  font-size: 20px;
+}
+
 .imagen-contenedor:hover .editar-boton {
   display: flex;
+}
+
+
+.upper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
