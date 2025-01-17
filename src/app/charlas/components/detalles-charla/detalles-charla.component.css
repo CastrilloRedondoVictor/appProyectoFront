@@ -1,8 +1,10 @@
 /* Estilo de la tarjeta del perfil */
 .perfil-card {
-  background-color: rgba(43, 46, 56, 0.95);
-  border-radius: 10px;
-  padding: 20px;
+  border: 1px solid #ddd; /* Gris suave para bordes */
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 2.5%;
+  background-color: #2b2e38; /* Gris oscuro con toques azules */
   transition: all 0.5s;
 }
 
