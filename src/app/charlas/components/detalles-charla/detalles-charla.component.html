@@ -7,14 +7,14 @@
   </div>
 
   <div class="perfil-card">
-    <div class="perfil-header">
-      <img
-        *ngIf="charlaDetalles.charla.imagenCharla"
-        [src]="charlaDetalles.charla.imagenCharla"
-        alt="Imagen de la charla"
-        class="perfil-img"
+    <div class="perfil-header row">
+      <div class="col-6">
+        <img
+        [src]="getImagen()"
+        class="col-12 charla-img"
       />
-      <div class="perfil-info">
+      </div>
+      <div class="perfil-info col-6">
         <p>
           <strong>Descripción: </strong>{{ charlaDetalles.charla.descripcion }}
         </p>
