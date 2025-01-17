@@ -1,8 +1,10 @@
 /* Estilo de la tarjeta del perfil */
 .perfil-card {
-  background-color: rgba(43, 46, 56, 0.95);
-  border-radius: 10px;
-  padding: 20px;
+  border: 1px solid #ddd; /* Gris suave para bordes */
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 2.5%;
+  background-color: #2b2e38; /* Gris oscuro con toques azules */
   transition: all 0.5s;
 }
 
@@ -513,6 +515,44 @@
 
 .nuevo-comentario-form button {
   float: right;
+}
+
+
+/* Estilo común para inputs de URL y Nombre */
+input.form-style {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  border: 1px solid #ffeba7;
+  border-radius: 4px;
+  padding: 10px;
+  color: #c4c3ca;
+  background-color: rgba(43, 46, 56, 0.95);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+textarea.form-style {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  border: 1px solid #ffeba7;
+  border-radius: 4px;
+  padding: 10px;
+  color: #c4c3ca;
+  background-color: rgba(43, 46, 56, 0.95);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input.form-style:focus,
+textarea.form-style:focus {
+  border-color: #ffffff;
+  outline: none;
+}
+
+textarea.form-style {
+  resize: none; /* Desactiva el redimensionamiento para textarea */
 }
 
 .charla-img {
