@@ -4,8 +4,9 @@ import { AuthService } from './auth-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Charla, CharlaSin } from '../models/charla';
-import { Voto } from '../models/voto'
+import { Voto } from '../models/voto';
 import { FileModel } from '../models/fileModel';
+import { Comentarios, ComentariosSin } from '../models/charlaDetalles';
 
 @Injectable({
   providedIn: 'root',
@@ -68,7 +69,22 @@ export class CharlasService {
     );
   }
 
-  postVoto(voto: Voto): Observable<any>{
+  postComentario(comentario: ComentariosSin): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/comentarios';
+    return this._http.post(
+      environment.urlApiCharlas + request,
+      JSON.stringify(comentario),
+      { headers }
+    );
+  }
+
+  postVoto(voto: Voto): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -114,19 +130,18 @@ export class CharlasService {
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 
-
   postFile(fileModel: FileModel, id: number): Observable<any> {
-      const token = this.authService.getToken();
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      });
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
 
-      let request = 'api/Files/UploadImagenCharla/' + id;
-      return this._http.post(
-        environment.urlApiCharlas + request,
-        JSON.stringify(fileModel),
-        { headers }
-      );
-    }
+    let request = 'api/Files/UploadImagenCharla/' + id;
+    return this._http.post(
+      environment.urlApiCharlas + request,
+      JSON.stringify(fileModel),
+      { headers }
+    );
+  }
 }
