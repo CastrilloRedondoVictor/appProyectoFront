@@ -32,7 +32,11 @@
         Comentarios
         <div class="comentarios-buttons">
           <button (click)="toggleNuevoComentario()" class="comentarios-add">
-            <i class="uil uil-plus"></i>
+            <i
+              [class]="
+                nuevoComentarioAbierto ? 'uil uil-minus' : 'uil uil-plus'
+              "
+            ></i>
           </button>
           <button (click)="toggleComentarios()" class="comentarios-toggle">
             <i

@@ -5,6 +5,7 @@ import { CharlasService } from '../../../services/charlas-service.service';
 import { CharlaDetalles, ComentariosSin } from '../../../models/charlaDetalles';
 import { Perfil } from '../../../models/alumno';
 import { AuthService } from '../../../services/auth-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalles-charla',
@@ -80,17 +81,42 @@ export class DetallesCharlaComponent implements OnInit {
 
   crearComentario(): void {
     this.comentario = new ComentariosSin(
-      1,
-      this.idCharla,
-      this.perfil.idUsuario,
-      this.nuevoComentarioContenido,
-      new Date().toISOString()
+      1, // ID del comentario (puede ser generado automáticamente por el backend)
+      this.idCharla, // ID de la charla
+      this.perfil.idUsuario, // ID del usuario
+      this.nuevoComentarioContenido, // Contenido del comentario
+      new Date().toISOString() // Fecha del comentario
     );
 
-    this.charlasService
-      .postComentario(this.comentario)
-      .subscribe((response: ComentariosSin) => {
-        alert('Comentario creado');
-      });
+    this.charlasService.postComentario(this.comentario).subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Comentario creado',
+          text: 'Tu comentario se ha añadido correctamente.',
+          icon: 'success',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+        });
+
+        // Llama al método que recarga los detalles de la charla
+        this.getCharlaDetalles();
+
+        // Limpia el contenido del formulario y cierra el formulario de nuevo comentario
+        this.nuevoComentarioContenido = '';
+        this.nuevoComentarioAbierto = false;
+      },
+      error: (err) => {
+        console.error('Error al crear el comentario:', err);
+        Swal.fire({
+          title: 'Error',
+          text: 'No se pudo añadir el comentario. Inténtalo de nuevo más tarde.',
+          icon: 'error',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+        });
+      },
+    });
   }
 }
