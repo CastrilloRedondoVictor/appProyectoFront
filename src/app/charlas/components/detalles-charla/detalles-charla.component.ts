@@ -62,6 +62,10 @@ export class DetallesCharlaComponent implements OnInit {
     });
   }
 
+  getImagen() {
+    return this.charlaDetalles.charla.imagenCharla || 'assets/images/charlaImagen.jpg';
+  }
+
   getHoras(tiempo: number): number {
     return Math.floor(tiempo / 60);
   }

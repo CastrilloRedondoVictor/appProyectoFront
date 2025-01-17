@@ -79,7 +79,7 @@ export class CharlasRondaComponent implements OnInit {
     const today = new Date();
     const votingDate = new Date(this.ronda.fechaLimiteVotacion);
 
-    votingDate < today ? (this.hasVoted = true) : (this.hasVoted = false);
+    votingDate < today || this.authService.getRolUsuario() != '2' ? (this.hasVoted = true) : (this.hasVoted = false);
 
     if (this.hasVoted) {
       return;
