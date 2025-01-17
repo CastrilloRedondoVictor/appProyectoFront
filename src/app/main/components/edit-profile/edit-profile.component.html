@@ -1,62 +1,46 @@
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-6">
-      <h1 class="text-center mb-4 titulo">Editar Perfil</h1>
-
-      <!-- Imagen de perfil con vista previa -->
-      <div class="text-center mb-4">
-        <div class="imagen-contenedor">
-          <img
-            [src]="fileContent || getImagenPerfil()"
-            alt="Imagen de perfil"
-            class="perfil-imagen"
-            (click)="cambiarImagen()"
-          />
-          <button class="editar-boton" (click)="cambiarImagen()"><i class="uil uil-image-edit"></i></button>
-        </div>
-
-
-        <!-- Input oculto para seleccionar archivo -->
-        <input
-          type="file"
-          #cajaFile
-          accept="image/*"
-          style="display: none"
-          (change)="subirFichero($event)"
-        />
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+      <h1 class="text-center mb-4 titulo">EDITAR PERFIL</h1>
+      <div class="upper-buttons">
+        <a [routerLink]="['/profile']" class="btn">
+          <i class="back uil-arrow-left"></i>
+        </a>
       </div>
-
-      <!-- Formulario de edición -->
-      <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
-        <!-- Nombre -->
-        <div class="form-group mb-3">
-          <label for="nombre">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            class="form-control"
-            formControlName="nombre"
-            placeholder="Ingrese su nombre"
-          />
+      <div class="section">
+        <div class="form">
+          <div class="text-center mb-4">
+            <div class="imagen-contenedor">
+              <img [src]="fileContent || getImagenPerfil()" alt="Imagen de perfil" class="perfil-imagen" (click)="cambiarImagen()" />
+              <button class="editar-boton" (click)="cambiarImagen()">
+                <i class="uil uil-camera"></i>
+              </button>
+            </div>
+            <input type="file" #cajaFile accept="image/*" style="display: none" (change)="subirFichero($event)" />
+          </div>
+          
+          <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mt-2">
+              <input type="text" id="nombre" class="form-style" formControlName="nombre" placeholder="Ingrese su nombre" />
+              <i class="input-icon uil uil-user"></i>
+            </div>
+            
+            <div class="form-group mt-2">
+              <input type="text" id="apellidos" class="form-style" formControlName="apellidos" placeholder="Ingrese sus apellidos" />
+              <i class="input-icon uil uil-user"></i>
+            </div>
+            
+            <div class="form-group mt-2">
+              <input type="password" id="newPassword" class="form-style" formControlName="newPassword" placeholder="Ingrese su nueva contraseña" />
+              <i class="input-icon uil uil-lock"></i>
+            </div>
+            
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn mt-4">GUARDAR CAMBIOS</button>
+            </div>
+          </form>
         </div>
-
-        <!-- Apellidos -->
-        <div class="form-group mb-3">
-          <label for="apellidos">Apellidos</label>
-          <input
-            type="text"
-            id="apellidos"
-            class="form-control"
-            formControlName="apellidos"
-            placeholder="Ingrese sus apellidos"
-          />
-        </div>
-
-        <!-- Botón Submit -->
-        <button type="submit" class="btn btn-primary w-100">
-          Guardar Cambios
-        </button>
-      </form>
+      </div>
     </div>
   </div>
 </div>

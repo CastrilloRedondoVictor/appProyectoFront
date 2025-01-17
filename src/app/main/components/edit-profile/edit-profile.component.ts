@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth-service.service';
 import { Perfil } from '../../../models/alumno';
 import { FileModel } from '../../../models/fileModel';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   selector: 'app-edit-profile',
   standalone: false,
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css', '../../../app.component.css']
+  styleUrls: ['./edit-profile.component.css', '../../../app.component.css', '../../../auth/components/login/login.component.css']
 })
 export class EditProfileComponent implements OnInit {
   @ViewChild('cajaFile') cajaFileRef!: ElementRef; // Referencia al input file
@@ -40,7 +40,8 @@ export class EditProfileComponent implements OnInit {
       estadoUsuario: [this.perfil.estadoUsuario],
       imagen: [this.perfil.imagen],
       role: [{ value: this.perfil.role, disabled: true }],
-      curso: [{ value: this.perfil.curso, disabled: true }]
+      curso: [{ value: this.perfil.curso, disabled: true }],
+      newPassword: ['', [Validators.minLength(3)]],
     });
   }
 
@@ -156,6 +157,18 @@ export class EditProfileComponent implements OnInit {
       const formData = this.perfilForm.getRawValue();
       console.log('Datos del formulario:', formData);
       alert('Perfil actualizado correctamente');
+
+      if (formData.newPassword) {
+        this._service.updatePassword(formData.newPassword).subscribe(
+          () => {
+            Swal.fire('Éxito', 'Contraseña actualizada con éxito', 'success');
+          },
+          (error) => {
+            Swal.fire('Error', 'No se pudo actualizar la contraseña', 'error');
+            console.error(error);
+          }
+        );
+      }
     }
   }
 }
