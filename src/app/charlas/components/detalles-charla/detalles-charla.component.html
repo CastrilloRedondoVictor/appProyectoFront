@@ -55,7 +55,7 @@
           class="form-style"
         ></textarea>
         <button (click)="crearComentario()" class="btn mt-2">
-          Crear comentario
+          Añadir comentario
         </button>
       </div>
       <div *ngIf="comentariosAbiertos">
@@ -75,12 +75,42 @@
     <div class="recursos-section">
       <h3>
         Recursos
-        <button (click)="toggleRecursos()" class="recursos-toggle">
-          <i
-            [class]="recursosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'"
-          ></i>
-        </button>
+        <div class="comentarios-buttons">
+          <button (click)="toggleNuevoRecurso()" class="comentarios-add">
+            <i
+              [class]="nuevoRecursoAbierto ? 'uil uil-minus' : 'uil uil-plus'"
+            ></i>
+          </button>
+          <button (click)="toggleRecursos()" class="recursos-toggle">
+            <i
+              [class]="recursosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'"
+            ></i>
+          </button>
+        </div>
       </h3>
+
+      <div *ngIf="nuevoRecursoAbierto" class="nuevo-comentario-form">
+        <input
+          type="text"
+          [(ngModel)]="nuevoRecurso.url"
+          placeholder="Ingrese la URL"
+          class="form-style"
+        />
+        <input
+          type="text"
+          [(ngModel)]="nuevoRecurso.nombre"
+          placeholder="Ingrese el nombre"
+          class="form-style"
+        />
+        <textarea
+          [(ngModel)]="nuevoRecurso.descripcion"
+          placeholder="Ingrese la descripción"
+          class="form-style"
+        ></textarea>
+        <button (click)="crearRecurso()" class="btn mt-2">
+          Añadir recurso
+        </button>
+      </div>
 
       <div *ngIf="recursosAbiertos">
         <div *ngFor="let recurso of charlaDetalles.recursos" class="recurso">

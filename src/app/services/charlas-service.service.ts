@@ -6,7 +6,11 @@ import { environment } from '../../environments/environment.development';
 import { Charla, CharlaSin } from '../models/charla';
 import { Voto } from '../models/voto';
 import { FileModel } from '../models/fileModel';
-import { Comentarios, ComentariosSin } from '../models/charlaDetalles';
+import {
+  Comentarios,
+  ComentariosSin,
+  Recursos,
+} from '../models/charlaDetalles';
 
 @Injectable({
   providedIn: 'root',
@@ -80,6 +84,21 @@ export class CharlasService {
     return this._http.post(
       environment.urlApiCharlas + request,
       JSON.stringify(comentario),
+      { headers }
+    );
+  }
+
+  postRecurso(recurso: Recursos): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/recursos';
+    return this._http.post(
+      environment.urlApiCharlas + request,
+      JSON.stringify(recurso),
       { headers }
     );
   }
