@@ -76,17 +76,13 @@ export class CharlasRondaComponent implements OnInit {
   }
 
   canVote(): void {
-
     const today = new Date();
     const votingDate = new Date(this.ronda.fechaLimiteVotacion);
 
-
-    console.log(votingDate)
-
-    votingDate < today ? this.hasVoted = false : this.hasVoted = true;
+    votingDate < today ? (this.hasVoted = true) : (this.hasVoted = false);
 
     if (this.hasVoted) {
-      return
+      return;
     }
 
     this.charlasService
@@ -97,8 +93,6 @@ export class CharlasRondaComponent implements OnInit {
         this.hasChosenVote = false;
       });
   }
-
-
 
   getHoras(tiempo: number): number {
     return Math.floor(tiempo / 60);
@@ -118,7 +112,9 @@ export class CharlasRondaComponent implements OnInit {
         buttonsStyling: false,
         didOpen: () => {
           // Estilizar contenedor de botones
-          const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+          const buttonsContainer = document.querySelector(
+            '.swal2-actions'
+          ) as HTMLElement;
           if (buttonsContainer) {
             buttonsContainer.style.display = 'flex';
             buttonsContainer.style.justifyContent = 'space-between';
@@ -126,7 +122,9 @@ export class CharlasRondaComponent implements OnInit {
           }
 
           // Botón de confirmar
-          const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+          const confirmButton = document.querySelector(
+            '.swal2-confirm'
+          ) as HTMLElement;
           if (confirmButton) {
             confirmButton.style.backgroundColor = '#ffeba7';
             confirmButton.style.color = '#2b2e38';
@@ -147,7 +145,9 @@ export class CharlasRondaComponent implements OnInit {
           }
 
           // Botón de cancelar
-          const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+          const cancelButton = document.querySelector(
+            '.swal2-cancel'
+          ) as HTMLElement;
           if (cancelButton) {
             cancelButton.style.backgroundColor = '#ff4d4d';
             cancelButton.style.color = '#ffffff';
@@ -169,14 +169,19 @@ export class CharlasRondaComponent implements OnInit {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          this.voto = new Voto(1, charla.idCharla, this.perfil.idUsuario, this.idRonda)
-          this.charlasService
-          .postVoto(this.voto)
-          .subscribe(response => {
+          this.voto = new Voto(
+            1,
+            charla.idCharla,
+            this.perfil.idUsuario,
+            this.idRonda
+          );
+          this.charlasService.postVoto(this.voto).subscribe((response) => {
             this.hasVoted = true;
-          })
+          });
         } else {
-          const chkVote = document.getElementById('chkVote' + id.toString()) as HTMLInputElement;
+          const chkVote = document.getElementById(
+            'chkVote' + id.toString()
+          ) as HTMLInputElement;
           if (chkVote) {
             chkVote.click();
           }
