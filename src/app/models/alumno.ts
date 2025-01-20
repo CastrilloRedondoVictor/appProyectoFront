@@ -20,10 +20,10 @@ export class Perfil {
     public estadoUsuario: boolean,
     public imagen: string,
     public idRole: number,
-    public role: string,  // Se agregó el campo 'role' en lugar de 'idRole'
+    public role: string, // Se agregó el campo 'role' en lugar de 'idRole'
     public idCurso: number,
     public curso: string,
-    public idCursoUsuario: number  // Cambié 'idCursosUsuarios' a 'idCursoUsuario'
+    public idCursoUsuario: number // Cambié 'idCursosUsuarios' a 'idCursoUsuario'
   ) {}
 }
 
@@ -44,8 +44,6 @@ export class PerfilAlumnoCurso {
   ) {}
 }
 
-
-
 export class AlumnoCurso {
   constructor(
     public alumno: PerfilAlumnoCurso, // Datos del alumno basado en la clase Perfil
@@ -55,4 +53,3 @@ export class AlumnoCurso {
     public charlas: any[] // Lista de charlas del alumno (puedes definir un tipo específico)
   ) {}
 }
-

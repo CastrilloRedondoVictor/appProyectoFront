@@ -190,3 +190,22 @@ h1 {
   stroke-dasharray: 70.5096664428711 9999999;
   stroke-dashoffset: -262.2723388671875;
 }
+
+.dropdown {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background-color: #2b2e38; /* Gris oscuro */
+  color: #ffeba7; /* Amarillo cálido */
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.dropdown:hover {
+  background-color: rgba(43, 46, 56, 0.95);
+}
+
+.dropdown option {
+  background-color: #2b2e38; /* Fondo gris oscuro */
+  color: #ffeba7; /* Texto amarillo */
+}

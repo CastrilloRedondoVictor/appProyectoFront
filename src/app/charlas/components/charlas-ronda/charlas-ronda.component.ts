@@ -24,6 +24,11 @@ export class CharlasRondaComponent implements OnInit {
   voto!: Voto;
   perfil!: Perfil;
   ronda!: Ronda;
+  estadosCharla = [
+    { idEstadoCharla: 1, estado: 'PROPUESTA' },
+    { idEstadoCharla: 2, estado: 'ACEPTADA' },
+  ];
+  selectedEstadoCharla = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -52,11 +57,22 @@ export class CharlasRondaComponent implements OnInit {
   }
 
   getCharlas() {
-    this.charlasService
-      .getCharlasRonda(this.idRonda)
-      .subscribe((response: Charla[]) => {
-        this.charlasRonda = response;
-      });
+    // Si no se selecciona ningún estado, se cargan todas las charlas.
+    if (!this.selectedEstadoCharla) {
+      this.charlasService
+        .getCharlasRonda(this.idRonda)
+        .subscribe((response: Charla[]) => {
+          this.charlasRonda = response;
+        });
+    } else {
+      // Filtrar las charlas según el estado seleccionado
+      const estadoId = this.selectedEstadoCharla === 'PROPUESTA' ? 1 : 2;
+      this.charlasService
+        .getCharlasRondaEstado(this.idRonda, estadoId)
+        .subscribe((response: Charla[]) => {
+          this.charlasRonda = response;
+        });
+    }
 
     if (localStorage.getItem('idRole') != '2') {
       this.hasCharla = true;
@@ -79,7 +95,9 @@ export class CharlasRondaComponent implements OnInit {
     const today = new Date();
     const votingDate = new Date(this.ronda.fechaLimiteVotacion);
 
-    votingDate < today || this.authService.getRolUsuario() != '2' ? (this.hasVoted = true) : (this.hasVoted = false);
+    votingDate < today || this.authService.getRolUsuario() != '2'
+      ? (this.hasVoted = true)
+      : (this.hasVoted = false);
 
     if (this.hasVoted) {
       return;
@@ -189,5 +207,10 @@ export class CharlasRondaComponent implements OnInit {
       });
     }
     this.hasChosenVote = !this.hasChosenVote;
+  }
+
+  onEstadoChange(): void {
+    console.log('Estado seleccionado:', this.selectedEstadoCharla);
+    this.getCharlas(); // Recargar las charlas basadas en el estado seleccionado.
   }
 }
