@@ -15,16 +15,6 @@
   <div *ngFor="let charlaRonda of charlasRonda; let i = index" class="charla">
     <div class="charla-header">
       <div class="buttons" *ngIf="charlaRonda.idUsuario == perfil.idUsuario">
-        <a
-              [routerLink]="['/charlas/charlasRonda/edit', idRonda, charlaRonda.idCharla]"
-              class="btn"
-              ><i class="uis uil-pen"></i>
-            </a>
-            <!-- <a
-              (click)="eliminarCharla(charlaRonda.idCharla)"
-              class="dropdown-item"
-              >Eliminar</a
-            > -->
       </div>
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
       <span
@@ -76,6 +66,18 @@
       <a [routerLink]="['/charlas/charlasRonda/detallesCharla', idRonda, charlaRonda.idCharla]" class="btn"
         >Ver detalles</a
       >
+      <div *ngIf="charlaRonda.idUsuario == perfil.idUsuario">
+        <a
+              [routerLink]="['/charlas/charlasRonda/edit', idRonda, charlaRonda.idCharla]"
+              class="btnAction"
+              ><i class="uis uil-pen"></i>
+            </a>
+            <a
+              (click)="eliminarCharla(charlaRonda.idCharla)"
+              class="btnAction"
+              ><i class="uis uil-trash-alt"></i></a
+            >
+      </div>
     </div>
   </div>
 </div>

@@ -190,4 +190,9 @@ export class CharlasRondaComponent implements OnInit {
     }
     this.hasChosenVote = !this.hasChosenVote;
   }
+
+
+  eliminarCharla(idRonda: number) {
+
+  }
 }
