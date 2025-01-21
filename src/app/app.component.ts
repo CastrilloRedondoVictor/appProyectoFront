@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
 
   showMenu = true;
 
-  profile!: Observable<Perfil>;
+  perfil!: Perfil;
+  message: string = 'BIENVENID@, INVITAD@';
   rolUsuario!: string | null;
 
   constructor(
@@ -127,6 +128,10 @@ export class AppComponent implements OnInit {
         this.showMenu = this.authService.isLogged();
         if (this.showMenu) {
           this.rolUsuario = this.authService.getRolUsuario();
+          this.authService.getPerfil().subscribe((perfil) => {
+            this.perfil = perfil;
+            this.message = 'BIENVENID@, ' + this.perfil.usuario.nombre.toUpperCase();
+          });
         }
       });
   }

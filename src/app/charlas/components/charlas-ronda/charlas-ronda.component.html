@@ -71,8 +71,9 @@
         </svg>
       </label>
 
-      <div *ngIf="charlaRonda.idUsuario == perfil.idUsuario">
+      <div *ngIf="charlaRonda.idUsuario == perfil.idUsuario || perfil.idRole != 2">
         <a
+        *ngIf="charlaRonda.idUsuario == perfil.idUsuario"
               [routerLink]="['/charlas/charlasRonda/edit', idRonda, charlaRonda.idCharla]"
               class="btnAction"
               ><i class="uis uil-pen"></i>
