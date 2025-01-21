@@ -11,9 +11,21 @@
       ><i class="uis uil-plus"></i
     ></a>
   </div>
- 
+
   <div *ngFor="let charlaRonda of charlasRonda; let i = index" class="charla">
     <div class="charla-header">
+      <div class="buttons" *ngIf="charlaRonda.idUsuario == perfil.idUsuario">
+        <a
+              [routerLink]="['/charlas/charlasRonda/edit', idRonda, charlaRonda.idCharla]"
+              class="btn"
+              ><i class="uis uil-pen"></i>
+            </a>
+            <!-- <a
+              (click)="eliminarCharla(charlaRonda.idCharla)"
+              class="dropdown-item"
+              >Eliminar</a
+            > -->
+      </div>
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
       <span
         >Tiempo: {{ getHoras(charlaRonda.tiempo) }} horas
@@ -46,7 +58,7 @@
       </p>
     </div>
     <div class="ronda-footer">
- 
+
       <label class="containerCheckbox" *ngIf="!hasVoted">
         <span class="span-charla-details">Votar: </span>
         <input
@@ -55,12 +67,12 @@
           id="chkVote{{i}}"
           (click)="votarCharla(charlaRonda, i)"
         />
- 
+
         <svg viewBox="0 0 64 64" height="2em" width="2em">
           <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
         </svg>
       </label>
- 
+
       <a [routerLink]="['/charlas/charlasRonda/detallesCharla', idRonda, charlaRonda.idCharla]" class="btn"
         >Ver detalles</a
       >

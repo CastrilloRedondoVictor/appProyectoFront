@@ -108,6 +108,10 @@ h1 {
   text-align: center; /* Opcional, para mayor consistencia */
 }
 
+.btn i {
+  font-size: 15px;
+}
+
 .btn-large {
   font-size: 25px;
   padding: 4px 6px;

@@ -22,7 +22,7 @@ export class CharlasRondaComponent implements OnInit {
   hasVoted!: boolean;
   hasChosenVote!: boolean;
   voto!: Voto;
-  perfil!: Perfil;
+  public perfil!: Perfil;
   ronda!: Ronda;
 
   constructor(
