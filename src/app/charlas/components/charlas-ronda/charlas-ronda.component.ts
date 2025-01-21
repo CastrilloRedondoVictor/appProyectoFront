@@ -22,7 +22,7 @@ export class CharlasRondaComponent implements OnInit {
   hasVoted!: boolean;
   hasChosenVote!: boolean;
   voto!: Voto;
-  perfil!: Perfil;
+  public perfil!: Perfil;
   ronda!: Ronda;
   estadosCharla = [
     { idEstadoCharla: 1, estado: 'PROPUESTA' },
@@ -208,6 +208,9 @@ export class CharlasRondaComponent implements OnInit {
     }
     this.hasChosenVote = !this.hasChosenVote;
   }
+
+  eliminarCharla(idRonda: number) {}
+
 
   onEstadoChange(): void {
     console.log('Estado seleccionado:', this.selectedEstadoCharla);
