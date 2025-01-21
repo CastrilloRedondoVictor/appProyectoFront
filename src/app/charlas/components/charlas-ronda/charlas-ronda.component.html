@@ -14,8 +14,6 @@
 
   <div *ngFor="let charlaRonda of charlasRonda; let i = index" class="charla">
     <div class="charla-header">
-      <div class="buttons" *ngIf="charlaRonda.idUsuario == perfil.idUsuario">
-      </div>
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
       <span
         >Tiempo: {{ getHoras(charlaRonda.tiempo) }} horas
