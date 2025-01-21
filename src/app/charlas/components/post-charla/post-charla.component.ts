@@ -98,15 +98,10 @@ export class PostCharlaComponent implements OnInit {
           const fileModel = new FileModel(fileName, base64Content);
 
           // Subir al servidor
-          this.subirImagenAlServidor(fileModel);
+          this.imagen = fileModel
         };
         reader.readAsDataURL(file);
       }
-    }
-
-    // Subir la imagen al servidor
-    subirImagenAlServidor(fileModel: FileModel) {
-      this.imagen = fileModel;
     }
 
 
