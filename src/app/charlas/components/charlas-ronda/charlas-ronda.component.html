@@ -4,6 +4,16 @@
     <a [routerLink]="['/charlas']" class="btn btn-large"
       ><i class="uil-arrow-left"></i
     ></a>
+    <select
+      class="dropdown"
+      [(ngModel)]="selectedEstadoCharla"
+      (change)="onEstadoChange()"
+    >
+      <option value="" disabled selected>FILTRAR</option>
+      <option *ngFor="let estado of estadosCharla" [value]="estado.estado">
+        {{ estado.estado }}
+      </option>
+    </select>
     <a
       *ngIf="!hasCharla"
       [routerLink]="['/charlas/charlasRonda/new', idRonda]"
