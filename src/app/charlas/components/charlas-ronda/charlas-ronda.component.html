@@ -9,9 +9,9 @@
       [(ngModel)]="selectedEstadoCharla"
       (change)="onEstadoChange()"
     >
-      <option value="" disabled selected>FILTRAR</option>
+      <option value="" selected>TODAS</option>
       <option *ngFor="let estado of estadosCharla" [value]="estado.estado">
-        {{ estado.estado }}
+        {{ estado.estado }}S
       </option>
     </select>
     <a
@@ -57,7 +57,7 @@
     </div>
     <div class="ronda-footer">
 
-      <label class="containerCheckbox" *ngIf="!hasVoted">
+      <label class="containerCheckbox" *ngIf="!hasVoted && charlaRonda.idUsuario != perfil.idUsuario">
         <span class="span-charla-details">Votar: </span>
         <input
           type="checkbox"
@@ -71,9 +71,6 @@
         </svg>
       </label>
 
-      <a [routerLink]="['/charlas/charlasRonda/detallesCharla', idRonda, charlaRonda.idCharla]" class="btn"
-        >Ver detalles</a
-      >
       <div *ngIf="charlaRonda.idUsuario == perfil.idUsuario">
         <a
               [routerLink]="['/charlas/charlasRonda/edit', idRonda, charlaRonda.idCharla]"
@@ -86,6 +83,10 @@
               ><i class="uis uil-trash-alt"></i></a
             >
       </div>
+
+      <a [routerLink]="['/charlas/charlasRonda/detallesCharla', idRonda, charlaRonda.idCharla]" class="btn"
+        >Ver detalles</a
+      >
     </div>
   </div>
 </div>

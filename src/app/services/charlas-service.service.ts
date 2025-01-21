@@ -83,6 +83,16 @@ export class CharlasService {
     );
   }
 
+  deleteCharla(idCharla: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    let request = 'api/Charlas/' + idCharla;
+    return this._http.delete(environment.urlApiCharlas + request, { headers });
+  }
+
   postComentario(comentario: ComentariosSin): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
