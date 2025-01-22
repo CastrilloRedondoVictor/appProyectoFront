@@ -294,6 +294,35 @@
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
 
+.btnAction {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  color: #ffeba7; /* Amarillo cálido */
+  background-color: none; /* Negro para el texto */
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center; /* Opcional, para mayor consistencia */
+}
+
+
+.btnAction i {
+  font-size: 18px;
+}
+
+.btnAction:hover {
+  background-color: #2b2e38; /* Negro para el fondo */
+  color: #ffeba7; /* Amarillo cálido para el texto */
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
+  cursor: pointer;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   .perfil-header {
@@ -557,4 +586,9 @@ textarea.form-style {
 
 .charla-img {
   border-radius: 5%;
+}
+
+
+.recursoUrl{
+  color: white;
 }

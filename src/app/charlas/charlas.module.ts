@@ -8,6 +8,7 @@ import { CharlasRondaComponent } from './components/charlas-ronda/charlas-ronda.
 import { PostRondaComponent } from './components/post-ronda/post-ronda.component';
 import { DetallesCharlaComponent } from './components/detalles-charla/detalles-charla.component';
 import {PostComentarioComponent} from './components/post-comentario/post-comentario.component';
+import { EditCharlaComponent } from './components/edit-charla/edit-charla.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {PostComentarioComponent} from './components/post-comentario/post-comenta
     CharlasRondaComponent,
     PostRondaComponent,
     DetallesCharlaComponent,
-    PostComentarioComponent
+    PostComentarioComponent,
+    EditCharlaComponent
   ],
   imports: [CommonModule, CharlasRoutingModule, FormsModule],
 })

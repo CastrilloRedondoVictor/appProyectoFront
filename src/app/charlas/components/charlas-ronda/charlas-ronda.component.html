@@ -1,43 +1,37 @@
 <div class="container">
   <h1 class="titulo">CHARLAS DE LA RONDA {{ idRonda }}</h1>
   <div class="upper-buttons">
-    <a [routerLink]="['/charlas']" class="btn btn-large"
-      ><i class="uil-arrow-left"></i
-    ></a>
+    <a [routerLink]="['/charlas']" class="btn btn-large"><i
+        class="uil-arrow-left"></i></a>
     <select
       class="dropdown"
       [(ngModel)]="selectedEstadoCharla"
-      (change)="onEstadoChange()"
-    >
-      <option value="" disabled selected>FILTRAR</option>
+      (change)="onEstadoChange()">
+      <option value selected>TODAS</option>
       <option *ngFor="let estado of estadosCharla" [value]="estado.estado">
-        {{ estado.estado }}
+        {{ estado.estado }}S
       </option>
     </select>
     <a
       *ngIf="!hasCharla"
       [routerLink]="['/charlas/charlasRonda/new', idRonda]"
-      class="btn btn-large"
-      ><i class="uis uil-plus"></i
-    ></a>
+      class="btn btn-large"><i class="uis uil-plus"></i></a>
   </div>
 
   <div *ngFor="let charlaRonda of charlasRonda; let i = index" class="charla">
     <div class="charla-header">
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
-      <span
-        >Tiempo: {{ getHoras(charlaRonda.tiempo) }} horas
-        {{ charlaRonda.tiempo % 60 }} minutos</span
-      >
+      <span>Tiempo: {{ getHoras(charlaRonda.tiempo) }} horas
+        {{ charlaRonda.tiempo % 60 }} minutos</span>
     </div>
     <div class="charla-details">
       <p>
-        <span class="span-charla-details">Descripción: </span
-        >{{ charlaRonda.descripcion }}
+        <span class="span-charla-details">Descripción: </span>{{
+        charlaRonda.descripcion }}
       </p>
       <p>
-        <span class="span-charla-details">Fecha Propuesta: </span
-        >{{ charlaRonda.fechaPropuesta | date : "longDate" : "es" }}
+        <span class="span-charla-details">Fecha Propuesta: </span>{{
+        charlaRonda.fechaPropuesta | date : "longDate" : "es" }}
       </p>
       <p>
         <span class="span-charla-details">Estado: </span>
@@ -46,33 +40,46 @@
             charlaRonda.estadoCharla == 'PROPUESTA'
               ? 'spanPropuesta'
               : 'spanAceptada'
-          "
-          >{{ charlaRonda.estadoCharla }}</span
-        >
+          ">{{ charlaRonda.estadoCharla }}</span>
       </p>
       <p>
-        <span class="span-charla-details">Propuesta por: </span
-        >{{ charlaRonda.usuario }}
+        <span class="span-charla-details">Propuesta por: </span>{{
+        charlaRonda.usuario }}
       </p>
     </div>
     <div class="ronda-footer">
-      <label class="containerCheckbox" *ngIf="!hasVoted">
+      <label
+        class="containerCheckbox"
+        *ngIf="!hasVoted && charlaRonda.idUsuario != perfil.idUsuario && charlaRonda.estadoCharla == 'PROPUESTA'">
         <span class="span-charla-details">Votar: </span>
         <input
           type="checkbox"
           #chkVote
           id="chkVote{{ i }}"
-          (click)="votarCharla(charlaRonda, i)"
-        />
+          (click)="votarCharla(charlaRonda, i)" />
 
         <svg viewBox="0 0 64 64" height="2em" width="2em">
           <path
             d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
             pathLength="575.0541381835938"
-            class="path"
-          ></path>
+            class="path"></path>
         </svg>
       </label>
+
+      <div
+        *ngIf="charlaRonda.idUsuario == perfil.idUsuario || perfil.idRole != 2">
+        <a
+          *ngIf="charlaRonda.idUsuario == perfil.idUsuario"
+          [routerLink]="[
+            '/charlas/charlasRonda/edit',
+            idRonda,
+            charlaRonda.idCharla
+          ]"
+          class="btnAction"><i class="uis uil-pen"></i>
+        </a>
+        <a (click)="eliminarCharla(charlaRonda.idCharla)" class="btnAction"><i
+            class="uis uil-trash-alt"></i></a>
+      </div>
 
       <a
         [routerLink]="[
@@ -80,9 +87,7 @@
           idRonda,
           charlaRonda.idCharla
         ]"
-        class="btn"
-        >Ver detalles</a
-      >
+        class="btn">Ver detalles</a>
     </div>
   </div>
 </div>
