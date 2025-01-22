@@ -16,14 +16,14 @@
       </div>
       <div class="perfil-info col-lg-6 col-md-6 ">
         <p>
-          <strong>Descripción: </strong>{{ charlaDetalles.charla.descripcion }}
+          <strong>Fecha propuesta: </strong
+          >{{ charlaDetalles.charla.fechaPropuesta | date : "longDate" : "es" }}
         </p>
         <p>
           <strong>Tiempo: </strong>{{ charlaDetalles.charla.tiempo }} minutos
         </p>
         <p>
-          <strong>Fecha propuesta: </strong
-          >{{ charlaDetalles.charla.fechaPropuesta | date : "longDate" : "es" }}
+          <strong>Descripción: </strong>{{ charlaDetalles.charla.descripcion }}
         </p>
       </div>
     </div>
@@ -69,6 +69,11 @@
             <strong>Fecha: </strong
             >{{ comentario.fecha | date : "longDate" : "es" }}
           </p>
+          <div
+        *ngIf="comentario.idUsuario == perfil.idUsuario || perfil.idRole != 2">
+        <a (click)="eliminarComentario(comentario.idComentario)" class="btnAction"><i
+            class="uis uil-trash-alt"></i></a>
+      </div>
         </div>
       </div>
     </div>
@@ -76,7 +81,7 @@
       <h3>
         Recursos
         <div class="comentarios-buttons">
-          <button (click)="toggleNuevoRecurso()" class="comentarios-add">
+          <button *ngIf="charlaDetalles.charla.idUsuario == perfil.idUsuario" (click)="toggleNuevoRecurso()" class="comentarios-add">
             <i
               [class]="nuevoRecursoAbierto ? 'uil uil-minus' : 'uil uil-plus'"
             ></i>
@@ -114,9 +119,9 @@
 
       <div *ngIf="recursosAbiertos">
         <div *ngFor="let recurso of charlaDetalles.recursos" class="recurso">
-          <p><strong>Url: </strong>{{ recurso.url }}</p>
           <p><strong>Nombre: </strong>{{ recurso.nombre }}</p>
           <p><strong>Descripción: </strong>{{ recurso.descripcion }}</p>
+          <a class="btn" [href]="recurso.url" target="_blank">Ver recurso</a>
         </div>
       </div>
     </div>
