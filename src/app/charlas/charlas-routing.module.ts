@@ -6,6 +6,7 @@ import { CharlasRondaComponent } from './components/charlas-ronda/charlas-ronda.
 import { PostRondaComponent } from './components/post-ronda/post-ronda.component';
 import { DetallesCharlaComponent } from './components/detalles-charla/detalles-charla.component';
 import { PostComentarioComponent } from './components/post-comentario/post-comentario.component';
+import { EditCharlaComponent } from './components/edit-charla/edit-charla.component';
 
 const routes: Routes = [
   { path: 'charlasRonda/new/:idRonda', component: PostCharlaComponent },
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'charlasRonda/detallesCharla/:idRonda/:idCharla',
     component: DetallesCharlaComponent,
+  },
+  {
+    path: 'charlasRonda/edit/:idRonda/:idCharla',
+    component: EditCharlaComponent,
   },
   { path: 'charlasRonda/:idRonda', component: CharlasRondaComponent },
   {

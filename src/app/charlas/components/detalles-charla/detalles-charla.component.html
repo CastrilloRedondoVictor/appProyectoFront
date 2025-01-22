@@ -16,14 +16,14 @@
       </div>
       <div class="perfil-info col-lg-6 col-md-6 ">
         <p>
-          <strong>Descripción: </strong>{{ charlaDetalles.charla.descripcion }}
+          <strong>Fecha propuesta: </strong
+          >{{ charlaDetalles.charla.fechaPropuesta | date : "longDate" : "es" }}
         </p>
         <p>
           <strong>Tiempo: </strong>{{ charlaDetalles.charla.tiempo }} minutos
         </p>
         <p>
-          <strong>Fecha propuesta: </strong
-          >{{ charlaDetalles.charla.fechaPropuesta | date : "longDate" : "es" }}
+          <strong>Descripción: </strong>{{ charlaDetalles.charla.descripcion }}
         </p>
       </div>
     </div>
@@ -69,6 +69,11 @@
             <strong>Fecha: </strong
             >{{ comentario.fecha | date : "longDate" : "es" }}
           </p>
+          <div
+        *ngIf="comentario.idUsuario == perfil.idUsuario || perfil.idRole != 2">
+        <a (click)="eliminarComentario(comentario.idComentario)" class="btnAction"><i
+            class="uis uil-trash-alt"></i></a>
+      </div>
         </div>
       </div>
     </div>

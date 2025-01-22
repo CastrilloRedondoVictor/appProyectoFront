@@ -50,7 +50,7 @@
     <div class="ronda-footer">
       <label
         class="containerCheckbox"
-        *ngIf="!hasVoted && charlaRonda.idUsuario != perfil.idUsuario">
+        *ngIf="!hasVoted && charlaRonda.idUsuario != perfil.idUsuario && charlaRonda.estadoCharla == 'PROPUESTA'">
         <span class="span-charla-details">Votar: </span>
         <input
           type="checkbox"

@@ -83,6 +83,21 @@ export class CharlasService {
     );
   }
 
+  putCharla(charla: CharlaSin): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/charlas';
+    return this._http.put(
+      environment.urlApiCharlas + request,
+      JSON.stringify(charla),
+      { headers }
+    );
+  }
+
   deleteCharla(idCharla: number): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
@@ -106,6 +121,15 @@ export class CharlasService {
       JSON.stringify(comentario),
       { headers }
     );
+  }
+  deleteComentario(idComentario: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    let request = 'api/Comentarios/' + idComentario;
+    return this._http.delete(environment.urlApiCharlas + request, { headers });
   }
 
   postRecurso(recurso: Recursos): Observable<any> {
@@ -155,7 +179,7 @@ export class CharlasService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-    const url = `${environment.urlApiCharlas}api/Charlas/${id}?idcharla=${id}`;
+    const url = `${environment.urlApiCharlas}api/Charlas/${id}`;
     return this._http.get(url, { headers });
   }
 

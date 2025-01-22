@@ -85,17 +85,6 @@ mat-sidenav {
   position: relative;
 }
 
-/* Estilos mejorados para el título */
-.titulo {
-  text-align: center;
-  font-family: 'Poppins', sans-serif; /* Fuente moderna */
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: transparent; /* Hacemos el texto base transparente */
-  background-clip: text; /* Aplicamos el gradiente al texto */
-  -webkit-background-clip: text; /* Compatibilidad con navegadores Webkit */
-}
-
 .titulo {
 
   text-align: center;
@@ -116,12 +105,12 @@ mat-sidenav {
 /* Animación del gradiente */
 @keyframes moveGradient {
   0% {
-    background-position: 0%;
+    background-position: 20%;
   }
   50% {
-    background-position: 100%;
+    background-position: 80%;
   }
   100% {
-    background-position: 0%;
+    background-position: 20%;
   }
 }
