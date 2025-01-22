@@ -68,6 +68,16 @@ export class CharlasService {
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 
+  getEstadosCharlas(): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    let request = 'api/EstadosCharlas';
+    return this._http.get(environment.urlApiCharlas + request, { headers });
+  }
+
   postCharla(charla: CharlaSin): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
