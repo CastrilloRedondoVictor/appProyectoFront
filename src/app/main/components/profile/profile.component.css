@@ -1,4 +1,4 @@
-/* Estilo de la tarjeta del perfil */
+/* 🔹 Estilo de la tarjeta del perfil */
 .perfil-card {
   background-color: rgba(43, 46, 56, 0.95);
   border-radius: 10px;
@@ -6,7 +6,7 @@
   transition: all .5s;
 }
 
-/* Encabezado del perfil */
+/* 🔹 Encabezado del perfil */
 .perfil-header {
   display: flex;
   justify-content: flex-start;
@@ -28,12 +28,7 @@
   flex: 1;
 }
 
-.perfil-info h2 {
-  color: #ffeba7;
-  margin: 0;
-}
-
-.perfil-info h3 {
+.perfil-info h2, .perfil-info h3 {
   color: #ffeba7;
   margin: 0;
 }
@@ -49,7 +44,7 @@
   color: #ffeba7;
 }
 
-/* Estado del perfil */
+/* 🔹 Estado del perfil */
 .active {
   color: #2ecc71; /* Verde */
 }
@@ -58,24 +53,29 @@
   color: #e74c3c; /* Rojo */
 }
 
-/* Pie de perfil */
+/* 🔹 Pie de perfil */
 .perfil-footer {
   text-align: center;
   margin-top: 20px;
 }
 
-.perfil-alumno-card {
+/* 🔹 Estilos para alumnos y cursos */
+.perfil-alumno-card,
+.perfil-curso-card {
   background-color: rgba(43, 46, 56, 0.95);
   border-radius: 10px;
   padding: 20px;
   transition: all .3s;
+  margin-bottom: 15px;
 }
 
-.perfil-alumno-card:hover {
+.perfil-alumno-card:hover,
+.perfil-curso-card:hover {
   background-color: rgba(43, 46, 56, 0.85);
   transform: scale(0.98);
 }
 
+/* 🔹 Botones */
 .btn {
   border-radius: 4px;
   font-size: 12px;
@@ -84,13 +84,12 @@
   transition: all 200ms linear;
   letter-spacing: 1px;
   display: inline-flex;
-  align-items: center; /* Centra el texto verticalmente */
-  justify-content: center; /* Centra el texto horizontalmente */
-  background-color: #ffeba7; /* Amarillo cálido */
-  color: #2b2e38; /* Negro para el texto */
+  align-items: center;
+  justify-content: center;
+  background-color: #ffeba7;
+  color: #2b2e38;
   padding: 8px 12px;
   text-decoration: none;
-  text-align: center; /* Opcional, para mayor consistencia */
 }
 
 .btn-large {
@@ -98,46 +97,134 @@
   font-weight: 600;
 }
 
-
 .btn:hover {
-  background-color: #2b2e38; /* Negro para el fondo */
-  color: #ffeba7; /* Amarillo cálido para el texto */
-  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
+  background-color: #2b2e38;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
-/* MEDIA QUERIES PARA PANTALLAS PEQUEÑAS (MÓVILES) */
 
-/* Pantallas pequeñas */
+/* 🔹 Estilo de los cursos (Desplegable igual a comentarios/recursos en detalles-charla) */
+.curso-section {
+  background-color: rgba(43, 46, 56, 0.95);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.curso-section h3 {
+  color: #ffeba7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 🔹 Botón para desplegar detalles */
+.curso-toggle {
+  background: none;
+  border: none;
+  color: #ffeba7;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.curso-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* 🔹 Contenedor de detalles del curso */
+.curso-detalles {
+  background-color: rgba(43, 46, 56, 0.85);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.curso-detalles p {
+  font-size: 14px;
+  color: #ffffff;
+  margin: 5px 0;
+}
+
+/* 🔹 Contenedor de los detalles del curso */
+.curso-detalles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 🔹 MEDIA QUERIES PARA PANTALLAS PEQUEÑAS */
+
+/* 📱 Pantallas pequeñas */
 @media (max-width: 768px) {
   .perfil-header {
-    flex-direction: column; /* Apila la imagen y la información en dispositivos móviles */
+    flex-direction: column;
     align-items: center;
   }
 
   .perfil-img {
-    margin-bottom: 15px; /* Agrega espacio entre la imagen y el texto */
+    margin-bottom: 15px;
   }
 
   .perfil-info {
-    text-align: center; /* Centra la información */
+    text-align: center;
   }
 
   .perfil-info h2 {
-    font-size: 20px; /* Reducimos el tamaño del título en móviles */
+    font-size: 20px;
   }
 
   .perfil-info p {
-    font-size: 14px; /* Reducimos el tamaño del texto en móviles */
+    font-size: 14px;
   }
 }
 
-/* Pantallas extra pequeñas (por ejemplo, móviles en modo vertical) */
+/* 📱 Pantallas extra pequeñas */
 @media (max-width: 480px) {
   .titulo {
-    font-size: 24px; /* Reducimos el tamaño del título en pantallas muy pequeñas */
+    font-size: 24px;
   }
 
   .btn {
-    font-size: 14px; /* Reducimos el tamaño del botón en pantallas pequeñas */
+    font-size: 14px;
     padding: 8px 12px;
   }
+}
+
+/* Botón Activar/Desactivar */
+.btn-estado {
+  background-color: #ffeba7;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-estado:hover {
+  background-color: #2b2e38;
+  color: #ffeba7;
+}
+
+/* 🔹 Botón Miembros */
+.btn-miembros {
+  background-color: #ffeba7;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-miembros:hover {
+  background-color: #2b2e38;
+  color: #ffeba7;
 }

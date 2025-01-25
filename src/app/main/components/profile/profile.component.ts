@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
   public perfil!: Perfil;
   public rolUsuario!: string | null;
   public alumnosCursos!: AlumnosCursoProfesor[];
+  public listaCursos: any[] = [];
+  public cursosAbiertos: { [key: number]: boolean } = {};
 
   constructor(private _service: AuthService) {}
 
@@ -28,6 +30,32 @@ export class ProfileComponent implements OnInit {
       });
       // this.alumnosCursos.filter(alumno => alumno.alumnos.alumno.idRole == 2)
     }
+
+    if (this.rolUsuario == '3') {
+      this._service.getCursos().subscribe((response: any[]) => {
+        this.listaCursos = response;
+      });
+    }
+  }
+
+  // Método para abrir/cerrar los detalles de cada curso
+  toggleCurso(idCurso: number): void {
+    this.cursosAbiertos[idCurso] = !this.cursosAbiertos[idCurso];
+  }
+
+  // Método para cambiar estado entre true/false
+  toggleActivo(curso: any): void {
+    const nuevoEstado = !curso.activo; 
+  
+    this._service.updateEstadoCurso(curso.idCurso, nuevoEstado).subscribe({
+      next: () => {
+        curso.activo = nuevoEstado; 
+        console.log(`Curso ${curso.nombre} actualizado correctamente a ${nuevoEstado ? 'Activo' : 'Inactivo'}.`);
+      },
+      error: (err) => {
+        console.error('Error al actualizar el curso:', err);
+      }
+    });
   }
 
   getImagenPerfil(): string {
