@@ -40,4 +40,40 @@
       </div>
     </div>
   </div>
+
+  <div class="mt-5" *ngIf="rolUsuario == '3'">
+    <h2>Lista de Cursos ({{listaCursos.length}})</h2>
+
+    <div *ngFor="let curso of listaCursos" class="perfil-curso-card mb-1 curso-section">
+      <div class="perfil-header">
+        <div class="perfil-info">
+          <h3>{{ curso.nombre }}
+            <div class="curso-buttons">
+              <button (click)="toggleCurso(curso.idCurso)" class="curso-toggle">
+                <i [class]="cursosAbiertos[curso.idCurso] ? 'uil uil-minus' : 'uil uil-plus'"></i>
+              </button>
+            </div>
+          </h3>
+          <div *ngIf="cursosAbiertos[curso.idCurso]" class="curso-detalles">
+            <div>
+              <p><strong>ID Curso: </strong> {{ curso.idCurso }}</p>
+            <p><strong>Fecha Inicio: </strong> {{ curso.fechaInicio | date: 'longDate' }}</p>
+            <p><strong>Fecha Fin: </strong> {{ curso.fechaFin | date: 'longDate' }}</p>
+            <p>
+              <strong>Activo: </strong> {{ curso.activo ? 'Sí' : 'No' }}
+              <button (click)="toggleActivo(curso)" class="btn-estado">
+                {{ curso.activo ? 'Desactivar' : 'Activar' }}
+              </button>
+            </p>
+            </div>
+            <div>
+              <button class="btn-miembros">Miembros
+                <i class="uil uil-users-alt"></i>
+              </button>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

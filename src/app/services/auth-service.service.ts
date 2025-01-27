@@ -106,6 +106,27 @@ export class AuthService {
     return this._http.put(environment.urlApiCharlas + request, JSON.stringify(body), { headers });
   }
 
+  getCursos(): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });  
+    let request = 'api/cursos'; 
+    return this._http.get(environment.urlApiCharlas + request, { headers });
+  }
+
+  updateEstadoCurso(idCurso: number, estado: boolean): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+  
+    let request = `api/Cursos/UpdateEstadoCurso/${idCurso}/${estado}`;
+    return this._http.put(environment.urlApiCharlas + request, {}, { headers });
+  }
+
   // getAlumnos(): Observable<any> {
 
   //   const token = this.getToken();
