@@ -50,7 +50,15 @@
           "
           >{{ charlaRonda.estadoCharla }}</span
         >
+        <button
+          *ngIf="perfil.idRole == 1"
+          class="btn btnEstado"
+          (click)="cambiarEstadoCharla(charlaRonda)"
+        >
+          Cambiar estado
+        </button>
       </p>
+
       <p>
         <span class="span-charla-details">Propuesta por: </span
         >{{ charlaRonda.usuario }}

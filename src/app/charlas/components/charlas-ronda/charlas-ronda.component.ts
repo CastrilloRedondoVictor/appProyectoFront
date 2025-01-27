@@ -333,4 +333,35 @@ export class CharlasRondaComponent implements OnInit {
     console.log('Estado seleccionado:', this.selectedEstadoCharla);
     this.getCharlas(); // Recargar las charlas basadas en el estado seleccionado.
   }
+
+  cambiarEstadoCharla(charla: Charla): void {
+    const nuevoEstado = charla.estadoCharla === 'PROPUESTA' ? 2 : 1;
+    this.charlasService
+      .updateEstadoCharla(charla.idCharla, nuevoEstado)
+      .subscribe(
+        (response) => {
+          charla.estadoCharla = nuevoEstado === 1 ? 'PROPUESTA' : 'ACEPTADA'; // Actualizamos el estado localmente.
+          Swal.fire({
+            title: 'Estado actualizado',
+            text: `El estado de la charla ha sido cambiado a ${
+              nuevoEstado === 1 ? 'PROPUESTA' : 'ACEPTADA'
+            }.`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+          });
+        },
+        (error) => {
+          Swal.fire({
+            title: 'Error',
+            text: 'No se pudo actualizar el estado de la charla.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+          });
+        }
+      );
+  }
 }
