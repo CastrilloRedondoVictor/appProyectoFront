@@ -7,6 +7,7 @@ import { Charla, CharlaSin, Ronda } from '../models/charla';
 import { Voto } from '../models/voto';
 import { FileModel } from '../models/fileModel';
 import {
+  CharlaDetalles,
   Comentarios,
   ComentariosSin,
   Recursos,
@@ -159,6 +160,21 @@ export class CharlasService {
     return this._http.put(
       environment.urlApiCharlas + request,
       JSON.stringify(charla),
+      { headers }
+    );
+  }
+
+  putRecurso(recurso: Recursos): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/Recursos';
+    return this._http.put(
+      environment.urlApiCharlas + request,
+      JSON.stringify(recurso),
       { headers }
     );
   }

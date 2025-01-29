@@ -133,6 +133,15 @@
           <p><strong>Descripción: </strong>{{ recurso.descripcion }}</p>
           <a class="btn" [href]="recurso.url" target="_blank">Ver recurso</a>
           <a
+            *ngIf="
+              perfil.idRole === 2 &&
+              charlaDetalles.charla.idUsuario == perfil.idUsuario
+            "
+            class="btnAction btnBorrarRecurso"
+            (click)="editarRecurso(recurso)"
+            ><i class="uis uil-pen"></i>
+          </a>
+          <a
             *ngIf="perfil.idRole === 1"
             (click)="eliminarRecurso(recurso.idRecurso)"
             class="btnAction btnBorrarRecurso"
