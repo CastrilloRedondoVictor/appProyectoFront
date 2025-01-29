@@ -137,9 +137,21 @@ export class AuthService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-  
+
     const requestUrl = `api/Usuarios/UsuariosCurso/${idCurso}`;
     return this._http.get<any[]>(environment.urlApiCharlas + requestUrl, { headers });
+  }
+
+  updateRolUsuario(idUsuario: number, idRole: number): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    });
+
+    let request = `api/Admin/UpdateRoleUsuario/${idUsuario}/${idRole}`;
+
+    return this._http.put(environment.urlApiCharlas + request, {}, { headers });
   }
 
   // getAlumnos(): Observable<any> {

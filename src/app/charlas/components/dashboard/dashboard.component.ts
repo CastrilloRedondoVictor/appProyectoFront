@@ -41,4 +41,8 @@ export class DashboardComponent implements OnInit {
     return Math.floor(tiempo / 60);
   }
 
+  eliminarRonda(idRonda: number){
+
+  }
+
 }
