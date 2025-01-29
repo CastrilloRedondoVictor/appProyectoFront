@@ -138,6 +138,309 @@ export class DetallesCharlaComponent implements OnInit {
     });
   }
 
+  editarRecurso(recurso: Recursos): void {
+    Swal.fire({
+      title: 'Editar Recurso',
+      html: `
+        <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
+
+       @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
+
+a:hover {
+  text-decoration: none;
+}
+.link {
+  color: #ffeba7;
+}
+.link:hover {
+  color: #c4c3ca;
+}
+p {
+  font-weight: 500;
+  font-size: 14px;
+}
+h4 {
+  font-weight: 600;
+}
+h6 span {
+  padding: 0 20px;
+  font-weight: 700;
+}
+.section {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.full-height {
+  min-height: 100vh;
+}
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+  display: none;
+}
+.checkbox:checked + label,
+.checkbox:not(:checked) + label {
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 60px;
+  height: 16px;
+  border-radius: 8px;
+  padding: 0;
+  margin: 10px auto;
+  cursor: pointer;
+  background-color: #ffeba7;
+}
+.checkbox:checked + label:before,
+.checkbox:not(:checked) + label:before {
+  position: absolute;
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #ffeba7;
+  background-color: #020305;
+  font-family: "unicons";
+  content: "\eb4f";
+  z-index: 20;
+  top: -10px;
+  left: -10px;
+  line-height: 36px;
+  text-align: center;
+  font-size: 24px;
+  transition: all 0.5s ease;
+}
+.checkbox:checked + label:before {
+  transform: translateX(44px) rotate(-270deg);
+}
+.card-3d-wrap {
+  position: relative;
+  width: 550px;
+  max-width: 100%;
+  height: 500px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  margin-top: 60px;
+}
+.card-3d-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: all 600ms ease-out;
+}
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  background-color: #2b2e38;
+  position: absolute;
+  border-radius: 6px;
+  -webkit-transform-style: preserve-3d;
+}
+.card-back {
+  transform: rotateY(180deg);
+}
+.checkbox:checked ~ .card-3d-wrap .card-3d-wrapper {
+  transform: rotateY(180deg);
+}
+.center-wrap {
+  position: absolute;
+  width: 100%;
+  padding: 0 35px;
+  top: 50%;
+  left: 0;
+  transform: translate3d(0, -50%, 35px) perspective(100px);
+  z-index: 20;
+  display: block;
+}
+.form-group {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.form-style {
+  padding: 13px 20px;
+  padding-left: 55px;
+  height: 48px;
+  width: 100%;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  outline: none;
+  color: #c4c3ca;
+  background-color: #1f2029;
+  border: none;
+  transition: all 200ms linear;
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
+}
+
+/* Ajuste para campos con autofill */
+input:-webkit-autofill {
+  background-color: #1f2029 !important;
+  -webkit-text-fill-color: #c4c3ca !important; /* Cambia el color del texto */
+  box-shadow: 0 0 0px 1000px #1f2029 inset !important; /* Reemplaza el fondo */
+  transition: background-color 200ms linear, -webkit-text-fill-color 200ms linear;
+}
+
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:not(:focus)
+{
+  background-color: #1f2029 !important;
+  -webkit-text-fill-color: #c4c3ca !important;
+  box-shadow: 0 0 0px 1000px #1f2029 inset !important;
+}
+
+.form-style:focus,
+.form-style:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
+}
+.input-icon {
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 48px;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: left;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+  .swal2-confirm {
+    color: #000000 !important; /* Establecer color negro solo para el texto de "Guardar" */
+  }
+
+.btn {
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+  padding: 0 30px;
+  letter-spacing: 1px;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffeba7;
+  color: #000000;
+}
+.btn:hover {
+  background-color: #2b2e38; /* Negro para el fondo */
+  color: #ffeba7; /* Amarillo cálido para el texto */
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
+}
+
+      </style>
+      <div class="form-group mt-2">
+                <input 
+                id="swal-input-url"
+                  class="form-style"
+                  placeholder="Ingrese la URL"
+                  value="${recurso.url}"
+                />
+                <i style="color: #ffeba7" class="input-icon uil uil-link"></i>
+              </div>
+              <div class="form-group mt-2">
+                <input
+                id="swal-input-nombre"
+                  class="form-style"
+                  placeholder="Ingrese el nombre"
+                   value="${recurso.nombre}"
+
+                />
+                <i style="color: #ffeba7" class="input-icon uil uil-label-alt"></i>
+              </div>
+               <div class="form-group mt-2">
+                <textarea
+                id="swal-input-descripcion"
+                  class="form-style"
+                  placeholder="Ingrese la descripción"
+                >${recurso.descripcion}</textarea>
+                <i
+                  style="color: #ffeba7"
+                  class="input-icon uil uil-wrap-text"
+                ></i>
+              </div>
+
+   
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      confirmButtonColor: '#ffeba7',
+      cancelButtonText: 'Cancelar',
+      background: '#2b2e38',
+      color: '#c4c3ca',
+      preConfirm: () => {
+        const recursoActualizado = {
+          idRecurso: recurso.idRecurso,
+          idCharla: this.idCharla,
+          url: (document.getElementById('swal-input-url') as HTMLInputElement)
+            .value,
+          nombre: (
+            document.getElementById('swal-input-nombre') as HTMLInputElement
+          ).value,
+          descripcion: (
+            document.getElementById(
+              'swal-input-descripcion'
+            ) as HTMLTextAreaElement
+          ).value,
+        };
+        console.log('Datos a enviar:', recursoActualizado);
+        return recursoActualizado;
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const recursoActualizado = result.value;
+
+        this.charlasService.putRecurso(recursoActualizado).subscribe({
+          next: () => {
+            Swal.fire({
+              title: 'Recurso actualizado',
+              text: 'El recurso ha sido actualizado correctamente.',
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              background: '#2b2e38',
+              color: '#c4c3ca',
+            });
+
+            const recursosActualizados = this.charlaDetalles.recursos.map((r) =>
+              r.idRecurso === recursoActualizado.idRecurso
+                ? recursoActualizado
+                : r
+            );
+
+            this.charlaDetalles.recursos = recursosActualizados;
+          },
+          error: (err) => {
+            console.error('Error al actualizar el recurso:', err);
+            Swal.fire({
+              title: 'Error',
+              text: 'No se pudo actualizar el recurso. Inténtalo de nuevo más tarde.',
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+              background: '#2b2e38',
+              color: '#c4c3ca',
+            });
+          },
+        });
+      }
+    });
+  }
+
   crearRecurso(): void {
     this.recurso = new Recursos(
       1,
