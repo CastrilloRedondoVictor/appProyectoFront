@@ -112,9 +112,10 @@ export class DetallesCharlaComponent implements OnInit {
           title: 'Comentario añadido',
           text: 'Tu comentario se ha añadido correctamente.',
           icon: 'success',
-          confirmButtonText: 'ACEPTAR',
           background: '#2b2e38',
           color: '#c4c3ca',
+          confirmButtonColor: '#ffeba7', // Color de fondo del botón
+          confirmButtonText: '<span style="color: #000;">ACEPTAR</span>',
         });
 
         // Llama al método que recarga los detalles de la charla
@@ -456,9 +457,10 @@ input:-webkit-autofill:not(:focus)
           title: 'Recurso añadido',
           text: 'Tu recurso se ha añadido correctamente.',
           icon: 'success',
-          confirmButtonText: 'ACEPTAR',
           background: '#2b2e38',
           color: '#c4c3ca',
+          confirmButtonColor: '#ffeba7', // Color de fondo del botón
+          confirmButtonText: '<span style="color: #000;">ACEPTAR</span>',
         });
 
         // Llama al método que recarga los detalles de la charla
