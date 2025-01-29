@@ -56,7 +56,7 @@
           >{{ charlaRonda.estadoCharla }}</span
         >
         <button
-          *ngIf="perfil.idRole == 1"
+          *ngIf="perfil.idRole != 2"
           class="btn btnEstado"
           (click)="cambiarEstadoCharla(charlaRonda)"
         >
