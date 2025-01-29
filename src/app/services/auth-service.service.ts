@@ -131,6 +131,17 @@ export class AuthService {
     return this._http.put(environment.urlApiCharlas + request, {}, { headers });
   }
 
+  getMiembrosCurso(idCurso: number): Observable<any[]> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+  
+    const requestUrl = `api/Usuarios/UsuariosCurso/${idCurso}`;
+    return this._http.get<any[]>(environment.urlApiCharlas + requestUrl, { headers });
+  }
+
   // getAlumnos(): Observable<any> {
 
   //   const token = this.getToken();

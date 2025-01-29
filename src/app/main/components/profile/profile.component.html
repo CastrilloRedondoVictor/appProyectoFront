@@ -102,12 +102,8 @@
   </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '3'">
-    <h2>Lista de Cursos ({{ listaCursos.length }})</h2>
-
-    <div
-      *ngFor="let curso of listaCursos"
-      class="perfil-curso-card mb-1 curso-section"
-    >
+    <h2>Lista de Cursos ({{listaCursos.length}})</h2>
+    <div *ngFor="let curso of listaCursos" class="perfil-curso-card mb-1 curso-section">
       <div class="perfil-header">
         <div class="perfil-info">
           <h3>
@@ -143,10 +139,20 @@
               </p>
             </div>
             <div>
-              <button class="btn-miembros">
+              <button (click)="toggleMiembros(curso.idCurso)" class="btn-miembros">
                 Miembros
                 <i class="uil uil-users-alt"></i>
               </button>
+            </div>
+          </div>
+          <div *ngIf="miembrosCursos[curso.idCurso]">
+            <h2>Miembros del curso</h2>
+            <div *ngFor="let miembro of miembrosCursos[curso.idCurso]" class="perfil-alumno-card mb-1">
+              <img [src]="miembro.imagen || 'assets/images/default-profile.png'" class="perfil-img" />
+              <div class="miembro-info">
+                <p><strong>Nombre: </strong> {{ miembro.usuario }}</p>
+                <p><strong>Rol: </strong> {{ miembro.role }}</p>
+              </div>
             </div>
           </div>
         </div>

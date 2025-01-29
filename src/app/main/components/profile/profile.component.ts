@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   public alumnosCursos!: AlumnosCursoProfesor[];
   public listaCursos: any[] = [];
   public cursosAbiertos: { [key: number]: boolean } = {};
+  public miembrosCursos: { [key: number]: any[] } = {};
   public charlasAlumno!: CharlaDetalles[];
 
   constructor(
@@ -82,6 +83,24 @@ export class ProfileComponent implements OnInit {
         console.error('Error al actualizar el curso:', err);
       },
     });
+  }
+
+   // Método para abrir/cerrar la lista de miembros de un curso
+   toggleMiembros(idCurso: number): void {
+    if (this.miembrosCursos[idCurso]) {
+      // Si ya existen los miembros, simplemente cerramos la lista
+      delete this.miembrosCursos[idCurso];
+    } else {
+      // Si no existen, hacemos la petición a la API
+      this._service.getMiembrosCurso(idCurso).subscribe({
+        next: (response) => {
+          this.miembrosCursos[idCurso] = response;
+        },
+        error: (err) => {
+          console.error('Error al obtener los miembros del curso:', err);
+        }
+      });
+    }
   }
 
   getImagenPerfil(): string {
