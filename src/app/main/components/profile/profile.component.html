@@ -7,7 +7,12 @@
       <div class="perfil-info">
         <h2>{{ perfil.nombre }} {{ perfil.apellidos }}</h2>
         <p><strong>Correo: </strong> {{ perfil.email }}</p>
-        <p><strong>Estado: </strong> <span [ngClass]="perfil.estadoUsuario ? 'active' : 'inactive'">{{ perfil.estadoUsuario ? 'Activo' : 'Inactivo' }}</span></p>
+        <p>
+          <strong>Estado: </strong>
+          <span [ngClass]="perfil.estadoUsuario ? 'active' : 'inactive'">{{
+            perfil.estadoUsuario ? "Activo" : "Inactivo"
+          }}</span>
+        </p>
         <p><strong>Rol: </strong> {{ perfil.role }}</p>
         <p><strong>Curso: </strong> {{ perfil.curso }}</p>
         <p><strong>ID Curso: </strong> {{ perfil.idCurso }}</p>
@@ -15,16 +20,71 @@
     </div>
 
     <div class="perfil-footer">
-      <a [routerLink]="['edit', perfil.idUsuario]" class="btn btn-large">Editar Perfil</a>
+      <a [routerLink]="['edit', perfil.idUsuario]" class="btn btn-large"
+        >Editar Perfil</a
+      >
     </div>
   </div>
 
+  <div class="mt-5" *ngIf="rolUsuario == '2'">
+    <div class="charla" *ngFor="let charla of charlasAlumno; let i = index">
+      <div class="charla-header">
+        <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charla.charla.titulo }}</h4>
+        <span
+          >Tiempo: {{ getHoras(charla.charla.tiempo) }} horas
+          {{ charla.charla.tiempo % 60 }} minutos</span
+        >
+      </div>
+      <div class="charla-details">
+        <p>
+          <span class="span-charla-details">Descripción: </span
+          >{{ charla.charla.descripcion }}
+        </p>
+        <p>
+          <span class="span-charla-details">Fecha Propuesta: </span
+          >{{ charla.charla.fechaPropuesta | date : "longDate" : "es" }}
+        </p>
+        <p>
+          <span class="span-charla-details">Estado: </span>
+          <span
+            [ngClass]="
+              charla.charla.estadoCharla == 'PROPUESTA'
+                ? 'spanPropuesta'
+                : 'spanAceptada'
+            "
+            >{{ charla.charla.estadoCharla }}</span
+          >
+        </p>
+
+        <p>
+          <span class="span-charla-details">Propuesta por: </span
+          >{{ charla.charla.usuario }}
+        </p>
+      </div>
+      <a
+        [routerLink]="[
+          '/charlas/charlasRonda/detallesCharla',
+          charla.charla.idRonda,
+          charla.charla.idCharla
+        ]"
+        class="btn"
+        >Ver detalles</a
+      >
+    </div>
+  </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '1'">
     <div *ngFor="let alumnosCurso of alumnosCursos">
-      <h2>Alumnos de {{ alumnosCurso.curso.nombre }} ({{ alumnosCurso.numeroAlumnos }})</h2>
+      <h2>
+        Alumnos de {{ alumnosCurso.curso.nombre }} ({{
+          alumnosCurso.numeroAlumnos
+        }})
+      </h2>
 
-      <div class="perfil-alumno-card mb-1" *ngFor="let alumno of alumnosCurso.alumnos">
+      <div
+        class="perfil-alumno-card mb-1"
+        *ngFor="let alumno of alumnosCurso.alumnos"
+      >
         <div class="perfil-header">
           <img
             *ngIf="perfil.imagen"
@@ -46,31 +106,44 @@
     <div *ngFor="let curso of listaCursos" class="perfil-curso-card mb-1 curso-section">
       <div class="perfil-header">
         <div class="perfil-info">
-          <h3>{{ curso.nombre }}
+          <h3>
+            {{ curso.nombre }}
             <div class="curso-buttons">
               <button (click)="toggleCurso(curso.idCurso)" class="curso-toggle">
-                <i [class]="cursosAbiertos[curso.idCurso] ? 'uil uil-minus' : 'uil uil-plus'"></i>
+                <i
+                  [class]="
+                    cursosAbiertos[curso.idCurso]
+                      ? 'uil uil-minus'
+                      : 'uil uil-plus'
+                  "
+                ></i>
               </button>
             </div>
           </h3>
           <div *ngIf="cursosAbiertos[curso.idCurso]" class="curso-detalles">
             <div>
               <p><strong>ID Curso: </strong> {{ curso.idCurso }}</p>
-            <p><strong>Fecha Inicio: </strong> {{ curso.fechaInicio | date: 'longDate' }}</p>
-            <p><strong>Fecha Fin: </strong> {{ curso.fechaFin | date: 'longDate' }}</p>
-            <p>
-              <strong>Activo: </strong> {{ curso.activo ? 'Sí' : 'No' }}
-              <button (click)="toggleActivo(curso)" class="btn-estado">
-                {{ curso.activo ? 'Desactivar' : 'Activar' }}
-              </button>
-            </p>
+              <p>
+                <strong>Fecha Inicio: </strong>
+                {{ curso.fechaInicio | date : "longDate" }}
+              </p>
+              <p>
+                <strong>Fecha Fin: </strong>
+                {{ curso.fechaFin | date : "longDate" }}
+              </p>
+              <p>
+                <strong>Activo: </strong> {{ curso.activo ? "Sí" : "No" }}
+                <button (click)="toggleActivo(curso)" class="btn-estado">
+                  {{ curso.activo ? "Desactivar" : "Activar" }}
+                </button>
+              </p>
             </div>
             <div>
               <button (click)="toggleMiembros(curso.idCurso)" class="btn-miembros">
                 Miembros
                 <i class="uil uil-users-alt"></i>
               </button>
-            </div>            
+            </div>
           </div>
           <div *ngIf="miembrosCursos[curso.idCurso]">
             <h2>Miembros del curso</h2>

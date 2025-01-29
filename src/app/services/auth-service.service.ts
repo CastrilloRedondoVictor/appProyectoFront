@@ -103,7 +103,11 @@ export class AuthService {
     });
     const request = 'api/Usuarios/UpdatePasswordUsuario';
     const body = { newPassword };
-    return this._http.put(environment.urlApiCharlas + request, JSON.stringify(body), { headers });
+    return this._http.put(
+      environment.urlApiCharlas + request,
+      JSON.stringify(body),
+      { headers }
+    );
   }
 
   getCursos(): Observable<any> {
@@ -111,8 +115,8 @@ export class AuthService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-    });  
-    let request = 'api/cursos'; 
+    });
+    let request = 'api/cursos';
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 
@@ -122,7 +126,7 @@ export class AuthService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-  
+
     let request = `api/Cursos/UpdateEstadoCurso/${idCurso}/${estado}`;
     return this._http.put(environment.urlApiCharlas + request, {}, { headers });
   }
