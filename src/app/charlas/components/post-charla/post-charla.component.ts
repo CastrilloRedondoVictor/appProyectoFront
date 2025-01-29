@@ -113,100 +113,102 @@ export class PostCharlaComponent implements OnInit {
 
 
 
-    this.charla = new CharlaSin(
-      1,
-      titulo,
-      descripcion,
-      tiempo,
-      this.ronda.fechaPresentacion,
-      this.perfil.idUsuario,
-      1,
-      this.idRonda,
-      ''
-    );
+    if(this.tiempoIngresado <= this.ronda.duracion) {
+      this.charla = new CharlaSin(
+        1,
+        titulo,
+        descripcion,
+        tiempo,
+        this.ronda.fechaPresentacion,
+        this.perfil.idUsuario,
+        1,
+        this.idRonda,
+        ''
+      );
 
 
-    this._service.postCharla(this.charla).subscribe((response: CharlaSin) => {
-      if(this.imagen.filecontent != ''){
-        this._service.postFile(this.imagen, response.idCharla).subscribe((response) => {
+      this._service.postCharla(this.charla).subscribe((response: CharlaSin) => {
+        if(this.imagen.filecontent != ''){
+          this._service.postFile(this.imagen, response.idCharla).subscribe((response) => {
+            this._router.navigate(['charlas/charlasRonda/' + this.idRonda])
+
+            Swal.fire({
+              title: 'Charla creada',
+              text: 'La charla se ha creado con éxito.',
+              icon: 'success',
+              confirmButtonText: 'ACEPTAR',
+              background: '#2b2e38',
+              color: '#c4c3ca',
+              focusConfirm: false,
+              buttonsStyling: false,
+              didOpen: () => {
+                const confirmButton = document.querySelector(
+                  '.swal2-confirm'
+                ) as HTMLElement;
+                if (confirmButton) {
+                  // Estilos iniciales
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
+                  confirmButton.style.padding = '10px 20px';
+                  confirmButton.style.border = 'none';
+                  confirmButton.style.borderRadius = '4px';
+                  confirmButton.style.transition = 'all 0.3s ease';
+
+                // Hover con JavaScript
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#000000';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                  confirmButton.addEventListener('mouseout', () => {
+                    confirmButton.style.backgroundColor = '#ffeba7';
+                    confirmButton.style.color = '#000000';
+                  });
+                }
+              },
+            });
+            });
+        } else {
           this._router.navigate(['charlas/charlasRonda/' + this.idRonda])
 
-          Swal.fire({
-            title: 'Charla creada',
-            text: 'La charla se ha creado con éxito.',
-            icon: 'success',
-            confirmButtonText: 'ACEPTAR',
-            background: '#2b2e38',
-            color: '#c4c3ca',
-            focusConfirm: false,
-            buttonsStyling: false,
-            didOpen: () => {
-              const confirmButton = document.querySelector(
-                '.swal2-confirm'
-              ) as HTMLElement;
-              if (confirmButton) {
-                // Estilos iniciales
-                confirmButton.style.backgroundColor = '#ffeba7';
-                confirmButton.style.color = '#2b2e38';
-                confirmButton.style.padding = '10px 20px';
-                confirmButton.style.border = 'none';
-                confirmButton.style.borderRadius = '4px';
-                confirmButton.style.transition = 'all 0.3s ease';
-
-              // Hover con JavaScript
-              confirmButton.addEventListener('mouseover', () => {
-                confirmButton.style.backgroundColor = '#000000';
-                confirmButton.style.color = '#ffeba7';
-              });
-
-                confirmButton.addEventListener('mouseout', () => {
+            Swal.fire({
+              title: 'Charla creada',
+              text: 'La charla se ha creado con éxito.',
+              icon: 'success',
+              confirmButtonText: 'ACEPTAR',
+              background: '#2b2e38',
+              color: '#c4c3ca',
+              focusConfirm: false,
+              buttonsStyling: false,
+              didOpen: () => {
+                const confirmButton = document.querySelector(
+                  '.swal2-confirm'
+                ) as HTMLElement;
+                if (confirmButton) {
+                  // Estilos iniciales
                   confirmButton.style.backgroundColor = '#ffeba7';
-                  confirmButton.style.color = '#000000';
+                  confirmButton.style.color = '#2b2e38';
+                  confirmButton.style.padding = '10px 20px';
+                  confirmButton.style.border = 'none';
+                  confirmButton.style.borderRadius = '4px';
+                  confirmButton.style.transition = 'all 0.3s ease';
+
+                // Hover con JavaScript
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#000000';
+                  confirmButton.style.color = '#ffeba7';
                 });
-              }
-            },
-          });
-          });
-      } else {
-        this._router.navigate(['charlas/charlasRonda/' + this.idRonda])
 
-          Swal.fire({
-            title: 'Charla creada',
-            text: 'La charla se ha creado con éxito.',
-            icon: 'success',
-            confirmButtonText: 'ACEPTAR',
-            background: '#2b2e38',
-            color: '#c4c3ca',
-            focusConfirm: false,
-            buttonsStyling: false,
-            didOpen: () => {
-              const confirmButton = document.querySelector(
-                '.swal2-confirm'
-              ) as HTMLElement;
-              if (confirmButton) {
-                // Estilos iniciales
-                confirmButton.style.backgroundColor = '#ffeba7';
-                confirmButton.style.color = '#2b2e38';
-                confirmButton.style.padding = '10px 20px';
-                confirmButton.style.border = 'none';
-                confirmButton.style.borderRadius = '4px';
-                confirmButton.style.transition = 'all 0.3s ease';
+                  confirmButton.addEventListener('mouseout', () => {
+                    confirmButton.style.backgroundColor = '#ffeba7';
+                    confirmButton.style.color = '#000000';
+                  });
+                }
+              },
+            });
+        }
 
-              // Hover con JavaScript
-              confirmButton.addEventListener('mouseover', () => {
-                confirmButton.style.backgroundColor = '#000000';
-                confirmButton.style.color = '#ffeba7';
-              });
-
-                confirmButton.addEventListener('mouseout', () => {
-                  confirmButton.style.backgroundColor = '#ffeba7';
-                  confirmButton.style.color = '#000000';
-                });
-              }
-            },
-          });
-      }
-
-    });
+      });
+    }
   }
 }
