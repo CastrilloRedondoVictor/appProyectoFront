@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   public alumnosCursos!: AlumnosCursoProfesor[];
   public listaCursos: any[] = [];
   public cursosAbiertos: { [key: number]: boolean } = {};
+  public usersAbiertos: { [key: number]: boolean } = {};
   public alumnosAbiertos: { [key: number]: boolean } = {};
   public miembrosCursos: { [key: number]: any[] } = {};
   public charlasAlumno!: CharlaDetalles[];
@@ -107,6 +108,8 @@ export class ProfileComponent implements OnInit {
         }
       });
     }
+
+    this.usersAbiertos[idCurso] = !this.usersAbiertos[idCurso];
   }
 
   cambiarRol(miembro: any, event: any): void {
