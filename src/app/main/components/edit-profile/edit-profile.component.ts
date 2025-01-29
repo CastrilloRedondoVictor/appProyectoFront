@@ -156,8 +156,25 @@ export class EditProfileComponent implements OnInit {
     if (this.perfilForm.valid) {
       const formData = this.perfilForm.getRawValue();
       console.log('Datos del formulario:', formData);
-      alert('Perfil actualizado correctamente');
 
+      let perfilActualizado = {
+        ...this.perfil,  // Copiamos todos los datos actuales del perfil
+        nombre: formData.nombre,
+        apellidos: formData.apellidos
+      };
+
+      // Llamamos al servicio para actualizar los datos del usuario
+      this._service.updateNombreApellidosUsuario(perfilActualizado).subscribe(
+        () => {
+          Swal.fire('Éxito', 'Nombre y apellidos actualizados correctamente', 'success');
+        },
+        (error) => {
+          Swal.fire('Error', 'No se pudo actualizar el nombre y apellidos', 'error');
+          console.error(error);
+        }
+      );
+
+      // Si el usuario cambia la contraseña, también se actualiza
       if (formData.newPassword) {
         this._service.updatePassword(formData.newPassword).subscribe(
           () => {
