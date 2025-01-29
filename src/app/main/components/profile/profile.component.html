@@ -130,6 +130,15 @@
                   "
                 ></i>
               </button>
+              <button (click)="toggleMiembros(curso.idCurso)" class="curso-toggle">
+                <i
+                  [class]="
+                    usersAbiertos[curso.idCurso]
+                      ? 'uil uil-user-minus'
+                      : 'uil uil-user-plus'
+                  "
+                ></i>
+              </button>
             </div>
           </h3>
           <div *ngIf="cursosAbiertos[curso.idCurso]" class="curso-detalles">
@@ -150,21 +159,14 @@
                 </button>
               </p>
             </div>
-            <div>
-              <button (click)="toggleMiembros(curso.idCurso)" class="btn-miembros">
-                Miembros
-                <i class="uil uil-users-alt"></i>
-              </button>
-            </div>
           </div>
-          <div *ngIf="miembrosCursos[curso.idCurso]">
-            <h2>Miembros del curso</h2>
+          <div class="mt-3" *ngIf="miembrosCursos[curso.idCurso]">
             <div *ngFor="let miembro of miembrosCursos[curso.idCurso]" class="perfil-alumno-card mb-1">
               <img [src]="miembro.imagen || 'assets/images/default-profile.png'" class="perfil-img" />
               <div class="miembro-info">
                 <p><strong>Nombre: </strong> {{ miembro.usuario }}</p>
                 <p><strong>Rol: </strong>
-                  <select [(ngModel)]="miembro.idRole" (change)="cambiarRol(miembro, $event)" class="select-rol">
+                  <select [(ngModel)]="miembro.idRole" (change)="cambiarRol(miembro, $event)" class="select-rol ml-2">
                     <option [value]="1">Profesor</option>
                     <option [value]="2">Alumno</option>
                   </select>
