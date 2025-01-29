@@ -104,8 +104,17 @@
               class="perfil-img"
             />
             <div class="perfil-info col-12">
-              <p><strong>Usuario: </strong> {{ alumno.alumno.usuario }}</p>
+              <p><strong>Nombre: </strong> {{ alumno.alumno.usuario }}</p>
               <p><strong>Correo: </strong> {{ alumno.alumno.email }}</p>
+              <p>
+                <strong>Estado: </strong>
+                <span [ngClass]="alumno.alumno.estadoUsuario ? 'active' : 'inactive'">
+                  {{ alumno.alumno.estadoUsuario ? 'Activo' : 'Inactivo' }}
+                </span>
+                <button (click)="toggleEstadoUsuario(alumno.alumno)" class="btn-estado btn-estado-usuario">
+                  {{ alumno.alumno.estadoUsuario ? 'Desactivar' : 'Activar' }}
+                </button>
+              </p>
             </div>
           </div>
         </div>
@@ -191,5 +200,4 @@
       </div>
     </div>
   </div>
-
 </div>
