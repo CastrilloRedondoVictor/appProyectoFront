@@ -5,6 +5,8 @@ import { CharlasService } from '../../../services/charlas-service.service';
 import { Ronda } from '../../../models/charla';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service.service';
+import esLocale from '@fullcalendar/core/locales/es';  // Importa el idioma español
+
 
 @Component({
   selector: 'app-home',
@@ -19,10 +21,15 @@ export class HomeComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin], // Plugin necesario para la vista dayGridMonth
     initialView: 'dayGridMonth',
+    locale: 'es',
+    firstDay: 1,
     headerToolbar: {
       left: 'today', // Botón "today"
       center: 'title', // Título centrado
       right: 'prev,next', // Botones prev y next,
+    },
+    buttonText: {
+      today: 'Hoy', // Cambia el texto de 'today' a 'Hoy'
     },
     events: [], // Inicialmente vacío
     eventClick: this.handleEventClick.bind(this), // Asigna el manejador de clic
