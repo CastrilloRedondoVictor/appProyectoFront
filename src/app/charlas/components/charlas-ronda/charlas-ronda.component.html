@@ -16,7 +16,7 @@
       </option>
     </select>
     <a
-      *ngIf="!hasCharla"
+      *ngIf="!hasCharla && canAddCharla"
       [routerLink]="['/charlas/charlasRonda/new', idRonda]"
       class="btn btn-large"
       ><i class="uis uil-plus"></i
