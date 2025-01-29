@@ -104,8 +104,17 @@
               class="perfil-img"
             />
             <div class="perfil-info col-12">
-              <p><strong>Usuario: </strong> {{ alumno.alumno.usuario }}</p>
+              <p><strong>Nombre: </strong> {{ alumno.alumno.usuario }}</p>
               <p><strong>Correo: </strong> {{ alumno.alumno.email }}</p>
+              <p>
+                <strong>Estado: </strong>
+                <span [ngClass]="alumno.alumno.estadoUsuario ? 'active' : 'inactive'">
+                  {{ alumno.alumno.estadoUsuario ? 'Activo' : 'Inactivo' }}
+                </span>
+                <button (click)="toggleEstadoUsuario(alumno.alumno)" class="btn-estado btn-estado-usuario">
+                  {{ alumno.alumno.estadoUsuario ? 'Desactivar' : 'Activar' }}
+                </button>
+              </p>
             </div>
           </div>
         </div>
@@ -153,8 +162,11 @@
                 {{ curso.fechaFin | date : "longDate" }}
               </p>
               <p>
-                <strong>Activo: </strong> {{ curso.activo ? "Sí" : "No" }}
-                <button (click)="toggleActivo(curso)" class="btn-estado">
+                <strong>Activo: </strong>
+                <span [ngClass]="curso.activo ? 'active' : 'inactive'">
+                  {{ curso.activo ? "Activo" : "Inactivo" }}
+                </span>
+                <button (click)="toggleActivo(curso)" class="btn-estado" [ngClass]="curso.activo ? 'btn-activo' : 'btn-inactivo'">
                   {{ curso.activo ? "Desactivar" : "Activar" }}
                 </button>
               </p>
@@ -172,6 +184,15 @@
                     <option [value]="2">Alumno</option>
                   </select>
                 </p>
+                <p>
+                  <strong>Estado: </strong>
+                  <span [ngClass]="miembro.estadoUsuario ? 'active' : 'inactive'">
+                    {{ miembro.estadoUsuario ? 'Activo' : 'Inactivo' }}
+                  </span>
+                  <button (click)="toggleEstadoUsuario(miembro)" class="btn-estado btn-estado-usuario">
+                    {{ miembro.estadoUsuario ? 'Desactivar' : 'Activar' }}
+                  </button>
+                </p>
               </div>
             </div>
           </div>
@@ -179,5 +200,4 @@
       </div>
     </div>
   </div>
-
 </div>

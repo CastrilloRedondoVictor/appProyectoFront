@@ -81,17 +81,47 @@ export class ProfileComponent implements OnInit {
     this._service.updateEstadoCurso(curso.idCurso, nuevoEstado).subscribe({
       next: () => {
         curso.activo = nuevoEstado;
-        console.log(
-          `Curso ${curso.nombre} actualizado correctamente a ${
-            nuevoEstado ? 'Activo' : 'Inactivo'
-          }.`
-        );
+
+        // Mostrar alerta de éxito
+        Swal.fire({
+          title: `Curso ${curso.nombre} actualizado correctamente a ${nuevoEstado ? 'Activo' : 'Inactivo'}.`,
+          text: 'El estado del curso ha sido modificado exitosamente.',
+          icon: 'success',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+          focusConfirm: false,
+          buttonsStyling: false,
+          didOpen: () => {
+            const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+            if (confirmButton) {
+              // Estilos iniciales
+              confirmButton.style.backgroundColor = '#ffeba7';
+              confirmButton.style.color = '#2b2e38';
+              confirmButton.style.padding = '10px 20px';
+              confirmButton.style.border = 'none';
+              confirmButton.style.borderRadius = '4px';
+              confirmButton.style.transition = 'all 0.3s ease';
+
+              // Hover con JavaScript
+              confirmButton.addEventListener('mouseover', () => {
+                confirmButton.style.backgroundColor = '#000000';
+                confirmButton.style.color = '#ffeba7';
+              });
+
+              confirmButton.addEventListener('mouseout', () => {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#000000';
+              });
+            }
+          }
+        });
       },
       error: (err) => {
-        console.error('Error al actualizar el curso:', err);
+        console.error('Error al actualizar el estado del curso:', err);
       },
     });
-  }
+}
 
    // Método para abrir/cerrar la lista de miembros de un curso
    toggleMiembros(idCurso: number): void {
@@ -161,6 +191,53 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  toggleEstadoUsuario(miembro: any): void {
+    const nuevoEstado = !miembro.estadoUsuario;
+
+    this._service.updateEstadoUsuario(miembro.idUsuario, nuevoEstado).subscribe({
+      next: () => {
+        miembro.estadoUsuario = nuevoEstado;
+
+        // Mostrar alerta de éxito
+        Swal.fire({
+          title: `Estado actualizado correctamente a ${nuevoEstado ? 'Activo' : 'Inactivo'}.`,
+          text: `El usuario ${miembro.usuario} ha sido actualizado exitosamente.`,
+          icon: 'success',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+          focusConfirm: false,
+          buttonsStyling: false,
+          didOpen: () => {
+            const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+            if (confirmButton) {
+              // Estilos iniciales
+              confirmButton.style.backgroundColor = '#ffeba7';
+              confirmButton.style.color = '#2b2e38';
+              confirmButton.style.padding = '10px 20px';
+              confirmButton.style.border = 'none';
+              confirmButton.style.borderRadius = '4px';
+              confirmButton.style.transition = 'all 0.3s ease';
+
+              // Hover con JavaScript
+              confirmButton.addEventListener('mouseover', () => {
+                confirmButton.style.backgroundColor = '#000000';
+                confirmButton.style.color = '#ffeba7';
+              });
+
+              confirmButton.addEventListener('mouseout', () => {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#000000';
+              });
+            }
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Error al actualizar el estado del usuario:', err);
+      },
+    });
+  }
 
   getImagenPerfil(): string {
     return this.perfil.imagen || 'assets/images/default-profile.png';

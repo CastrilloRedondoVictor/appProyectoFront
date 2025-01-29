@@ -176,6 +176,18 @@ export class AuthService {
     return this._http.put(environment.urlApiCharlas + request, body, { headers });
   }
 
+  updateEstadoUsuario(idUsuario: number, estado: boolean): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = `api/Usuarios/UpdateEstadoUsuario/${idUsuario}/${estado}`;
+
+    return this._http.put(environment.urlApiCharlas + request, {}, { headers });
+}
+
   // getAlumnos(): Observable<any> {
 
   //   const token = this.getToken();

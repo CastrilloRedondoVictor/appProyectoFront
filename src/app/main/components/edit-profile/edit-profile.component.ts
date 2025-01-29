@@ -163,29 +163,96 @@ export class EditProfileComponent implements OnInit {
         apellidos: formData.apellidos
       };
 
-      // Llamamos al servicio para actualizar los datos del usuario
-      this._service.updateNombreApellidosUsuario(perfilActualizado).subscribe(
-        () => {
-          Swal.fire('Éxito', 'Nombre y apellidos actualizados correctamente', 'success');
-        },
-        (error) => {
-          Swal.fire('Error', 'No se pudo actualizar el nombre y apellidos', 'error');
-          console.error(error);
-        }
-      );
+      let cambiosRealizados: string[] = [];
 
-      // Si el usuario cambia la contraseña, también se actualiza
-      if (formData.newPassword) {
-        this._service.updatePassword(formData.newPassword).subscribe(
+      // Si se ha cambiado el nombre o los apellidos, los actualizamos
+      if (formData.nombre !== this.perfil.nombre || formData.apellidos !== this.perfil.apellidos) {
+        cambiosRealizados.push('nombre y apellidos');
+
+        this._service.updateNombreApellidosUsuario(perfilActualizado).subscribe(
           () => {
-            Swal.fire('Éxito', 'Contraseña actualizada con éxito', 'success');
+            this.perfil.nombre = formData.nombre;
+            this.perfil.apellidos = formData.apellidos;
           },
           (error) => {
-            Swal.fire('Error', 'No se pudo actualizar la contraseña', 'error');
+            Swal.fire({
+              title: 'Error',
+              text: 'No se pudo actualizar el nombre y apellidos',
+              icon: 'error',
+              confirmButtonText: 'ACEPTAR',
+              background: '#2b2e38',
+              color: '#c4c3ca',
+              focusConfirm: false,
+              buttonsStyling: false,
+              didOpen: () => this.estilizarBotonSwal()
+            });
             console.error(error);
           }
         );
       }
+
+      // Si se ha cambiado la contraseña, la actualizamos
+      if (formData.newPassword) {
+        cambiosRealizados.push('contraseña');
+
+        this._service.updatePassword(formData.newPassword).subscribe(
+          () => {},
+          (error) => {
+            Swal.fire({
+              title: 'Error',
+              text: 'No se pudo actualizar la contraseña',
+              icon: 'error',
+              confirmButtonText: 'ACEPTAR',
+              background: '#2b2e38',
+              color: '#c4c3ca',
+              focusConfirm: false,
+              buttonsStyling: false,
+              didOpen: () => this.estilizarBotonSwal()
+            });
+            console.error(error);
+          }
+        );
+      }
+
+      // Si se realizaron cambios, mostrar alerta de éxito
+      if (cambiosRealizados.length > 0) {
+        Swal.fire({
+          title: 'Éxito',
+          text: `Perfil actualizado correctamente`,
+          icon: 'success',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+          focusConfirm: false,
+          buttonsStyling: false,
+          didOpen: () => this.estilizarBotonSwal()
+        });
+      }
+    }
+  }
+
+  // Método para estilizar el botón de SweetAlert
+  estilizarBotonSwal() {
+    const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+    if (confirmButton) {
+      // Estilos iniciales
+      confirmButton.style.backgroundColor = '#ffeba7';
+      confirmButton.style.color = '#2b2e38';
+      confirmButton.style.padding = '10px 20px';
+      confirmButton.style.border = 'none';
+      confirmButton.style.borderRadius = '4px';
+      confirmButton.style.transition = 'all 0.3s ease';
+
+      // Hover con JavaScript
+      confirmButton.addEventListener('mouseover', () => {
+        confirmButton.style.backgroundColor = '#000000';
+        confirmButton.style.color = '#ffeba7';
+      });
+
+      confirmButton.addEventListener('mouseout', () => {
+        confirmButton.style.backgroundColor = '#ffeba7';
+        confirmButton.style.color = '#000000';
+      });
     }
   }
 }
