@@ -165,6 +165,7 @@
               <img [src]="miembro.imagen || 'assets/images/default-profile.png'" class="perfil-img" />
               <div class="miembro-info">
                 <p><strong>Nombre: </strong> {{ miembro.usuario }}</p>
+                <p><strong>Correo: </strong> {{ miembro.email }}</p>
                 <p><strong>Rol: </strong>
                   <select [(ngModel)]="miembro.idRole" (change)="cambiarRol(miembro, $event)" class="select-rol ml-2">
                     <option [value]="1">Profesor</option>
