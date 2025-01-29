@@ -28,6 +28,7 @@ export class EditCharlaComponent {
     errors: boolean[] = [false, false, false];
     errorTiempo: boolean = false;
 
+    imagenInicial: FileModel  =new FileModel('imgCharla.png', '');
     imagen: FileModel  =new FileModel('imgCharla.png', '');
     @ViewChild('cajaFile') cajaFileRef!: ElementRef; // Referencia al input file
     public fileContent: string | null = null; // Base64 para la previsualización
@@ -68,7 +69,6 @@ export class EditCharlaComponent {
       if (this.tiempoIngresado > this.ronda.duracion) {
         this.errors[2] = true;
       } else{
-
         this.errors[2] = false;
       }
     }
@@ -79,6 +79,7 @@ export class EditCharlaComponent {
 
 
     getImagenCharla(): void {
+      this.imagenInicial.filecontent = this.charla.imagenCharla;
       this.imagen.filecontent = this.charla.imagenCharla;
     }
 
@@ -119,100 +120,103 @@ export class EditCharlaComponent {
       var tiempo = this.cajaTiempo.nativeElement.value;
 
 
-      this.charla = new CharlaSin(
-        this.charla.idCharla,
-        titulo,
-        descripcion,
-        tiempo,
-        this.ronda.fechaPresentacion,
-        this.perfil.idUsuario,
-        1,
-        this.idRonda,
-        this.charla.imagenCharla
-      );
+      if(this.tiempoIngresado <= this.ronda.duracion) {
+        this.charla = new CharlaSin(
+          this.charla.idCharla,
+          titulo,
+          descripcion,
+          tiempo,
+          this.ronda.fechaPresentacion,
+          this.perfil.idUsuario,
+          1,
+          this.idRonda,
+          this.charla.imagenCharla
+        );
 
-      this._service.putCharla(this.charla).subscribe((response: CharlaSin) => {
-        if(this.imagen.filecontent != ''){
-          this._service.postFile(this.imagen, this.charla.idCharla).subscribe((response) => {
+        this._service.putCharla(this.charla).subscribe((response: CharlaSin) => {
+          if(this.imagen.filecontent != '' && this.imagen.filecontent != null && this.imagen.filecontent != this.imagenInicial.filecontent){
+            console.log(this.imagen.filecontent)
+            this._service.postFile(this.imagen, this.idCharla).subscribe((response) => {
+              this._router.navigate(['charlas/charlasRonda/detallesCharla/' + this.idRonda + '/' + this.charla.idCharla])
+
+              Swal.fire({
+                title: 'Charla editada',
+                text: 'La charla se ha editado con éxito.',
+                icon: 'success',
+                confirmButtonText: 'ACEPTAR',
+                background: '#2b2e38',
+                color: '#c4c3ca',
+                focusConfirm: false,
+                buttonsStyling: false,
+                didOpen: () => {
+                  const confirmButton = document.querySelector(
+                    '.swal2-confirm'
+                  ) as HTMLElement;
+                  if (confirmButton) {
+                    // Estilos iniciales
+                    confirmButton.style.backgroundColor = '#ffeba7';
+                    confirmButton.style.color = '#2b2e38';
+                    confirmButton.style.padding = '10px 20px';
+                    confirmButton.style.border = 'none';
+                    confirmButton.style.borderRadius = '4px';
+                    confirmButton.style.transition = 'all 0.3s ease';
+
+                  // Hover con JavaScript
+                  confirmButton.addEventListener('mouseover', () => {
+                    confirmButton.style.backgroundColor = '#000000';
+                    confirmButton.style.color = '#ffeba7';
+                  });
+
+                    confirmButton.addEventListener('mouseout', () => {
+                      confirmButton.style.backgroundColor = '#ffeba7';
+                      confirmButton.style.color = '#000000';
+                    });
+                  }
+                },
+              });
+              });
+          } else {
             this._router.navigate(['charlas/charlasRonda/detallesCharla/' + this.idRonda + '/' + this.charla.idCharla])
 
-            Swal.fire({
-              title: 'Charla editada',
-              text: 'La charla se ha editado con éxito.',
-              icon: 'success',
-              confirmButtonText: 'ACEPTAR',
-              background: '#2b2e38',
-              color: '#c4c3ca',
-              focusConfirm: false,
-              buttonsStyling: false,
-              didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
-                if (confirmButton) {
-                  // Estilos iniciales
-                  confirmButton.style.backgroundColor = '#ffeba7';
-                  confirmButton.style.color = '#2b2e38';
-                  confirmButton.style.padding = '10px 20px';
-                  confirmButton.style.border = 'none';
-                  confirmButton.style.borderRadius = '4px';
-                  confirmButton.style.transition = 'all 0.3s ease';
-
-                // Hover con JavaScript
-                confirmButton.addEventListener('mouseover', () => {
-                  confirmButton.style.backgroundColor = '#000000';
-                  confirmButton.style.color = '#ffeba7';
-                });
-
-                  confirmButton.addEventListener('mouseout', () => {
+              Swal.fire({
+                title: 'Charla editada',
+                text: 'La charla se ha editado con éxito.',
+                icon: 'success',
+                confirmButtonText: 'ACEPTAR',
+                background: '#2b2e38',
+                color: '#c4c3ca',
+                focusConfirm: false,
+                buttonsStyling: false,
+                didOpen: () => {
+                  const confirmButton = document.querySelector(
+                    '.swal2-confirm'
+                  ) as HTMLElement;
+                  if (confirmButton) {
+                    // Estilos iniciales
                     confirmButton.style.backgroundColor = '#ffeba7';
-                    confirmButton.style.color = '#000000';
+                    confirmButton.style.color = '#2b2e38';
+                    confirmButton.style.padding = '10px 20px';
+                    confirmButton.style.border = 'none';
+                    confirmButton.style.borderRadius = '4px';
+                    confirmButton.style.transition = 'all 0.3s ease';
+
+                  // Hover con JavaScript
+                  confirmButton.addEventListener('mouseover', () => {
+                    confirmButton.style.backgroundColor = '#000000';
+                    confirmButton.style.color = '#ffeba7';
                   });
-                }
-              },
-            });
-            });
-        } else {
-          this._router.navigate(['charlas/charlasRonda/detallesCharla/' + this.idRonda + '/' + this.charla.idCharla])
 
-            Swal.fire({
-              title: 'Charla editada',
-              text: 'La charla se ha editado con éxito.',
-              icon: 'success',
-              confirmButtonText: 'ACEPTAR',
-              background: '#2b2e38',
-              color: '#c4c3ca',
-              focusConfirm: false,
-              buttonsStyling: false,
-              didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
-                if (confirmButton) {
-                  // Estilos iniciales
-                  confirmButton.style.backgroundColor = '#ffeba7';
-                  confirmButton.style.color = '#2b2e38';
-                  confirmButton.style.padding = '10px 20px';
-                  confirmButton.style.border = 'none';
-                  confirmButton.style.borderRadius = '4px';
-                  confirmButton.style.transition = 'all 0.3s ease';
+                    confirmButton.addEventListener('mouseout', () => {
+                      confirmButton.style.backgroundColor = '#ffeba7';
+                      confirmButton.style.color = '#000000';
+                    });
+                  }
+                },
+              });
+          }
 
-                // Hover con JavaScript
-                confirmButton.addEventListener('mouseover', () => {
-                  confirmButton.style.backgroundColor = '#000000';
-                  confirmButton.style.color = '#ffeba7';
-                });
-
-                  confirmButton.addEventListener('mouseout', () => {
-                    confirmButton.style.backgroundColor = '#ffeba7';
-                    confirmButton.style.color = '#000000';
-                  });
-                }
-              },
-            });
-        }
-
-      });
+        });
+      }
     }
 
 }

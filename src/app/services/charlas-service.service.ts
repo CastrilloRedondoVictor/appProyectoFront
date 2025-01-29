@@ -53,6 +53,16 @@ export class CharlasService {
     );
   }
 
+  deleteRonda(idRonda: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    let request = 'api/Profesor/DeleteRonda/' + idRonda;
+    return this._http.delete(environment.urlApiCharlas + request, { headers });
+  }
+
   getCharlasRonda(idRonda: number): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
@@ -80,6 +90,16 @@ export class CharlasService {
       'Content-Type': 'application/json',
     });
     let request = 'api/Votos/VotoAlumnoRonda/' + idRonda;
+    return this._http.get(environment.urlApiCharlas + request, { headers });
+  }
+
+  getVotosCharla(idCharla: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    let request = 'api/Votos/VotosCharla/' + idCharla;
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 

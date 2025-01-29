@@ -27,6 +27,7 @@ export class CharlasRondaComponent implements OnInit {
   ronda!: Ronda;
   estadosCharla!: EstadoCharla[];
   selectedEstadoCharla = '';
+  votosCharla: { [key: number]: number } = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -63,6 +64,12 @@ export class CharlasRondaComponent implements OnInit {
         .getCharlasRonda(this.idRonda)
         .subscribe((response: Charla[]) => {
           this.charlasRonda = response;
+          for(let i = 0; i < this.charlasRonda.length; i++) {
+            this.charlasService.getVotosCharla(this.charlasRonda[i].idCharla).subscribe((response) => {
+              console.log(response.votos)
+              this.votosCharla[i] = response.votos;
+            });
+          }
         });
     } else {
       // Filtrar las charlas según el estado seleccionado
@@ -116,6 +123,14 @@ export class CharlasRondaComponent implements OnInit {
         this.hasVoted = !!this.voto.idVoto;
         this.hasChosenVote = false;
       });
+  }
+
+  getVotosCharla(idCharla: number) {
+    this.charlasService.getVotosCharla(idCharla).subscribe((response) => {
+      console.log(idCharla)
+      console.log("Charla " + idCharla + " " + response);
+      this.votosCharla[idCharla] = response;
+    });
   }
 
   getHoras(tiempo: number): number {
@@ -330,7 +345,6 @@ export class CharlasRondaComponent implements OnInit {
   }
 
   onEstadoChange(): void {
-    console.log('Estado seleccionado:', this.selectedEstadoCharla);
     this.getCharlas(); // Recargar las charlas basadas en el estado seleccionado.
   }
 
@@ -350,6 +364,31 @@ export class CharlasRondaComponent implements OnInit {
             confirmButtonText: 'Aceptar',
             background: '#2b2e38',
             color: '#c4c3ca',
+            didOpen: () => {
+              const confirmButton = document.querySelector(
+                '.swal2-confirm'
+              ) as HTMLElement;
+              if (confirmButton) {
+                // Estilos iniciales
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
+
+                // Hover con JavaScript
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#000000';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#000000';
+                });
+              }
+            },
           });
         },
         (error) => {
