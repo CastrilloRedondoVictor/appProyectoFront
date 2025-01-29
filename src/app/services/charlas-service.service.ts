@@ -38,6 +38,16 @@ export class CharlasService {
     return this._http.get(environment.urlApiCharlas + request, { headers });
   }
 
+  getRondasAdmin(): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    let request = 'api/Rondas';
+    return this._http.get(environment.urlApiCharlas + request, { headers });
+  }
+
   postRonda(ronda: Ronda):  Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
