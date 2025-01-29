@@ -166,7 +166,7 @@
               <div class="miembro-info">
                 <p><strong>Nombre: </strong> {{ miembro.usuario }}</p>
                 <p><strong>Rol: </strong>
-                  <select [(ngModel)]="miembro.idRole" (change)="cambiarRol(miembro, $event)" class="select-rol">
+                  <select [(ngModel)]="miembro.idRole" (change)="cambiarRol(miembro, $event)" class="select-rol ml-2">
                     <option [value]="1">Profesor</option>
                     <option [value]="2">Alumno</option>
                   </select>
