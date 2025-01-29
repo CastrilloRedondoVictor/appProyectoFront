@@ -74,89 +74,44 @@
   </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '1'">
-    <div *ngFor="let alumnosCurso of alumnosCursos">
-      <h2>
-        Alumnos de {{ alumnosCurso.curso.nombre }} ({{
-          alumnosCurso.numeroAlumnos
-        }})
-      </h2>
-
-      <div
-        class="perfil-alumno-card mb-1"
-        *ngFor="let alumno of alumnosCurso.alumnos"
-      >
-        <div class="perfil-header">
-          <img
-            *ngIf="perfil.imagen"
-            [src]="alumno.alumno.imagen || 'assets/images/default-profile.png'"
-            class="perfil-img"
-          />
-
-          <div class="perfil-info">
-            <h3>{{ alumno.alumno.usuario }}</h3>
-            <p><strong>Correo: </strong> {{ alumno.alumno.email }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-5" *ngIf="rolUsuario == '3'">
-    <h2>Lista de Cursos ({{listaCursos.length}})</h2>
-    <div *ngFor="let curso of listaCursos" class="perfil-curso-card mb-1 curso-section">
+    <h2>Mis cursos ({{ alumnosCursos.length }})</h2>
+    <div *ngFor="let alumnosCurso of alumnosCursos" class="perfil-curso-card mb-1 curso-section">
       <div class="perfil-header">
         <div class="perfil-info">
           <h3>
-            {{ curso.nombre }}
-            <div class="curso-buttons">
-              <button (click)="toggleCurso(curso.idCurso)" class="curso-toggle">
-                <i
-                  [class]="
-                    cursosAbiertos[curso.idCurso]
-                      ? 'uil uil-minus'
-                      : 'uil uil-plus'
-                  "
-                ></i>
-              </button>
-            </div>
+            {{ alumnosCurso.curso.nombre }} ({{ alumnosCurso.numeroAlumnos }})
+            <button (click)="toggleAlumnos(alumnosCurso.curso.idCurso)" class="curso-toggle">
+              <i
+                [class]="
+                  alumnosAbiertos[alumnosCurso.curso.idCurso]
+                    ? 'uil uil-minus'
+                    : 'uil uil-plus'
+                "
+              ></i>
+            </button>
           </h3>
-          <div *ngIf="cursosAbiertos[curso.idCurso]" class="curso-detalles">
-            <div>
-              <p><strong>ID Curso: </strong> {{ curso.idCurso }}</p>
-              <p>
-                <strong>Fecha Inicio: </strong>
-                {{ curso.fechaInicio | date : "longDate" }}
-              </p>
-              <p>
-                <strong>Fecha Fin: </strong>
-                {{ curso.fechaFin | date : "longDate" }}
-              </p>
-              <p>
-                <strong>Activo: </strong> {{ curso.activo ? "Sí" : "No" }}
-                <button (click)="toggleActivo(curso)" class="btn-estado">
-                  {{ curso.activo ? "Desactivar" : "Activar" }}
-                </button>
-              </p>
-            </div>
-            <div>
-              <button (click)="toggleMiembros(curso.idCurso)" class="btn-miembros">
-                Miembros
-                <i class="uil uil-users-alt"></i>
-              </button>
-            </div>
-          </div>
-          <div *ngIf="miembrosCursos[curso.idCurso]">
-            <h2>Miembros del curso</h2>
-            <div *ngFor="let miembro of miembrosCursos[curso.idCurso]" class="perfil-alumno-card mb-1">
-              <img [src]="miembro.imagen || 'assets/images/default-profile.png'" class="perfil-img" />
-              <div class="miembro-info">
-                <p><strong>Nombre: </strong> {{ miembro.usuario }}</p>
-                <p><strong>Rol: </strong> {{ miembro.role }}</p>
-              </div>
+        </div>
+      </div>
+
+      <div *ngIf="alumnosAbiertos[alumnosCurso.curso.idCurso]" class="curso-detalles">
+        <div
+          class="perfil-alumno-card col-12 mb-2"
+          *ngFor="let alumno of alumnosCurso.alumnos"
+        >
+          <div class="perfil-header">
+            <img
+              [src]="alumno.alumno.imagen || 'assets/images/default-profile.png'"
+              class="perfil-img"
+            />
+            <div class="perfil-info col-12">
+              <p><strong>Usuario: </strong> {{ alumno.alumno.usuario }}</p>
+              <p><strong>Correo: </strong> {{ alumno.alumno.email }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
 </div>

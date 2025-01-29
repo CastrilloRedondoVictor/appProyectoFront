@@ -28,6 +28,13 @@ export class DashboardComponent implements OnInit {
       this.rondas = response;
     });
     this.rolUsuario = this.authService.getRolUsuario()
+
+    if (this.rolUsuario == '1') {
+      this.charlasService.getRondasProfesor().subscribe((response: Ronda[]) => {
+        this.rondas = response;
+        console.log(response);
+      });
+    }
   }
 
   getHoras(tiempo: number): number {

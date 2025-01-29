@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   public alumnosCursos!: AlumnosCursoProfesor[];
   public listaCursos: any[] = [];
   public cursosAbiertos: { [key: number]: boolean } = {};
+  public alumnosAbiertos: { [key: number]: boolean } = {};
   public miembrosCursos: { [key: number]: any[] } = {};
   public charlasAlumno!: CharlaDetalles[];
 
@@ -65,6 +66,11 @@ export class ProfileComponent implements OnInit {
   toggleCurso(idCurso: number): void {
     this.cursosAbiertos[idCurso] = !this.cursosAbiertos[idCurso];
   }
+
+  toggleAlumnos(idCurso: number): void {
+    this.alumnosAbiertos[idCurso] = !this.alumnosAbiertos[idCurso];
+  }
+
 
   // Método para cambiar estado entre true/false
   toggleActivo(curso: any): void {
