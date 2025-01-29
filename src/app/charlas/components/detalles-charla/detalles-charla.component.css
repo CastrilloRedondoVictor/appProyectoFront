@@ -311,6 +311,9 @@
   text-align: center; /* Opcional, para mayor consistencia */
 }
 
+.btnBorrarRecurso {
+  margin-left: 20px;
+}
 
 .btnAction i {
   font-size: 18px;
@@ -546,7 +549,6 @@
   float: right;
 }
 
-
 /* Estilo común para inputs de URL y Nombre */
 input.form-style {
   width: 100%;
@@ -588,7 +590,6 @@ textarea.form-style {
   border-radius: 5%;
 }
 
-
-.recursoUrl{
+.recursoUrl {
   color: white;
 }
