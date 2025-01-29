@@ -103,6 +103,20 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  cambiarRol(miembro: any, event: any): void {
+    const nuevoRol = parseInt(event.target.value, 10);
+    miembro.idRole = nuevoRol;
+
+    this._service.updateRolUsuario(miembro.idUsuario, nuevoRol).subscribe({
+        next: () => {
+            console.log(`Rol actualizado correctamente a ${nuevoRol === 1 ? 'Profesor' : 'Alumno'}.`);
+        },
+        error: (err) => {
+            console.error('Error al actualizar el rol:', err);
+        }
+    });
+  }
+
   getImagenPerfil(): string {
     return this.perfil.imagen || 'assets/images/default-profile.png';
   }
