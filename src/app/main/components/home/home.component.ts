@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { CharlasService } from '../../../services/charlas-service.service';
 import { Ronda } from '../../../models/charla';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth-service.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   public rondas!: Ronda[];
+  public rolUsuario!: string | null;
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin], // Plugin necesario para la vista dayGridMonth
@@ -26,33 +28,67 @@ export class HomeComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this), // Asigna el manejador de clic
   };
 
-  constructor(private charlasService: CharlasService, private router: Router) {}
+  constructor(private charlasService: CharlasService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
-      const events = response.map((ronda: Ronda) => {
-        const localDate = new Date(ronda.fechaPresentacion);
-        const formattedDate = new Date(
-          localDate.getTime() - localDate.getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .split('T')[0]; // Ajusta la fecha y elimina la parte de tiempo
-        return {
-          id: String(ronda.idRonda),
-          title: ronda.descripcionModulo,
-          date: formattedDate, // Usa la fecha ajustada
-          color: '#2b2e38',
-          textColor: '#ffeba7',
+
+
+    this.rolUsuario = this.authService.getRolUsuario();
+    if (this.rolUsuario == '3') {
+      this.charlasService.getRondasAdmin().subscribe((response: Ronda[]) => {
+        const events = response.map((ronda: Ronda) => {
+          const localDate = new Date(ronda.fechaPresentacion);
+          const formattedDate = new Date(
+            localDate.getTime() - localDate.getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .split('T')[0]; // Ajusta la fecha y elimina la parte de tiempo
+          return {
+            id: String(ronda.idRonda),
+            title: ronda.descripcionModulo,
+            date: formattedDate, // Usa la fecha ajustada
+            color: '#2b2e38',
+            textColor: '#ffeba7',
+          };
+        });
+
+        // Asigna los eventos al calendario
+        this.calendarOptions = {
+          ...this.calendarOptions, // Mantén las opciones actuales
+          events, // Actualiza los eventos
+          eventDidMount: (info) => {
+            info.el.style.cursor = 'pointer'; // Aplica el cursor pointer
+          }
         };
       });
+    } else{
+      this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
+        const events = response.map((ronda: Ronda) => {
+          const localDate = new Date(ronda.fechaPresentacion);
+          const formattedDate = new Date(
+            localDate.getTime() - localDate.getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .split('T')[0]; // Ajusta la fecha y elimina la parte de tiempo
+          return {
+            id: String(ronda.idRonda),
+            title: ronda.descripcionModulo,
+            date: formattedDate, // Usa la fecha ajustada
+            color: '#2b2e38',
+            textColor: '#ffeba7',
+          };
+        });
 
-      // Asigna los eventos al calendario
-      this.calendarOptions = {
-        ...this.calendarOptions, // Mantén las opciones actuales
-        events, // Actualiza los eventos
-      };
-      console.log(this.calendarOptions.events); // Verifica los eventos en consola
-    });
+        // Asigna los eventos al calendario
+        this.calendarOptions = {
+          ...this.calendarOptions, // Mantén las opciones actuales
+          events, // Actualiza los eventos
+          eventDidMount: (info) => {
+            info.el.style.cursor = 'pointer'; // Aplica el cursor pointer
+          }
+        };
+      });
+    }
   }
 
   handleEventClick(arg: any): void {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login } from '../models/login';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { AlumnoRegister } from '../models/alumno';
 import { Perfil } from '../models/perfil';
@@ -137,9 +137,43 @@ export class AuthService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-  
+
     const requestUrl = `api/Usuarios/UsuariosCurso/${idCurso}`;
     return this._http.get<any[]>(environment.urlApiCharlas + requestUrl, { headers });
+  }
+
+  updateRolUsuario(idUsuario: number, idRole: number): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    });
+
+    let request = `api/Admin/UpdateRoleUsuario/${idUsuario}/${idRole}`;
+
+    return this._http.put(environment.urlApiCharlas + request, {}, { headers });
+  }
+
+  updateNombreApellidosUsuario(perfil: any): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/Usuarios';
+    let body = {
+      idUsuario: perfil.idUsuario,
+      nombre: perfil.nombre,
+      apellidos: perfil.apellidos,
+      email: perfil.email,  // ✅ Debemos incluir el email
+      estadoUsuario: perfil.estadoUsuario,  // ✅ Estado del usuario
+      imagen: perfil.imagen,  // ✅ Incluir la imagen
+      password: "",  // ✅ Es requerido, pero lo enviamos vacío si no se cambia
+      idRole: perfil.idRole,  // ✅ Enviar el rol actual del usuario
+    };
+
+    return this._http.put(environment.urlApiCharlas + request, body, { headers });
   }
 
   // getAlumnos(): Observable<any> {
