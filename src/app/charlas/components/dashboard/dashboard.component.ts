@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.rolUsuario = this.authService.getRolUsuario();
     this.getRondas();
   }
 
@@ -74,15 +75,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getRondas() {
-    this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
-      this.rondas = response;
-    });
-    this.rolUsuario = this.authService.getRolUsuario()
 
-    if (this.rolUsuario == '1') {
-      this.charlasService.getRondasProfesor().subscribe((response: Ronda[]) => {
+    if(this.rolUsuario == '3'){
+      this.charlasService.getRondasAdmin().subscribe((response: Ronda[]) => {
         this.rondas = response;
       });
+    } else{
+      this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
+        this.rondas = response;
+      });
+      this.rolUsuario = this.authService.getRolUsuario()
+
+      if (this.rolUsuario == '1') {
+        this.charlasService.getRondasProfesor().subscribe((response: Ronda[]) => {
+          this.rondas = response;
+        });
+      }
     }
   }
 

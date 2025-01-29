@@ -15,7 +15,7 @@
         </p>
         <p><strong>Rol: </strong> {{ perfil.role }}</p>
         <p><strong>Curso: </strong> {{ perfil.curso }}</p>
-        <p><strong>ID Curso: </strong> {{ perfil.idCurso }}</p>
+        <p *ngIf="this.rolUsuario != '3'"><strong>ID Curso: </strong> {{ perfil.idCurso }}</p>
       </div>
     </div>
 
