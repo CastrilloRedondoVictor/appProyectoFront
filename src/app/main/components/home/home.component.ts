@@ -50,8 +50,10 @@ export class HomeComponent implements OnInit {
       this.calendarOptions = {
         ...this.calendarOptions, // Mantén las opciones actuales
         events, // Actualiza los eventos
+        eventDidMount: (info) => {
+          info.el.style.cursor = 'pointer'; // Aplica el cursor pointer
+        }
       };
-      console.log(this.calendarOptions.events); // Verifica los eventos en consola
     });
   }
 
