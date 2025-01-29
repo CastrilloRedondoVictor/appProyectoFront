@@ -37,7 +37,6 @@ export class ComentariosSin {
   ) {}
 }
 
-
 export class Recursos {
   constructor(
     public idRecurso: number,
