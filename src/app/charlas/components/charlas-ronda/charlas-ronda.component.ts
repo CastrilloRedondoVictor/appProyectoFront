@@ -21,6 +21,7 @@ export class CharlasRondaComponent implements OnInit {
   charlasAlumno!: any[];
   hasCharla!: boolean;
   hasVoted!: boolean;
+  canAddCharla!: boolean;
   hasChosenVote!: boolean;
   voto!: Voto;
   public perfil!: Perfil;
@@ -42,6 +43,7 @@ export class CharlasRondaComponent implements OnInit {
     this.charlasService.getRonda(this.idRonda).subscribe((response) => {
       this.ronda = response;
       this.canVote();
+      this.canAdd();
     });
 
     this.authService.getPerfil().subscribe((response) => {
@@ -54,6 +56,7 @@ export class CharlasRondaComponent implements OnInit {
       this.idRonda = Number(params.get('idRonda'));
       this.getCharlas();
       this.canVote();
+      this.canAdd();
     });
   }
 
@@ -102,6 +105,15 @@ export class CharlasRondaComponent implements OnInit {
     this.charlasService.getEstadosCharlas().subscribe((response) => {
       this.estadosCharla = response; // Asignamos la respuesta a la variable
     });
+  }
+
+  canAdd() {
+    const today = new Date();
+    const closingDate = new Date(this.ronda.fechaCierre);
+
+    closingDate < today || this.authService.getRolUsuario() != '2'
+      ? (this.canAddCharla = false)
+      : (this.canAddCharla = true);
   }
 
   canVote(): void {
