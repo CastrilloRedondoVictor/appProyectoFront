@@ -5,6 +5,7 @@ import { AlumnosCursoProfesor } from '../../../models/perfil';
 import { Charla } from '../../../models/charla';
 import { CharlasService } from '../../../services/charlas-service.service';
 import { CharlaDetalles } from '../../../models/charlaDetalles';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
   public alumnosCursos!: AlumnosCursoProfesor[];
   public listaCursos: any[] = [];
   public cursosAbiertos: { [key: number]: boolean } = {};
+  public usersAbiertos: { [key: number]: boolean } = {};
   public alumnosAbiertos: { [key: number]: boolean } = {};
   public miembrosCursos: { [key: number]: any[] } = {};
   public charlasAlumno!: CharlaDetalles[];
@@ -107,6 +109,8 @@ export class ProfileComponent implements OnInit {
         }
       });
     }
+
+    this.usersAbiertos[idCurso] = !this.usersAbiertos[idCurso];
   }
 
   cambiarRol(miembro: any, event: any): void {
@@ -115,7 +119,41 @@ export class ProfileComponent implements OnInit {
 
     this._service.updateRolUsuario(miembro.idUsuario, nuevoRol).subscribe({
         next: () => {
-            console.log(`Rol actualizado correctamente a ${nuevoRol === 1 ? 'Profesor' : 'Alumno'}.`);
+            Swal.fire({
+                    title: `Rol actualizado correctamente a ${nuevoRol === 1 ? 'Profesor' : 'Alumno'}.`,
+                    text: 'El usuario ha sido actualizado correctamente.',
+                    icon: 'success',
+                    confirmButtonText: 'ACEPTAR',
+                    background: '#2b2e38',
+                    color: '#c4c3ca',
+                    focusConfirm: false,
+                    buttonsStyling: false,
+                    didOpen: () => {
+                      const confirmButton = document.querySelector(
+                        '.swal2-confirm'
+                      ) as HTMLElement;
+                      if (confirmButton) {
+                        // Estilos iniciales
+                        confirmButton.style.backgroundColor = '#ffeba7';
+                        confirmButton.style.color = '#2b2e38';
+                        confirmButton.style.padding = '10px 20px';
+                        confirmButton.style.border = 'none';
+                        confirmButton.style.borderRadius = '4px';
+                        confirmButton.style.transition = 'all 0.3s ease';
+
+                        // Hover con JavaScript
+                        confirmButton.addEventListener('mouseover', () => {
+                          confirmButton.style.backgroundColor = '#000000';
+                          confirmButton.style.color = '#ffeba7';
+                        });
+
+                        confirmButton.addEventListener('mouseout', () => {
+                          confirmButton.style.backgroundColor = '#ffeba7';
+                          confirmButton.style.color = '#000000';
+                        });
+                      }
+                    },
+                  });
         },
         error: (err) => {
             console.error('Error al actualizar el rol:', err);
