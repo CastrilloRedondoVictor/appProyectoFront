@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
           confirmButton.style.transition = 'all 0.3s ease';
 
           confirmButton.addEventListener('mouseover', () => {
-            confirmButton.style.backgroundColor = '#000000';
+            confirmButton.style.backgroundColor = '#1f2029';
             confirmButton.style.color = '#ffeba7';
           });
 
@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
         // Botón de cancelar
         const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
         if (cancelButton) {
-          cancelButton.style.backgroundColor = '#ff4d4d';
+          cancelButton.style.backgroundColor = '#e74c3c';
           cancelButton.style.color = '#ffffff';
           cancelButton.style.padding = '10px 20px';
           cancelButton.style.border = 'none';
@@ -84,12 +84,11 @@ export class AppComponent implements OnInit {
           cancelButton.style.transition = 'all 0.3s ease';
 
           cancelButton.addEventListener('mouseover', () => {
-            cancelButton.style.backgroundColor = '#ffffff';
-            cancelButton.style.color = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#a93226';
           });
 
           cancelButton.addEventListener('mouseout', () => {
-            cancelButton.style.backgroundColor = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#e74c3c';
             cancelButton.style.color = '#ffffff';
           });
         }
