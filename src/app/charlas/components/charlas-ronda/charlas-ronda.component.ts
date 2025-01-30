@@ -389,8 +389,8 @@ export class CharlasRondaComponent implements OnInit {
           this.getCharlas();
         }, (error:any) => {
                       Swal.fire({
-                        title: 'Error al eliminar la ronda',
-                        text: 'No se ha podido eliminar la ronda',
+                        title: 'Error al eliminar la charla',
+                        text: 'No se ha podido eliminar la charla',
                         icon: 'error',
                         confirmButtonText: 'ACEPTAR',
                         background: '#2b2e38',

@@ -118,7 +118,7 @@ export class EditCharlaComponent {
     var descripcion = this.cajaDescripcion.nativeElement.value;
     var tiempo = this.cajaTiempo.nativeElement.value;
 
-    if (this.tiempoIngresado <= this.ronda.duracion) {
+    if (tiempo <= this.ronda.duracion) {
       this.charla = new CharlaSin(
         this.charla.idCharla,
         titulo,
