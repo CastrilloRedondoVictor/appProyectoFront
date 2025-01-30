@@ -11,63 +11,36 @@
         <div class="form">
           <div class="text-center mb-4">
             <div class="imagen-contenedor">
-              <img
-                [src]="fileContent || getImagenPerfil()"
-                alt="Imagen de perfil"
-                class="perfil-imagen"
-                (click)="cambiarImagen()"
-              />
+              <img [src]="fileContent || getImagenPerfil()" alt="Imagen de perfil" class="perfil-imagen"
+                (click)="cambiarImagen()" />
               <button class="editar-boton" (click)="cambiarImagen()">
                 <i class="uil uil-camera"></i>
               </button>
             </div>
-            <input
-              type="file"
-              #cajaFile
-              accept="image/*"
-              style="display: none"
-              (change)="subirFichero($event)"
-            />
+            <input type="file" #cajaFile accept="image/*" style="display: none" (change)="subirFichero($event)" />
           </div>
 
           <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
             <div class="comentario">
               <label>CAMBIAR DATOS</label>
               <div class="form-group mt-2">
-                <input
-                  type="text"
-                  id="nombre"
-                  class="form-style"
-                  formControlName="nombre"
-                  placeholder="Ingrese su nombre"
-                />
+                <input type="text" id="nombre" class="form-style" formControlName="nombre"
+                  placeholder="Ingrese su nombre" />
                 <i class="input-icon uil uil-user"></i>
               </div>
 
               <div class="form-group mt-2">
-                <input
-                  type="text"
-                  id="apellidos"
-                  class="form-style"
-                  formControlName="apellidos"
-                  placeholder="Ingrese sus apellidos"
-                />
+                <input type="text" id="apellidos" class="form-style" formControlName="apellidos"
+                  placeholder="Ingrese sus apellidos" />
                 <i class="input-icon uil uil-user-plus"></i>
               </div>
             </div>
             <div class="comentario">
               <label for="newPassword">CAMBIAR CONTRASEÑA</label>
               <div class="form-group mt-2">
-                <input
-                  type="password"
-                  id="newPassword"
-                  class="form-style"
-                  formControlName="newPassword"
-                  placeholder="Ingrese su nueva contraseña"
-                />
-                <small
-                  style="color: #ffeba7; padding: 0 15px"
-                >
+                <input type="password" id="newPassword" class="form-style" formControlName="newPassword"
+                  placeholder="Ingrese su nueva contraseña" />
+                <small style="color: #ffeba7; padding: 0 15px">
                   Rellenar este campo solo si quieres modificarla.
                 </small>
                 <i class="input-icon uil uil-lock"></i>

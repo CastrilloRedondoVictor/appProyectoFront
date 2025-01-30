@@ -5,5 +5,5 @@ export class Curso {
     public fechaInicio: string, // O puedes usar Date si prefieres
     public fechaFin: string,    // O puedes usar Date si prefieres
     public activo: boolean
-  ) {}
+  ) { }
 }

@@ -16,7 +16,7 @@ export class Usuario {
     public idCurso: number,
     public curso: string,
     public idCursoUsuario: number
-  ) {}
+  ) { }
 }
 
 export class AlumnosCursoProfesor {
@@ -24,14 +24,14 @@ export class AlumnosCursoProfesor {
     public numeroAlumnos: number,
     public curso: Curso,
     public alumnos: AlumnoCurso[]
-  ) {}
+  ) { }
 }
 
 export class Perfil {
   constructor(
     public usuario: Usuario,
     public charlas: Charla[]  // Array de charlas (puedes expandir el tipo de datos de charla)
-  ) {}
+  ) { }
 }
 
 

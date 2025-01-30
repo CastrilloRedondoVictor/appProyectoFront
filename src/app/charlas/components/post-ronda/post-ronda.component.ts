@@ -31,7 +31,7 @@ export class PostRondaComponent implements OnInit {
     private _service: CharlasService,
     private _servicePerfil: AuthService,
     private _router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._servicePerfil.getPerfil().subscribe((response) => {
@@ -69,11 +69,17 @@ export class PostRondaComponent implements OnInit {
         focusConfirm: false,
         buttonsStyling: false,
         didOpen: () => {
-          const confirmButton = document.querySelector(
-            '.swal2-confirm'
-          ) as HTMLElement;
+          // Estilizar contenedor de botones
+          const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+          if (buttonsContainer) {
+            buttonsContainer.style.display = 'flex';
+            buttonsContainer.style.justifyContent = 'space-between';
+            buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+          }
+
+          // Botón de confirmar
+          const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
           if (confirmButton) {
-            // Estilos iniciales
             confirmButton.style.backgroundColor = '#ffeba7';
             confirmButton.style.color = '#2b2e38';
             confirmButton.style.padding = '10px 20px';
@@ -81,15 +87,34 @@ export class PostRondaComponent implements OnInit {
             confirmButton.style.borderRadius = '4px';
             confirmButton.style.transition = 'all 0.3s ease';
 
-            // Hover con JavaScript
             confirmButton.addEventListener('mouseover', () => {
-              confirmButton.style.backgroundColor = '#000000';
+              confirmButton.style.backgroundColor = '#1f2029';
               confirmButton.style.color = '#ffeba7';
             });
 
             confirmButton.addEventListener('mouseout', () => {
               confirmButton.style.backgroundColor = '#ffeba7';
-              confirmButton.style.color = '#000000';
+              confirmButton.style.color = '#2b2e38';
+            });
+          }
+
+          // Botón de cancelar
+          const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+          if (cancelButton) {
+            cancelButton.style.backgroundColor = '#e74c3c';
+            cancelButton.style.color = '#ffffff';
+            cancelButton.style.padding = '10px 20px';
+            cancelButton.style.border = 'none';
+            cancelButton.style.borderRadius = '4px';
+            cancelButton.style.transition = 'all 0.3s ease';
+
+            cancelButton.addEventListener('mouseover', () => {
+              cancelButton.style.backgroundColor = '#a93226';
+            });
+
+            cancelButton.addEventListener('mouseout', () => {
+              cancelButton.style.backgroundColor = '#e74c3c';
+              cancelButton.style.color = '#ffffff';
             });
           }
         },

@@ -45,4 +45,4 @@ registerLocaleData(localeEs, 'es');
   providers: [provideAnimationsAsync(), provideHttpClient(), ServiceLogin, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

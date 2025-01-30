@@ -15,4 +15,4 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   providers: [provideHttpClient(), ServiceLogin],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class MainModule {}
+export class MainModule { }

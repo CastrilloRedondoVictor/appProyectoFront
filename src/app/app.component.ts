@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private observer: BreakpointObserver,
     private authService: AuthService
-  ) {}
+  ) { }
 
   logOut() {
     Swal.fire({
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
         localStorage.removeItem('authToken');
         this.router.navigate(['/auth']);
       } else {
-        console.log('Cancelado');
+        // console.log('Cancelado');
       }
     });
 

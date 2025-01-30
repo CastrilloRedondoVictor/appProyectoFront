@@ -1,9 +1,5 @@
 <mat-toolbar *ngIf="showMenu">
-  <button
-    mat-icon-button
-    *ngIf="sidenav.mode === 'over'"
-    (click)="sidenav.toggle()"
-  >
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon class="menu-icons" *ngIf="!sidenav.opened">menu</mat-icon>
     <mat-icon class="menu-icons" *ngIf="sidenav.opened">close</mat-icon>
   </button>
@@ -14,36 +10,22 @@
 <mat-sidenav-container [ngClass]="showMenu ? '' : 'displayNone'">
   <mat-sidenav>
     <mat-nav-list>
-      <mat-list-item
-        (click)="sidenav.mode === 'over' && sidenav.toggle()"
-        routerLink=""
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon class="mat-list-item-icon" matListItemIcon>calendar_month </mat-icon>
         <span class="mat-list-item-text">Calendario</span>
       </mat-list-item>
-      <mat-list-item
-        (click)="sidenav.mode === 'over' && sidenav.toggle()"
-        routerLink="profile"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="profile"
+        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon class="mat-list-item-icon" matListItemIcon>person</mat-icon>
         <span class="mat-list-item-text">Perfil</span>
       </mat-list-item>
-      <mat-list-item
-        (click)="sidenav.mode === 'over' && sidenav.toggle()"
-        routerLink="charlas"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="charlas"
+        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon class="mat-list-item-icon" matListItemIcon>chat</mat-icon>
         <span class="mat-list-item-text">Charlas</span>
       </mat-list-item>
-      <mat-list-item
-        (click)="logOut()"
-      >
+      <mat-list-item (click)="logOut()">
         <mat-icon class="mat-list-item-icon" matListItemIcon>logout</mat-icon>
         <span class="mat-list-item-text">Cerrar Sesión</span>
       </mat-list-item>
@@ -59,4 +41,3 @@
 
 
 <router-outlet *ngIf="!showMenu"></router-outlet>
-
