@@ -27,7 +27,7 @@ export class PostCharlaComponent implements OnInit {
   errors: boolean[] = [false, false, false];
   errorTiempo: boolean = false;
 
-  imagen: FileModel  =new FileModel('imgCharla.png', '');
+  imagen: FileModel = new FileModel('imgCharla.png', '');
   @ViewChild('cajaFile') cajaFileRef!: ElementRef; // Referencia al input file
   public fileContent: string | null = null; // Base64 para la previsualización
 
@@ -38,7 +38,7 @@ export class PostCharlaComponent implements OnInit {
     private _servicePerfil: AuthService,
     private _router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   ngOnInit(): void {
     this._servicePerfil.getPerfil().subscribe((response) => {
       this.perfil = response.usuario;
@@ -59,7 +59,7 @@ export class PostCharlaComponent implements OnInit {
   validarTiempo(): void {
     if (this.tiempoIngresado > this.ronda.duracion) {
       this.errors[2] = true;
-    } else{
+    } else {
 
       this.errors[2] = false;
     }
@@ -74,35 +74,35 @@ export class PostCharlaComponent implements OnInit {
     return this.imagen.filecontent != '' ? this.imagen.filecontent : 'assets/images/charlaImagen.png';
   }
 
-   // Método para abrir el input file
-    cambiarImagen() {
-      this.cajaFileRef.nativeElement.click();
+  // Método para abrir el input file
+  cambiarImagen() {
+    this.cajaFileRef.nativeElement.click();
+  }
+
+  // Método para previsualizar la imagen y enviarla como FileModel
+  subirFichero(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
+      const fileName = file.name;
+
+      // Leer el archivo como Base64
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileContent = reader.result as string; // Actualizar previsualización
+        console.log('Imagen seleccionada en Base64:', this.fileContent);
+
+        // Crear el objeto FileModel
+        const base64Content = this.fileContent.split(',')[1]; // Extraer solo la parte Base64
+        const fileModel = new FileModel(fileName, base64Content);
+
+        // Subir al servidor
+        this.imagen = fileModel
+      };
+      reader.readAsDataURL(file);
     }
-
-    // Método para previsualizar la imagen y enviarla como FileModel
-    subirFichero(event: Event): void {
-      const inputElement = event.target as HTMLInputElement;
-
-      if (inputElement.files && inputElement.files.length > 0) {
-        const file = inputElement.files[0];
-        const fileName = file.name;
-
-        // Leer el archivo como Base64
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.fileContent = reader.result as string; // Actualizar previsualización
-          console.log('Imagen seleccionada en Base64:', this.fileContent);
-
-          // Crear el objeto FileModel
-          const base64Content = this.fileContent.split(',')[1]; // Extraer solo la parte Base64
-          const fileModel = new FileModel(fileName, base64Content);
-
-          // Subir al servidor
-          this.imagen = fileModel
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+  }
 
 
 
@@ -113,7 +113,7 @@ export class PostCharlaComponent implements OnInit {
 
 
 
-    if(this.tiempoIngresado <= this.ronda.duracion) {
+    if (this.tiempoIngresado <= this.ronda.duracion) {
       this.charla = new CharlaSin(
         1,
         titulo,
@@ -128,7 +128,7 @@ export class PostCharlaComponent implements OnInit {
 
 
       this._service.postCharla(this.charla).subscribe((response: CharlaSin) => {
-        if(this.imagen.filecontent != ''){
+        if (this.imagen.filecontent != '') {
           this._service.postFile(this.imagen, response.idCharla).subscribe((response) => {
             this._router.navigate(['charlas/charlasRonda/' + this.idRonda])
 
@@ -142,11 +142,17 @@ export class PostCharlaComponent implements OnInit {
               focusConfirm: false,
               buttonsStyling: false,
               didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
+                // Estilizar contenedor de botones
+                const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+                if (buttonsContainer) {
+                  buttonsContainer.style.display = 'flex';
+                  buttonsContainer.style.justifyContent = 'space-between';
+                  buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+                }
+
+                // Botón de confirmar
+                const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
                 if (confirmButton) {
-                  // Estilos iniciales
                   confirmButton.style.backgroundColor = '#ffeba7';
                   confirmButton.style.color = '#2b2e38';
                   confirmButton.style.padding = '10px 20px';
@@ -154,58 +160,102 @@ export class PostCharlaComponent implements OnInit {
                   confirmButton.style.borderRadius = '4px';
                   confirmButton.style.transition = 'all 0.3s ease';
 
-                // Hover con JavaScript
-                confirmButton.addEventListener('mouseover', () => {
-                  confirmButton.style.backgroundColor = '#000000';
-                  confirmButton.style.color = '#ffeba7';
-                });
+                  confirmButton.addEventListener('mouseover', () => {
+                    confirmButton.style.backgroundColor = '#1f2029';
+                    confirmButton.style.color = '#ffeba7';
+                  });
 
                   confirmButton.addEventListener('mouseout', () => {
                     confirmButton.style.backgroundColor = '#ffeba7';
-                    confirmButton.style.color = '#000000';
+                    confirmButton.style.color = '#2b2e38';
+                  });
+                }
+
+                // Botón de cancelar
+                const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+                if (cancelButton) {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                  cancelButton.style.padding = '10px 20px';
+                  cancelButton.style.border = 'none';
+                  cancelButton.style.borderRadius = '4px';
+                  cancelButton.style.transition = 'all 0.3s ease';
+
+                  cancelButton.addEventListener('mouseover', () => {
+                    cancelButton.style.backgroundColor = '#a93226';
+                  });
+
+                  cancelButton.addEventListener('mouseout', () => {
+                    cancelButton.style.backgroundColor = '#e74c3c';
+                    cancelButton.style.color = '#ffffff';
                   });
                 }
               },
             });
-            });
+          });
         } else {
           this._router.navigate(['charlas/charlasRonda/' + this.idRonda])
 
-            Swal.fire({
-              title: 'Charla creada',
-              text: 'La charla se ha creado con éxito.',
-              icon: 'success',
-              confirmButtonText: 'ACEPTAR',
-              background: '#2b2e38',
-              color: '#c4c3ca',
-              focusConfirm: false,
-              buttonsStyling: false,
-              didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
-                if (confirmButton) {
-                  // Estilos iniciales
-                  confirmButton.style.backgroundColor = '#ffeba7';
-                  confirmButton.style.color = '#2b2e38';
-                  confirmButton.style.padding = '10px 20px';
-                  confirmButton.style.border = 'none';
-                  confirmButton.style.borderRadius = '4px';
-                  confirmButton.style.transition = 'all 0.3s ease';
+          Swal.fire({
+            title: 'Charla creada',
+            text: 'La charla se ha creado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'ACEPTAR',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
+            didOpen: () => {
+              // Estilizar contenedor de botones
+              const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+              if (buttonsContainer) {
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.justifyContent = 'space-between';
+                buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+              }
 
-                // Hover con JavaScript
+              // Botón de confirmar
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+              if (confirmButton) {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
+
                 confirmButton.addEventListener('mouseover', () => {
-                  confirmButton.style.backgroundColor = '#000000';
+                  confirmButton.style.backgroundColor = '#1f2029';
                   confirmButton.style.color = '#ffeba7';
                 });
 
-                  confirmButton.addEventListener('mouseout', () => {
-                    confirmButton.style.backgroundColor = '#ffeba7';
-                    confirmButton.style.color = '#000000';
-                  });
-                }
-              },
-            });
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
+                });
+              }
+
+              // Botón de cancelar
+              const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+              if (cancelButton) {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '4px';
+                cancelButton.style.transition = 'all 0.3s ease';
+
+                cancelButton.addEventListener('mouseover', () => {
+                  cancelButton.style.backgroundColor = '#a93226';
+                });
+
+                cancelButton.addEventListener('mouseout', () => {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                });
+              }
+            },
+          });
         }
 
       });
