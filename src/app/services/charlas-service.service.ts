@@ -7,17 +7,41 @@ import { Charla, CharlaSin, Ronda } from '../models/charla';
 import { Voto } from '../models/voto';
 import { FileModel } from '../models/fileModel';
 import {
-  CharlaDetalles,
-  Comentarios,
   ComentariosSin,
   Recursos,
 } from '../models/charlaDetalles';
+import { Curso } from '../models/curso';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharlasService {
   constructor(private authService: AuthService, private _http: HttpClient) {}
+
+  postCurso(curso: Curso):  Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    let request = 'api/Cursos';
+    return this._http.post(
+      environment.urlApiCharlas + request,
+      JSON.stringify(curso),
+      { headers }
+    );
+  }
+
+  deleteCurso(idCurso: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    let request = 'api/Cursos/' + idCurso;
+    return this._http.delete(environment.urlApiCharlas + request, { headers });
+  }
 
   getRondasCurso(): Observable<any> {
     const token = this.authService.getToken();

@@ -10,6 +10,8 @@ import { DetallesCharlaComponent } from './components/detalles-charla/detalles-c
 import { PostComentarioComponent } from './components/post-comentario/post-comentario.component';
 import { EditCharlaComponent } from './components/edit-charla/edit-charla.component';
 import { EditRondaComponent } from './components/edit-ronda/edit-ronda.component';
+import { NewCursoComponent } from './components/new-curso/new-curso.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { EditRondaComponent } from './components/edit-ronda/edit-ronda.component
     PostComentarioComponent,
     EditCharlaComponent,
     EditRondaComponent,
+    NewCursoComponent
   ],
   imports: [CommonModule, CharlasRoutingModule, FormsModule],
 })
