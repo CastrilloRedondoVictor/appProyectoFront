@@ -386,7 +386,45 @@ export class CharlasRondaComponent implements OnInit {
           });
 
           this.getCharlas();
-        });
+        }, (error) => {
+
+                    (error:any) => {
+                      Swal.fire({
+                        title: 'Error al eliminar la ronda',
+                        text: 'No se ha podido eliminar la ronda',
+                        icon: 'error',
+                        confirmButtonText: 'ACEPTAR',
+                        background: '#2b2e38',
+                        color: '#c4c3ca',
+                        focusConfirm: false,
+                        buttonsStyling: false,
+                        didOpen: () => {
+                          const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+                          if (confirmButton) {
+                            // Estilos iniciales
+                            confirmButton.style.backgroundColor = '#ffeba7';
+                            confirmButton.style.color = '#2b2e38';
+                            confirmButton.style.padding = '10px 20px';
+                            confirmButton.style.border = 'none';
+                            confirmButton.style.borderRadius = '4px';
+                            confirmButton.style.transition = 'all 0.3s ease';
+
+                            // Hover con JavaScript
+                            confirmButton.addEventListener('mouseover', () => {
+                              confirmButton.style.backgroundColor = '#000000';
+                              confirmButton.style.color = '#ffeba7';
+                            });
+
+                            confirmButton.addEventListener('mouseout', () => {
+                              confirmButton.style.backgroundColor = '#ffeba7';
+                              confirmButton.style.color = '#000000';
+                            });
+                          }
+                        },
+                      });
+                    }
+            }
+          );
       }
     });
   }
