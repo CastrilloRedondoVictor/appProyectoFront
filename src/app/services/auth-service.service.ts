@@ -11,7 +11,7 @@ import { FileModel } from '../models/fileModel';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   getToken(): string | null {
     return localStorage.getItem('authToken');
@@ -145,8 +145,8 @@ export class AuthService {
   updateRolUsuario(idUsuario: number, idRole: number): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     });
 
     let request = `api/Admin/UpdateRoleUsuario/${idUsuario}/${idRole}`;
@@ -186,7 +186,7 @@ export class AuthService {
     let request = `api/Usuarios/UpdateEstadoUsuario/${idUsuario}/${estado}`;
 
     return this._http.put(environment.urlApiCharlas + request, {}, { headers });
-}
+  }
 
   // getAlumnos(): Observable<any> {
 

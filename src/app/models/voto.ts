@@ -4,5 +4,5 @@ export class Voto {
     public idCharla: number,
     public idUsuario: number,
     public idRonda: number,
-  ) {}
+  ) { }
 }

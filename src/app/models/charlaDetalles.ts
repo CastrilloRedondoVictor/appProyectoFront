@@ -13,7 +13,7 @@ export class Charla {
     public idRonda: number,
     public idCurso: number,
     public nombreCurso: string
-  ) {}
+  ) { }
 }
 
 export class Comentarios {
@@ -24,7 +24,7 @@ export class Comentarios {
     public usuario: string,
     public contenido: string,
     public fecha: string
-  ) {}
+  ) { }
 }
 
 export class ComentariosSin {
@@ -34,7 +34,7 @@ export class ComentariosSin {
     public idUsuario: number,
     public contenido: string,
     public fecha: string
-  ) {}
+  ) { }
 }
 
 export class Recursos {
@@ -44,7 +44,7 @@ export class Recursos {
     public url: string,
     public nombre: string,
     public descripcion: string
-  ) {}
+  ) { }
 }
 
 export class CharlaDetalles {
@@ -52,5 +52,5 @@ export class CharlaDetalles {
     public charla: Charla,
     public comentarios: Comentarios[],
     public recursos: Recursos[]
-  ) {}
+  ) { }
 }

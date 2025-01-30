@@ -2,127 +2,82 @@
   <h1 class="titulo">CHARLAS PARA {{ronda.descripcionModulo | uppercase}}</h1>
   <h1 class="titulo"></h1>
   <div class="upper-buttons">
-    <a [routerLink]="['/charlas']" class="btn btn-large"
-      ><i class="uil-arrow-left"></i
-    ></a>
-    <select
-      class="dropdown"
-      [(ngModel)]="selectedEstadoCharla"
-      (change)="onEstadoChange()"
-    >
+    <a [routerLink]="['/charlas']" class="btn btn-large"><i class="uil-arrow-left"></i></a>
+    <select class="dropdown" [(ngModel)]="selectedEstadoCharla" (change)="onEstadoChange()">
       <option value disabled>FILTRAR</option>
       <option value selected>TODAS</option>
       <option *ngFor="let estado of estadosCharla" [value]="estado.estado">
         {{ estado.estado }}S
       </option>
     </select>
-    <a
-      *ngIf="!hasCharla && canAddCharla"
-      [routerLink]="['/charlas/charlasRonda/new', idRonda]"
-      class="btn btn-large"
-      ><i class="uis uil-plus"></i
-    ></a>
+    <a *ngIf="!hasCharla && canAddCharla" [routerLink]="['/charlas/charlasRonda/new', idRonda]" class="btn btn-large"><i
+        class="uis uil-plus"></i></a>
   </div>
 
   <div *ngFor="let charlaRonda of charlasRonda; let i = index" class="charla">
     <div class="charla-header">
       <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charlaRonda.titulo }}</h4>
-      <span
-        >Tiempo: {{ getHoras(charlaRonda.tiempo) }} horas
-        {{ charlaRonda.tiempo % 60 }} minutos</span
-      >
+      <span>Tiempo: {{ getHoras(charlaRonda.tiempo) }} horas
+        {{ charlaRonda.tiempo % 60 }} minutos</span>
     </div>
     <div class="charla-details">
       <p>
-        <span class="span-charla-details">Descripción: </span
-        >{{ charlaRonda.descripcion }}
+        <span class="span-charla-details">Descripción: </span>{{ charlaRonda.descripcion }}
       </p>
       <p>
-        <span class="span-charla-details">Fecha Propuesta: </span
-        >{{ charlaRonda.fechaPropuesta | date : "longDate" : "es" }}
+        <span class="span-charla-details">Fecha Propuesta: </span>{{ charlaRonda.fechaPropuesta | date : "longDate" :
+        "es" }}
       </p>
-      <p
-      *ngIf="perfil.idRole != 2">
-        <span class="span-charla-details">Votos: </span
-        >{{ votosCharla[i] || 0 }}
+      <p *ngIf="perfil.idRole != 2">
+        <span class="span-charla-details">Votos: </span>{{ votosCharla[i] || 0 }}
       </p>
       <p>
         <span class="span-charla-details">Estado: </span>
-        <span
-          [ngClass]="
+        <span [ngClass]="
             charlaRonda.estadoCharla == 'PROPUESTA'
               ? 'spanPropuesta'
               : 'spanAceptada'
-          "
-          >{{ charlaRonda.estadoCharla }}</span
-        >
-        <button
-          *ngIf="perfil.idRole != 2"
-          class="btn btnEstado"
-          (click)="cambiarEstadoCharla(charlaRonda)"
-        >
+          ">{{ charlaRonda.estadoCharla }}</span>
+        <button *ngIf="perfil.idRole != 2" class="btn btnEstado" (click)="cambiarEstadoCharla(charlaRonda)">
           Cambiar estado
         </button>
       </p>
 
       <p>
-        <span class="span-charla-details">Propuesta por: </span
-        >{{ charlaRonda.usuario }}
+        <span class="span-charla-details">Propuesta por: </span>{{ charlaRonda.usuario }}
       </p>
     </div>
     <div class="ronda-footer">
-      <label
-        class="containerCheckbox"
-        *ngIf="
+      <label class="containerCheckbox" *ngIf="
           !hasVoted &&
           charlaRonda.idUsuario != perfil.idUsuario &&
           charlaRonda.estadoCharla == 'PROPUESTA'
-        "
-      >
+        ">
         <span class="span-charla-details">Votar: </span>
-        <input
-          type="checkbox"
-          #chkVote
-          id="chkVote{{ i }}"
-          (click)="votarCharla(charlaRonda, i)"
-        />
+        <input type="checkbox" #chkVote id="chkVote{{ i }}" (click)="votarCharla(charlaRonda, i)" />
 
         <svg viewBox="0 0 64 64" height="2em" width="2em">
           <path
             d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
-            pathLength="575.0541381835938"
-            class="path"
-          ></path>
+            pathLength="575.0541381835938" class="path"></path>
         </svg>
       </label>
 
-      <div
-        *ngIf="charlaRonda.idUsuario == perfil.idUsuario || perfil.idRole != 2"
-      >
-        <a
-          *ngIf="charlaRonda.idUsuario == perfil.idUsuario"
-          [routerLink]="[
+      <div *ngIf="charlaRonda.idUsuario == perfil.idUsuario || perfil.idRole != 2">
+        <a *ngIf="charlaRonda.idUsuario == perfil.idUsuario" [routerLink]="[
             '/charlas/charlasRonda/edit',
             idRonda,
             charlaRonda.idCharla
-          ]"
-          class="btnAction"
-          ><i class="uis uil-pen"></i>
+          ]" class="btnAction"><i class="uis uil-pen"></i>
         </a>
-        <a (click)="eliminarCharla(charlaRonda.idCharla)" class="btnAction"
-          ><i class="uis uil-trash-alt"></i
-        ></a>
+        <a (click)="eliminarCharla(charlaRonda.idCharla)" class="btnAction"><i class="uis uil-trash-alt"></i></a>
       </div>
 
-      <a
-        [routerLink]="[
+      <a [routerLink]="[
           '/charlas/charlasRonda/detallesCharla',
           idRonda,
           charlaRonda.idCharla
-        ]"
-        class="btn"
-        >Ver detalles</a
-      >
+        ]" class="btn">Ver detalles</a>
     </div>
   </div>
 </div>

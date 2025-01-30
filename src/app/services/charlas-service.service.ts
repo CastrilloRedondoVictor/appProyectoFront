@@ -16,9 +16,9 @@ import { Curso } from '../models/curso';
   providedIn: 'root',
 })
 export class CharlasService {
-  constructor(private authService: AuthService, private _http: HttpClient) {}
+  constructor(private authService: AuthService, private _http: HttpClient) { }
 
-  postCurso(curso: Curso):  Observable<any> {
+  postCurso(curso: Curso): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
