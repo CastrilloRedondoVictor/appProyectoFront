@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'login' }, // Fallback dentro de Auth
+  { path: '', component: LoginComponent },
+  { path: '**', redirectTo: '' }, // Fallback dentro de Auth
 ];
 
 @NgModule({

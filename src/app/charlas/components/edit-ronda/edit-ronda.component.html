@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+      <h1 class="text-center mb-4 titulo">EDITAR RONDA</h1>
+      <div class="upper-buttons">
+        <a [routerLink]="['/charlas']" class="btn">
+          <i class="back uil-arrow-left"></i>
+        </a>
+      </div>
+      <div class="section">
+        <div class="form">
+          <div class="form-group">
+            <div class="form text-center">
+              <div class="form-group mt-2">
+                <input [(ngModel)]="ronda.descripcionModulo" name="cajaTitulo" type="text" class="form-style"
+                  placeholder="Ingrese el título" #cajaTitulo />
+                <i style="color: #ffeba7" class="input-icon uil uil-award"></i>
+              </div>
+              <div class="form-group mt-2">
+                <input [(ngModel)]="ronda.duracion" name="cajaTiempo" type="number" class="form-style"
+                  placeholder="Ingrese el tiempo en minutos" #cajaTiempo />
+                <i style="color: #ffeba7" class="input-icon uil uil-clock"></i>
+              </div>
+              <!-- Campo de Fecha de Presentación -->
+              <div class="form-group mt-2">
+                <input [(ngModel)]="ronda.fechaPresentacion" name="fechaPresentacion" type="text" class="form-style"
+                  placeholder="Seleccione la fecha de presentación" #fechaPresentacion onfocus="(this.type='date')"
+                  onblur="if(!this.value)this.type='text'" />
+                <i style="color: #ffeba7" class="input-icon uil uil-calendar-alt"></i>
+              </div>
+
+              <!-- Campo de Fecha Límite de Presentación -->
+              <div class="form-group mt-2">
+                <input [(ngModel)]="ronda.fechaLimiteVotacion" name="fechaVotacion" type="text" class="form-style"
+                  placeholder="Seleccione la fecha límite de votación" #fechaVotacion onfocus="(this.type='date')"
+                  onblur="if(!this.value)this.type='text'" />
+                <i style="color: #ffeba7" class="input-icon uil uil-envelope-times"></i>
+              </div>
+              <!-- Campo de Fecha de Cierre -->
+              <div class="form-group mt-2">
+                <input [(ngModel)]="ronda.fechaCierre" name="fechaCierre" type="text" class="form-style"
+                  placeholder="Seleccione la fecha de cierre" #fechaCierre onfocus="(this.type='date')"
+                  onblur="if(!this.value)this.type='text'" />
+                <i style="color: #ffeba7" class="input-icon uil uil-calendar-slash"></i>
+              </div>
+
+              <button class="btn mt-4" (click)="editarRonda()">
+                Editar ronda
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

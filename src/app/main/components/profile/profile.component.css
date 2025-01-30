@@ -1,7 +1,516 @@
-.container {
-  background-color: #FFFFFF;
-  padding: 20px;
-  margin: 15px auto;
-  min-height: 90%;
+/* 🔹 Estilo de la tarjeta del perfil */
+.perfil-card {
+  background-color: rgba(43, 46, 56, 0.95);
   border-radius: 10px;
+  padding: 20px;
+  transition: all 0.5s;
+}
+
+/* 🔹 Encabezado del perfil */
+.perfil-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.perfil-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ffeba7;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.perfil-info {
+  flex: 1;
+}
+
+.perfil-info h2,
+.perfil-info h3 {
+  color: #ffeba7;
+  margin: 0;
+}
+
+.perfil-info p {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 8px 0;
+}
+
+.perfil-info strong {
+  font-weight: 600;
+  color: #ffeba7;
+}
+
+/* 🔹 Estado del perfil */
+.active {
+  color: #2ecc71; /* Verde */
+}
+
+.inactive {
+  color: #e74c3c; /* Rojo */
+}
+
+/* 🔹 Pie de perfil */
+.perfil-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* 🔹 Estilos para alumnos y cursos */
+.perfil-alumno-card,
+.perfil-curso-card {
+  background-color: rgba(43, 46, 56, 0.95);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s;
+  margin-bottom: 15px;
+}
+
+.perfil-alumno-card:hover,
+.perfil-curso-card:hover {
+  background-color: rgba(43, 46, 56, 0.85);
+}
+
+/* 🔹 Botones */
+.btn {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffeba7;
+  color: #2b2e38;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+.btn-large {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: #2b2e38;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+
+/* 🔹 Estilo de los cursos (Desplegable igual a comentarios/recursos en detalles-charla) */
+.curso-section {
+  background-color: rgba(43, 46, 56, 0.95);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.curso-section h3 {
+  color: #ffeba7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 🔹 Botón para desplegar detalles */
+.curso-toggle {
+  background: none;
+  border: none;
+  color: #ffeba7;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.curso-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* 🔹 Contenedor de detalles del curso */
+.curso-detalles {
+  background-color: rgba(43, 46, 56, 0.85);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.curso-detalles p {
+  font-size: 14px;
+  color: #ffffff;
+  margin: 5px 0;
+}
+
+/* 🔹 Contenedor de los detalles del curso */
+.curso-detalles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 🔹 MEDIA QUERIES PARA PANTALLAS PEQUEÑAS */
+
+/* 📱 Pantallas pequeñas */
+@media (max-width: 768px) {
+  .perfil-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .perfil-img {
+    margin-bottom: 15px;
+  }
+
+  .perfil-info {
+    text-align: center;
+  }
+
+  .perfil-info h2 {
+    font-size: 20px;
+  }
+
+  .perfil-info p {
+    font-size: 14px;
+  }
+}
+
+/* 📱 Pantallas extra pequeñas */
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 24px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* Botón Activar/Desactivar */
+.btn-estado {
+  background-color: #ffeba7;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-estado:hover {
+  background-color: #2b2e38;
+  color: #ffeba7;
+}
+
+/* 🔹 Botón Miembros */
+.btn-miembros {
+  background-color: #ffeba7;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-miembros:hover {
+  background-color: #2b2e38;
+  color: #ffeba7;
+}
+
+h1 {
+  text-align: center;
+  color: #2b2e38; /* Tono gris oscuro, ligeramente frío */
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+button {
+  overflow-y: hidden;
+}
+
+.charla {
+  border: 1px solid #ddd; /* Gris suave para bordes */
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 2.5%;
+  background-color: #2b2e38; /* Gris oscuro con toques azules */
+  transition: all 0.5s;
+}
+
+.charla:hover {
+  background-color: rgba(43, 46, 56, 0.95);
+  transform: scale(1.025);
+}
+
+.charla-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.txtLabel {
+  color: #ffeba7; /* Amarillo cálido */
+}
+
+.charla-header h4 {
+  font-size: 18px;
+  margin: 0;
+  color: #ffeba7; /* Amarillo cálido */
+}
+
+.charla-header span {
+  font-size: 14px;
+  color: #ffffff; /* Blanco */
+}
+
+.charla-details {
+  margin-top: 10px;
+}
+
+.charla-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #ffffff; /* Blanco */
+}
+
+.span-charla-details {
+  font-weight: bold;
+  color: #ffeba7;
+}
+
+.spanPropuesta {
+  color: #f39c12;
+}
+
+.spanAceptada {
+  color: #2ecc71;
+}
+
+.charla-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.charla-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid #ddd; /* Gris suave para bordes */
+  background-color: #ffffff; /* Blanco */
+}
+
+.upper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+}
+
+.btn {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  background-color: #ffeba7; /* Amarillo cálido */
+  color: #2b2e38; /* Negro para el texto */
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center; /* Opcional, para mayor consistencia */
+}
+
+.btn-estado {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.btn-estado-usuario {
+  padding: 6px 12px; /* Reduce el tamaño del padding */
+  font-size: 12px; /* Reduce el tamaño del texto */
+  border-radius: 4px; /* Ajuste leve en los bordes */
+}
+
+.btn-large {
+  font-size: 17.5px;
+  font-weight:700;
+}
+
+.btn:hover {
+  background-color: #2b2e38; /* Negro para el fondo */
+  color: #ffeba7; /* Amarillo cálido para el texto */
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
+}
+
+.btnAction {
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  color: #ffeba7; /* Amarillo cálido */
+  background-color: none; /* Negro para el texto */
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center; /* Opcional, para mayor consistencia */
+}
+
+.btnAction i {
+  font-size: 18px;
+}
+
+.btnAction:hover {
+  background-color: #2b2e38; /* Negro para el fondo */
+  color: #ffeba7; /* Amarillo cálido para el texto */
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2); /* Sombra con un tono de azul */
+  cursor: pointer;
+}
+
+.ronda-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.icon-img {
+  width: 27px; /* Tamaño adecuado para el ícono */
+  height: 27px;
+  margin-right: 5px; /* Espacio entre el ícono y el texto */
+  vertical-align: middle; /* Alineación con el texto */
+}
+
+.btn-round {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; /* Asegúrate de que sea igual a la altura */
+  height: 50px; /* Igual al ancho para que sea redondo */
+  border-radius: 50%; /* Hace el botón redondo */
+  background-color: #ffeba7; /* Color de fondo */
+  border: none; /* Sin bordes adicionales */
+  padding: 0; /* Sin relleno adicional */
+  cursor: pointer; /* Cambia el cursor a "puntero" */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Agrega sombra para destacar */
+}
+
+.btn-round:hover {
+  background-color: #2b2e38; /* Color al pasar el mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Incrementa la sombra */
+}
+
+.icon-img {
+  width: 75%; /* Ocupa todo el espacio del botón */
+  height: 75%; /* Ocupa todo el espacio del botón */
+  object-fit: cover; /* Asegura que la imagen no se deforme */
+  margin-left: 4px;
+  margin-top: 2px;
+}
+
+/* From Uiverse.io by SelfMadeSystem */
+.containerCheckbox {
+  cursor: pointer;
+}
+
+.containerCheckbox input {
+  display: none;
+}
+
+.containerCheckbox svg {
+  overflow: visible;
+  width: 20px;
+  margin-left: 7.5px;
+}
+
+.path {
+  fill: none;
+  stroke: #ffeba7;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.containerCheckbox input:checked ~ svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}
+
+.dropdown {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background-color: #2b2e38; /* Gris oscuro */
+  color: #ffeba7; /* Amarillo cálido */
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.dropdown:hover {
+  background-color: rgba(43, 46, 56, 0.95);
+}
+
+.dropdown option {
+  background-color: #2b2e38; /* Fondo gris oscuro */
+  color: #ffeba7; /* Texto amarillo */
+}
+
+select {
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #ffeba7;
+}
+
+.select-rol {
+  background-color: #ffeba7;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.select-rol:hover {
+  background-color: #2b2e38;
+  color: #ffeba7;
 }

@@ -1,7 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Login } from '../../../models/login';
-import { ServiceLogin } from '../../../services/service.login';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { AlumnoRegister } from '../../../models/alumno';
+import { AuthService } from '../../../services/auth-service.service';
+import { Perfil } from '../../../models/perfil';
 
 @Component({
   selector: 'app-login',
@@ -10,29 +13,140 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent{
-  @ViewChild('cajaUserName') cajaUserName!: ElementRef;
-  @ViewChild('cajaPassword') cajaPassword!: ElementRef;
-  public login!: Login;
+export class LoginComponent {
+  @ViewChild('cajaLoginUserName') cajaLoginUserName!: ElementRef;
+  @ViewChild('cajaLoginPassword') cajaLoginPassword!: ElementRef;
 
-  constructor(private _service: ServiceLogin, private _router: Router) {}
+  @ViewChild('cajaRegisterNombre') cajaRegisterNombre!: ElementRef;
+  @ViewChild('cajaRegisterApellidos') cajaRegisterApellidos!: ElementRef;
+  @ViewChild('cajaRegisterCurso') cajaRegisterCurso!: ElementRef;
+  @ViewChild('cajaRegisterEmail') cajaRegisterEmail!: ElementRef;
+  @ViewChild('cajaRegisterPassword') cajaRegisterPassword!: ElementRef;
+
+  @ViewChild('regLogCheckbox') regLogCheckbox!: ElementRef<HTMLInputElement>;
+
+  public login!: Login;
+  public alumno!: AlumnoRegister;
+
+  constructor(private _service: AuthService, private _router: Router) {}
 
   hacerLogin(): void {
-    var email = this.cajaUserName.nativeElement.value;
-    var password = this.cajaPassword.nativeElement.value;
+    var email = this.cajaLoginUserName.nativeElement.value;
+    var password = this.cajaLoginPassword.nativeElement.value;
 
     this.login = new Login(email, password);
     this._service.login(this.login).subscribe(
       (response) => {
-        // environment.token = response.response;
+        // Tiempo actual en milisegundos
+        const now = new Date().getTime();
+
+        // 30 minutos en milisegundos
+        const expiresIn = 4 * 60 * 60 * 1000;
+
+        // Almacena el token y la expiración
         localStorage.setItem('authToken', response.response);
+        localStorage.setItem('idRole', response.idrole);
+        localStorage.setItem('tokenExpiresAt', JSON.stringify(now + expiresIn));
         this._router.navigate(['/']);
       },
       () => {
-        alert(
-          'Usuario o contraseña incorrectos, por favor intente nuevamente.'
-        );
+        Swal.fire({
+          title: 'Error de autenticación',
+          text: 'Usuario o contraseña incorrectos',
+          icon: 'error',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+          focusConfirm: false,
+          buttonsStyling: false,
+          didOpen: () => {
+            const confirmButton = document.querySelector(
+              '.swal2-confirm'
+            ) as HTMLElement;
+            if (confirmButton) {
+              // Estilos iniciales
+              confirmButton.style.backgroundColor = '#ffeba7';
+              confirmButton.style.color = '#2b2e38';
+              confirmButton.style.padding = '10px 20px';
+              confirmButton.style.border = 'none';
+              confirmButton.style.borderRadius = '4px';
+              confirmButton.style.transition = 'all 0.3s ease';
+
+              // Hover con JavaScript
+              confirmButton.addEventListener('mouseover', () => {
+                confirmButton.style.backgroundColor = '#000000';
+                confirmButton.style.color = '#e74c3c';
+              });
+
+              confirmButton.addEventListener('mouseout', () => {
+                confirmButton.style.backgroundColor = '#e74c3c';
+                confirmButton.style.color = '#000000';
+              });
+            }
+          },
+        });
       }
     );
+  }
+
+  hacerRegister(): void {
+    var nombre = this.cajaRegisterNombre.nativeElement.value;
+    var apellidos = this.cajaRegisterApellidos.nativeElement.value;
+    var emaul = this.cajaRegisterEmail.nativeElement.value;
+    var password = this.cajaRegisterPassword.nativeElement.value;
+
+    this.alumno = new AlumnoRegister(
+      1,
+      nombre,
+      apellidos,
+      emaul,
+      true,
+      '',
+      password,
+      2
+    );
+    this._service
+      .postAlumno(this.alumno, this.cajaRegisterCurso.nativeElement.value)
+      .subscribe(
+        (response) => {
+          this.regLogCheckbox.nativeElement.checked = false;
+        },
+        () => {
+          Swal.fire({
+            title: 'Error de creación',
+            text: 'Ha habido un error al crear el usuario',
+            icon: 'error',
+            confirmButtonText: 'ACEPTAR',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
+            didOpen: () => {
+              const confirmButton = document.querySelector(
+                '.swal2-confirm'
+              ) as HTMLElement;
+              if (confirmButton) {
+                // Estilos iniciales
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
+
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#000000';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#000000';
+                });
+              }
+            },
+          });
+        }
+      );
   }
 }

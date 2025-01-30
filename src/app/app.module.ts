@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,6 +18,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { ServiceLogin } from './services/service.login';
+import { registerLocaleData } from '@angular/common';
+
+
+import localeEs from '@angular/common/locales/es';
+import { FormsModule } from '@angular/forms';
+
+
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,8 +40,9 @@ import { ServiceLogin } from './services/service.login';
     MatDividerModule,
     MatListModule,
     LayoutModule,
+    FormsModule,
   ],
-  providers: [provideAnimationsAsync(), provideHttpClient(), ServiceLogin],
+  providers: [provideAnimationsAsync(), provideHttpClient(), ServiceLogin, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

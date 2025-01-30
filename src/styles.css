@@ -1,22 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:400");
 
 html,
 body {
   height: 100%;
 }
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #ffeba7;
+  background-color: #1f2029;
 }
 
 
 *::selection{
-  background-color: #F7F3E2;
-  color: #4F4F4F;
-
-  font-family: "Raleway", sans-serif;
+  background-color: #ffeba7;
+  color: #2b2e38;
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;

@@ -1,0 +1,106 @@
+<div class="container">
+  <h1 class="titulo">{{ charlaDetalles.charla.titulo }}</h1>
+  <div class="upper-buttons">
+    <a [routerLink]="['/charlas/charlasRonda', idRonda]" class="btn btn-large">
+      <i class="uil-arrow-left"></i>
+    </a>
+  </div>
+
+  <div class="perfil-card">
+    <div class="perfil-header row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <img [src]="getImagen() || 'assets/images/charlaImagen.jpg'" class="col-10 offset-1 charla-img" />
+      </div>
+      <div class="perfil-info col-lg-6 col-md-6">
+        <p>
+          <strong>Fecha propuesta: </strong>{{ charlaDetalles.charla.fechaPropuesta | date : "longDate" : "es" }}
+        </p>
+        <p>
+          <strong>Tiempo: </strong>{{ charlaDetalles.charla.tiempo }} minutos
+        </p>
+        <p>
+          <strong>Descripción: </strong>{{ charlaDetalles.charla.descripcion }}
+        </p>
+      </div>
+    </div>
+    <div class="comentarios-section">
+      <h3>
+        Comentarios
+        <div class="comentarios-buttons">
+          <button (click)="toggleNuevoComentario()" class="comentarios-add">
+            <i [class]="
+                nuevoComentarioAbierto ? 'uil uil-minus' : 'uil uil-plus'
+              "></i>
+          </button>
+          <button (click)="toggleComentarios()" class="comentarios-toggle">
+            <i [class]="
+                comentariosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'
+              "></i>
+          </button>
+        </div>
+      </h3>
+
+      <div *ngIf="nuevoComentarioAbierto" class="nuevo-comentario-form">
+        <textarea [(ngModel)]="nuevoComentarioContenido" placeholder="Ingrese el contenido"
+          class="form-style"></textarea>
+        <button (click)="crearComentario()" class="btn mt-2">
+          Añadir comentario
+        </button>
+      </div>
+      <div *ngIf="comentariosAbiertos">
+        <div *ngFor="let comentario of charlaDetalles.comentarios" class="comentario">
+          <p><strong>Usuario: </strong>{{ comentario.usuario }}</p>
+          <p><strong>Contenido: </strong>{{ comentario.contenido }}</p>
+          <p>
+            <strong>Fecha: </strong>{{ comentario.fecha | date : "longDate" : "es" }}
+          </p>
+          <div *ngIf="
+              comentario.idUsuario == perfil.idUsuario || perfil.idRole != 2
+            ">
+            <a (click)="eliminarComentario(comentario.idComentario)" class="btnAction"><i
+                class="uis uil-trash-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="recursos-section">
+      <h3>
+        Recursos
+        <div class="comentarios-buttons">
+          <button *ngIf="charlaDetalles.charla.idUsuario == perfil.idUsuario" (click)="toggleNuevoRecurso()"
+            class="comentarios-add">
+            <i [class]="nuevoRecursoAbierto ? 'uil uil-minus' : 'uil uil-plus'"></i>
+          </button>
+          <button (click)="toggleRecursos()" class="recursos-toggle">
+            <i [class]="recursosAbiertos ? 'uil-arrow-down' : 'uil-arrow-right'"></i>
+          </button>
+        </div>
+      </h3>
+
+      <div *ngIf="nuevoRecursoAbierto" class="nuevo-comentario-form">
+        <input type="text" [(ngModel)]="nuevoRecurso.url" placeholder="Ingrese la URL" class="form-style" />
+        <input type="text" [(ngModel)]="nuevoRecurso.nombre" placeholder="Ingrese el nombre" class="form-style" />
+        <textarea [(ngModel)]="nuevoRecurso.descripcion" placeholder="Ingrese la descripción"
+          class="form-style"></textarea>
+        <button (click)="crearRecurso()" class="btn mt-2">
+          Añadir recurso
+        </button>
+      </div>
+
+      <div *ngIf="recursosAbiertos">
+        <div *ngFor="let recurso of charlaDetalles.recursos" class="recurso">
+          <p><strong>Nombre: </strong>{{ recurso.nombre }}</p>
+          <p><strong>Descripción: </strong>{{ recurso.descripcion }}</p>
+          <a class="btn" [href]="recurso.url" target="_blank">Ver recurso</a>
+          <a *ngIf="
+              perfil.idRole === 2 &&
+              charlaDetalles.charla.idUsuario == perfil.idUsuario
+            " class="btnAction btnBorrarRecurso" (click)="editarRecurso(recurso)"><i class="uis uil-pen"></i>
+          </a>
+          <a *ngIf="perfil.idRole === 1" (click)="eliminarRecurso(recurso.idRecurso)"
+            class="btnAction btnBorrarRecurso"><i class="uis uil-trash-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
