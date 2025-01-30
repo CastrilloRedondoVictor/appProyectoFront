@@ -15,7 +15,9 @@
         </p>
         <p><strong>Rol: </strong> {{ perfil.role }}</p>
         <p><strong>Curso: </strong> {{ perfil.curso }}</p>
-        <p *ngIf="this.rolUsuario != '3'"><strong>ID Curso: </strong> {{ perfil.idCurso }}</p>
+        <p *ngIf="this.rolUsuario != '3'">
+          <strong>ID Curso: </strong> {{ perfil.idCurso }}
+        </p>
       </div>
     </div>
 
@@ -27,6 +29,7 @@
   </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '2'">
+    <h1>MIS CHARLAS</h1>
     <div class="charla" *ngFor="let charla of charlasAlumno; let i = index">
       <div class="charla-header">
         <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charla.charla.titulo }}</h4>
@@ -75,12 +78,18 @@
 
   <div class="mt-5" *ngIf="rolUsuario == '1'">
     <h2>Mis cursos ({{ alumnosCursos.length }})</h2>
-    <div *ngFor="let alumnosCurso of alumnosCursos" class="perfil-curso-card mb-1 curso-section">
+    <div
+      *ngFor="let alumnosCurso of alumnosCursos"
+      class="perfil-curso-card mb-1 curso-section"
+    >
       <div class="perfil-header">
         <div class="perfil-info">
           <h3>
             {{ alumnosCurso.curso.nombre }} ({{ alumnosCurso.numeroAlumnos }})
-            <button (click)="toggleAlumnos(alumnosCurso.curso.idCurso)" class="curso-toggle">
+            <button
+              (click)="toggleAlumnos(alumnosCurso.curso.idCurso)"
+              class="curso-toggle"
+            >
               <i
                 [class]="
                   alumnosAbiertos[alumnosCurso.curso.idCurso]
@@ -93,14 +102,19 @@
         </div>
       </div>
 
-      <div *ngIf="alumnosAbiertos[alumnosCurso.curso.idCurso]" class="curso-detalles">
+      <div
+        *ngIf="alumnosAbiertos[alumnosCurso.curso.idCurso]"
+        class="curso-detalles"
+      >
         <div
           class="perfil-alumno-card col-12 mb-2"
           *ngFor="let alumno of alumnosCurso.alumnos"
         >
           <div class="perfil-header">
             <img
-              [src]="alumno.alumno.imagen || 'assets/images/default-profile.png'"
+              [src]="
+                alumno.alumno.imagen || 'assets/images/default-profile.png'
+              "
               class="perfil-img"
             />
             <div class="perfil-info col-12">
@@ -114,8 +128,11 @@
   </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '3'">
-    <h2>Lista de Cursos ({{listaCursos.length}})</h2>
-    <div *ngFor="let curso of listaCursos" class="perfil-curso-card mb-1 curso-section">
+    <h2>Lista de Cursos ({{ listaCursos.length }})</h2>
+    <div
+      *ngFor="let curso of listaCursos"
+      class="perfil-curso-card mb-1 curso-section"
+    >
       <div class="perfil-header">
         <div class="perfil-info">
           <h3>
@@ -130,7 +147,10 @@
                   "
                 ></i>
               </button>
-              <button (click)="toggleMiembros(curso.idCurso)" class="curso-toggle">
+              <button
+                (click)="toggleMiembros(curso.idCurso)"
+                class="curso-toggle"
+              >
                 <i
                   [class]="
                     usersAbiertos[curso.idCurso]
@@ -157,31 +177,51 @@
                 <span [ngClass]="curso.activo ? 'active' : 'inactive'">
                   {{ curso.activo ? "Activo" : "Inactivo" }}
                 </span>
-                <button (click)="toggleActivo(curso)" class="btn-estado" [ngClass]="curso.activo ? 'btn-activo' : 'btn-inactivo'">
+                <button
+                  (click)="toggleActivo(curso)"
+                  class="btn-estado"
+                  [ngClass]="curso.activo ? 'btn-activo' : 'btn-inactivo'"
+                >
                   {{ curso.activo ? "Desactivar" : "Activar" }}
                 </button>
               </p>
             </div>
           </div>
           <div class="mt-3" *ngIf="miembrosCursos[curso.idCurso]">
-            <div *ngFor="let miembro of miembrosCursos[curso.idCurso]" class="perfil-alumno-card mb-1">
-              <img [src]="miembro.imagen || 'assets/images/default-profile.png'" class="perfil-img" />
+            <div
+              *ngFor="let miembro of miembrosCursos[curso.idCurso]"
+              class="perfil-alumno-card mb-1"
+            >
+              <img
+                [src]="miembro.imagen || 'assets/images/default-profile.png'"
+                class="perfil-img"
+              />
               <div class="miembro-info">
                 <p><strong>Nombre: </strong> {{ miembro.usuario }}</p>
                 <p><strong>Correo: </strong> {{ miembro.email }}</p>
-                <p><strong>Rol: </strong>
-                  <select [(ngModel)]="miembro.idRole" (change)="cambiarRol(miembro, $event)" class="select-rol ml-2">
+                <p>
+                  <strong>Rol: </strong>
+                  <select
+                    [(ngModel)]="miembro.idRole"
+                    (change)="cambiarRol(miembro, $event)"
+                    class="select-rol ml-2"
+                  >
                     <option [value]="1">Profesor</option>
                     <option [value]="2">Alumno</option>
                   </select>
                 </p>
                 <p>
                   <strong>Estado: </strong>
-                  <span [ngClass]="miembro.estadoUsuario ? 'active' : 'inactive'">
-                    {{ miembro.estadoUsuario ? 'Activo' : 'Inactivo' }}
+                  <span
+                    [ngClass]="miembro.estadoUsuario ? 'active' : 'inactive'"
+                  >
+                    {{ miembro.estadoUsuario ? "Activo" : "Inactivo" }}
                   </span>
-                  <button (click)="toggleEstadoUsuario(miembro)" class="btn-estado btn-estado-usuario">
-                    {{ miembro.estadoUsuario ? 'Desactivar' : 'Activar' }}
+                  <button
+                    (click)="toggleEstadoUsuario(miembro)"
+                    class="btn-estado btn-estado-usuario"
+                  >
+                    {{ miembro.estadoUsuario ? "Desactivar" : "Activar" }}
                   </button>
                 </p>
               </div>
@@ -191,5 +231,4 @@
       </div>
     </div>
   </div>
-
 </div>

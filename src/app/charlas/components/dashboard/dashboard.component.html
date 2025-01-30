@@ -1,7 +1,10 @@
 <div class="container">
   <h1 class="titulo">LISTA DE RONDAS</h1>
   <div class="upper-buttons">
-    <a *ngIf="rolUsuario == '1'" [routerLink]="['/charlas/charlasRonda/newRonda']" class="btn btn-large"
+    <a
+      *ngIf="rolUsuario == '1'"
+      [routerLink]="['/charlas/charlasRonda/newRonda']"
+      class="btn btn-large"
       ><i class="uis uil-plus"></i
     ></a>
   </div>
@@ -29,11 +32,16 @@
       </p>
     </div>
     <div class="ronda-footer">
-      <div
-        *ngIf="rolUsuario != '2'"
-      >
+      <div *ngIf="rolUsuario != '2'">
         <a (click)="eliminarRonda(ronda.idRonda)" class="btnAction"
           ><i class="uis uil-trash-alt"></i
+        ></a>
+      </div>
+      <div *ngIf="rolUsuario == '1'">
+        <a
+          [routerLink]="['charlasRonda/editRonda', ronda.idRonda]"
+          class="btnAction btnEditarRonda"
+          ><i class="uis uil-pen"></i
         ></a>
       </div>
       <a [routerLink]="['charlasRonda', ronda.idRonda]" class="btn"

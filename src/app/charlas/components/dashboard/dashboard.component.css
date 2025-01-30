@@ -20,6 +20,10 @@ h1 {
   transform: scale(1.025);
 }
 
+.btnEditarRonda {
+  margin-right: 790px;
+}
+
 .ronda-header {
   display: flex;
   justify-content: space-between;
@@ -129,7 +133,6 @@ h1 {
   text-decoration: none;
   text-align: center; /* Opcional, para mayor consistencia */
 }
-
 
 .btnAction i {
   font-size: 18px;

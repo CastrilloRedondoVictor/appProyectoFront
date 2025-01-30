@@ -7,8 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { CharlasRondaComponent } from './components/charlas-ronda/charlas-ronda.component';
 import { PostRondaComponent } from './components/post-ronda/post-ronda.component';
 import { DetallesCharlaComponent } from './components/detalles-charla/detalles-charla.component';
-import {PostComentarioComponent} from './components/post-comentario/post-comentario.component';
+import { PostComentarioComponent } from './components/post-comentario/post-comentario.component';
 import { EditCharlaComponent } from './components/edit-charla/edit-charla.component';
+import { EditRondaComponent } from './components/edit-ronda/edit-ronda.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditCharlaComponent } from './components/edit-charla/edit-charla.compon
     PostRondaComponent,
     DetallesCharlaComponent,
     PostComentarioComponent,
-    EditCharlaComponent
+    EditCharlaComponent,
+    EditRondaComponent,
   ],
   imports: [CommonModule, CharlasRoutingModule, FormsModule],
 })
