@@ -17,11 +17,11 @@ export class EditProfileComponent implements OnInit {
   public perfil!: Perfil;
   perfilForm!: FormGroup;
 
-  constructor(private _service: AuthService, private fb: FormBuilder) {}
+  constructor(private _service: AuthService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     // Obtener datos del perfil del usuario
-    this._service.getPerfil().subscribe((response:any) => {
+    this._service.getPerfil().subscribe((response: any) => {
       this.perfil = response.usuario;
       this.initForm();
     });
@@ -62,7 +62,7 @@ export class EditProfileComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = () => {
         this.fileContent = reader.result as string; // Actualizar previsualización
-        console.log('Imagen seleccionada en Base64:', this.fileContent);
+        // console.log('Imagen seleccionada en Base64:', this.fileContent);
 
         // Crear el objeto FileModel
         const base64Content = this.fileContent.split(',')[1]; // Extraer solo la parte Base64
@@ -80,40 +80,67 @@ export class EditProfileComponent implements OnInit {
     this._service.postFile(fileModel, this.perfil.idUsuario).subscribe(
       (response: any) => {
         Swal.fire({
-                  title: 'Imagen actualizada',
-                  text: 'Se ha completado el cambio de imagen de perfil',
-                  icon: 'success',
-                  confirmButtonText: 'ACEPTAR',
-                  background: '#2b2e38',
-                  color: '#c4c3ca',
-                  focusConfirm: false,
-                  buttonsStyling: false,
-                  didOpen: () => {
-                    const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-                    if (confirmButton) {
-                      // Estilos iniciales
-                      confirmButton.style.backgroundColor = '#ffeba7';
-                      confirmButton.style.color = '#2b2e38';
-                      confirmButton.style.padding = '10px 20px';
-                      confirmButton.style.border = 'none';
-                      confirmButton.style.borderRadius = '4px';
-                      confirmButton.style.transition = 'all 0.3s ease';
+          title: 'Imagen actualizada',
+          text: 'Se ha completado el cambio de imagen de perfil',
+          icon: 'success',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+          focusConfirm: false,
+          buttonsStyling: false,
+          didOpen: () => {
+            // Estilizar contenedor de botones
+            const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+            if (buttonsContainer) {
+              buttonsContainer.style.display = 'flex';
+              buttonsContainer.style.justifyContent = 'space-between';
+              buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+            }
 
-                      // Hover con JavaScript
-                      confirmButton.addEventListener('mouseover', () => {
-                        confirmButton.style.backgroundColor = '#000000';
-                        confirmButton.style.color = '#ffeba7';
-                      });
+            // Botón de confirmar
+            const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+            if (confirmButton) {
+              confirmButton.style.backgroundColor = '#ffeba7';
+              confirmButton.style.color = '#2b2e38';
+              confirmButton.style.padding = '10px 20px';
+              confirmButton.style.border = 'none';
+              confirmButton.style.borderRadius = '4px';
+              confirmButton.style.transition = 'all 0.3s ease';
 
-                      confirmButton.addEventListener('mouseout', () => {
-                        confirmButton.style.backgroundColor = '#ffeba7';
-                        confirmButton.style.color = '#000000';
-                      });
-                    }
-                  },
-                });
+              confirmButton.addEventListener('mouseover', () => {
+                confirmButton.style.backgroundColor = '#1f2029';
+                confirmButton.style.color = '#ffeba7';
+              });
+
+              confirmButton.addEventListener('mouseout', () => {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+              });
+            }
+
+            // Botón de cancelar
+            const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+            if (cancelButton) {
+              cancelButton.style.backgroundColor = '#e74c3c';
+              cancelButton.style.color = '#ffffff';
+              cancelButton.style.padding = '10px 20px';
+              cancelButton.style.border = 'none';
+              cancelButton.style.borderRadius = '4px';
+              cancelButton.style.transition = 'all 0.3s ease';
+
+              cancelButton.addEventListener('mouseover', () => {
+                cancelButton.style.backgroundColor = '#a93226';
+              });
+
+              cancelButton.addEventListener('mouseout', () => {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+              });
+            }
+          },
+        });
       },
-      (error:any) => {
+      (error: any) => {
         Swal.fire({
           title: 'Imagen no actualizada',
           text: 'No se ha podido completar el cambio de imagen de perfil',
@@ -124,9 +151,17 @@ export class EditProfileComponent implements OnInit {
           focusConfirm: false,
           buttonsStyling: false,
           didOpen: () => {
+            // Estilizar contenedor de botones
+            const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+            if (buttonsContainer) {
+              buttonsContainer.style.display = 'flex';
+              buttonsContainer.style.justifyContent = 'space-between';
+              buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+            }
+
+            // Botón de confirmar
             const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
             if (confirmButton) {
-              // Estilos iniciales
               confirmButton.style.backgroundColor = '#ffeba7';
               confirmButton.style.color = '#2b2e38';
               confirmButton.style.padding = '10px 20px';
@@ -134,15 +169,34 @@ export class EditProfileComponent implements OnInit {
               confirmButton.style.borderRadius = '4px';
               confirmButton.style.transition = 'all 0.3s ease';
 
-              // Hover con JavaScript
               confirmButton.addEventListener('mouseover', () => {
-                confirmButton.style.backgroundColor = '#000000';
+                confirmButton.style.backgroundColor = '#1f2029';
                 confirmButton.style.color = '#ffeba7';
               });
 
               confirmButton.addEventListener('mouseout', () => {
                 confirmButton.style.backgroundColor = '#ffeba7';
-                confirmButton.style.color = '#000000';
+                confirmButton.style.color = '#2b2e38';
+              });
+            }
+
+            // Botón de cancelar
+            const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+            if (cancelButton) {
+              cancelButton.style.backgroundColor = '#e74c3c';
+              cancelButton.style.color = '#ffffff';
+              cancelButton.style.padding = '10px 20px';
+              cancelButton.style.border = 'none';
+              cancelButton.style.borderRadius = '4px';
+              cancelButton.style.transition = 'all 0.3s ease';
+
+              cancelButton.addEventListener('mouseover', () => {
+                cancelButton.style.backgroundColor = '#a93226';
+              });
+
+              cancelButton.addEventListener('mouseout', () => {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
               });
             }
           },
@@ -155,7 +209,7 @@ export class EditProfileComponent implements OnInit {
   onSubmit() {
     if (this.perfilForm.valid) {
       const formData = this.perfilForm.getRawValue();
-      console.log('Datos del formulario:', formData);
+      // console.log('Datos del formulario:', formData);
 
       let perfilActualizado = {
         ...this.perfil,  // Copiamos todos los datos actuales del perfil
@@ -186,7 +240,7 @@ export class EditProfileComponent implements OnInit {
               buttonsStyling: false,
               didOpen: () => this.estilizarBotonSwal()
             });
-            console.error(error);
+            // console.error(error);
           }
         );
       }
@@ -196,7 +250,7 @@ export class EditProfileComponent implements OnInit {
         cambiosRealizados.push('contraseña');
 
         this._service.updatePassword(formData.newPassword).subscribe(
-          () => {},
+          () => { },
           (error) => {
             Swal.fire({
               title: 'Error',
@@ -209,7 +263,7 @@ export class EditProfileComponent implements OnInit {
               buttonsStyling: false,
               didOpen: () => this.estilizarBotonSwal()
             });
-            console.error(error);
+            // console.error(error);
           }
         );
       }

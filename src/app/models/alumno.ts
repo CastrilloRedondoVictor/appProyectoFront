@@ -8,7 +8,7 @@ export class AlumnoRegister {
     public imagen: string,
     public password: string,
     public idRole: number
-  ) {}
+  ) { }
 }
 
 export class Perfil {
@@ -24,7 +24,7 @@ export class Perfil {
     public idCurso: number,
     public curso: string,
     public idCursoUsuario: number // Cambié 'idCursosUsuarios' a 'idCursoUsuario'
-  ) {}
+  ) { }
 }
 
 export class PerfilAlumnoCurso {
@@ -41,7 +41,7 @@ export class PerfilAlumnoCurso {
     public fechaInicioCurso: string,
     public fechaFinCurso: string,
     public idCursosUsuarios: number
-  ) {}
+  ) { }
 }
 
 export class AlumnoCurso {
@@ -51,5 +51,5 @@ export class AlumnoCurso {
     public charlasPropuestas: number, // Total de charlas propuestas por el alumno
     public charlasAceptadas: number, // Total de charlas aceptadas por el alumno
     public charlas: any[] // Lista de charlas del alumno (puedes definir un tipo específico)
-  ) {}
+  ) { }
 }

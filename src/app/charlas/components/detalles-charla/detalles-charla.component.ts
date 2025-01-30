@@ -37,7 +37,7 @@ export class DetallesCharlaComponent implements OnInit {
     private route: ActivatedRoute,
     private charlasService: CharlasService,
     private _servicePerfil: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._servicePerfil.getPerfil().subscribe((response) => {
@@ -62,10 +62,10 @@ export class DetallesCharlaComponent implements OnInit {
     this.charlasService.getCharlaById(this.idCharla).subscribe({
       next: (response: CharlaDetalles) => {
         this.charlaDetalles = response;
-        console.log(this.charlaDetalles);
+        // console.log(this.charlaDetalles);
       },
       error: (err) => {
-        console.error('Error al obtener detalles de la charla:', err);
+        // console.error('Error al obtener detalles de la charla:', err);
       },
     });
   }
@@ -126,7 +126,7 @@ export class DetallesCharlaComponent implements OnInit {
         this.nuevoComentarioAbierto = false;
       },
       error: (err) => {
-        console.error('Error al añadir el comentario:', err);
+        // console.error('Error al añadir el comentario:', err);
         Swal.fire({
           title: 'Error',
           text: 'No se pudo añadir el comentario. Inténtalo de nuevo más tarde.',
@@ -386,7 +386,7 @@ input:-webkit-autofill:not(:focus)
             ) as HTMLTextAreaElement
           ).value,
         };
-        console.log('Datos a enviar:', recursoActualizado);
+        // console.log('Datos a enviar:', recursoActualizado);
         return recursoActualizado;
       },
     }).then((result) => {
@@ -413,7 +413,7 @@ input:-webkit-autofill:not(:focus)
             this.charlaDetalles.recursos = recursosActualizados;
           },
           error: (err) => {
-            console.error('Error al actualizar el recurso:', err);
+            // console.error('Error al actualizar el recurso:', err);
             Swal.fire({
               title: 'Error',
               text: 'No se pudo actualizar el recurso. Inténtalo de nuevo más tarde.',
@@ -457,7 +457,7 @@ input:-webkit-autofill:not(:focus)
         this.nuevoRecursoAbierto = false;
       },
       error: (err) => {
-        console.error('Error al añadir el recurso:', err);
+        // console.error('Error al añadir el recurso:', err);
         Swal.fire({
           title: 'Error',
           text: 'No se pudo añadir el recurso. Inténtalo de nuevo más tarde.',
@@ -484,9 +484,7 @@ input:-webkit-autofill:not(:focus)
       buttonsStyling: false,
       didOpen: () => {
         // Estilizar contenedor de botones
-        const buttonsContainer = document.querySelector(
-          '.swal2-actions'
-        ) as HTMLElement;
+        const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
         if (buttonsContainer) {
           buttonsContainer.style.display = 'flex';
           buttonsContainer.style.justifyContent = 'space-between';
@@ -494,9 +492,7 @@ input:-webkit-autofill:not(:focus)
         }
 
         // Botón de confirmar
-        const confirmButton = document.querySelector(
-          '.swal2-confirm'
-        ) as HTMLElement;
+        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
         if (confirmButton) {
           confirmButton.style.backgroundColor = '#ffeba7';
           confirmButton.style.color = '#2b2e38';
@@ -506,7 +502,7 @@ input:-webkit-autofill:not(:focus)
           confirmButton.style.transition = 'all 0.3s ease';
 
           confirmButton.addEventListener('mouseover', () => {
-            confirmButton.style.backgroundColor = '#000000';
+            confirmButton.style.backgroundColor = '#1f2029';
             confirmButton.style.color = '#ffeba7';
           });
 
@@ -517,11 +513,9 @@ input:-webkit-autofill:not(:focus)
         }
 
         // Botón de cancelar
-        const cancelButton = document.querySelector(
-          '.swal2-cancel'
-        ) as HTMLElement;
+        const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
         if (cancelButton) {
-          cancelButton.style.backgroundColor = '#ff4d4d';
+          cancelButton.style.backgroundColor = '#e74c3c';
           cancelButton.style.color = '#ffffff';
           cancelButton.style.padding = '10px 20px';
           cancelButton.style.border = 'none';
@@ -529,12 +523,11 @@ input:-webkit-autofill:not(:focus)
           cancelButton.style.transition = 'all 0.3s ease';
 
           cancelButton.addEventListener('mouseover', () => {
-            cancelButton.style.backgroundColor = '#ffffff';
-            cancelButton.style.color = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#a93226';
           });
 
           cancelButton.addEventListener('mouseout', () => {
-            cancelButton.style.backgroundColor = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#e74c3c';
             cancelButton.style.color = '#ffffff';
           });
         }
@@ -554,11 +547,17 @@ input:-webkit-autofill:not(:focus)
               focusConfirm: false,
               buttonsStyling: false,
               didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
+                // Estilizar contenedor de botones
+                const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+                if (buttonsContainer) {
+                  buttonsContainer.style.display = 'flex';
+                  buttonsContainer.style.justifyContent = 'space-between';
+                  buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+                }
+
+                // Botón de confirmar
+                const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
                 if (confirmButton) {
-                  // Estilos iniciales
                   confirmButton.style.backgroundColor = '#ffeba7';
                   confirmButton.style.color = '#2b2e38';
                   confirmButton.style.padding = '10px 20px';
@@ -566,15 +565,34 @@ input:-webkit-autofill:not(:focus)
                   confirmButton.style.borderRadius = '4px';
                   confirmButton.style.transition = 'all 0.3s ease';
 
-                  // Hover con JavaScript
                   confirmButton.addEventListener('mouseover', () => {
-                    confirmButton.style.backgroundColor = '#000000';
+                    confirmButton.style.backgroundColor = '#1f2029';
                     confirmButton.style.color = '#ffeba7';
                   });
 
                   confirmButton.addEventListener('mouseout', () => {
                     confirmButton.style.backgroundColor = '#ffeba7';
-                    confirmButton.style.color = '#000000';
+                    confirmButton.style.color = '#2b2e38';
+                  });
+                }
+
+                // Botón de cancelar
+                const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+                if (cancelButton) {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                  cancelButton.style.padding = '10px 20px';
+                  cancelButton.style.border = 'none';
+                  cancelButton.style.borderRadius = '4px';
+                  cancelButton.style.transition = 'all 0.3s ease';
+
+                  cancelButton.addEventListener('mouseover', () => {
+                    cancelButton.style.backgroundColor = '#a93226';
+                  });
+
+                  cancelButton.addEventListener('mouseout', () => {
+                    cancelButton.style.backgroundColor = '#e74c3c';
+                    cancelButton.style.color = '#ffffff';
                   });
                 }
               },
@@ -599,18 +617,16 @@ input:-webkit-autofill:not(:focus)
       focusConfirm: false,
       buttonsStyling: false,
       didOpen: () => {
-        const buttonsContainer = document.querySelector(
-          '.swal2-actions'
-        ) as HTMLElement;
+        // Estilizar contenedor de botones
+        const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
         if (buttonsContainer) {
           buttonsContainer.style.display = 'flex';
           buttonsContainer.style.justifyContent = 'space-between';
-          buttonsContainer.style.gap = '20px';
+          buttonsContainer.style.gap = '20px'; // Espaciado entre botones
         }
 
-        const confirmButton = document.querySelector(
-          '.swal2-confirm'
-        ) as HTMLElement;
+        // Botón de confirmar
+        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
         if (confirmButton) {
           confirmButton.style.backgroundColor = '#ffeba7';
           confirmButton.style.color = '#2b2e38';
@@ -620,7 +636,7 @@ input:-webkit-autofill:not(:focus)
           confirmButton.style.transition = 'all 0.3s ease';
 
           confirmButton.addEventListener('mouseover', () => {
-            confirmButton.style.backgroundColor = '#000000';
+            confirmButton.style.backgroundColor = '#1f2029';
             confirmButton.style.color = '#ffeba7';
           });
 
@@ -630,11 +646,10 @@ input:-webkit-autofill:not(:focus)
           });
         }
 
-        const cancelButton = document.querySelector(
-          '.swal2-cancel'
-        ) as HTMLElement;
+        // Botón de cancelar
+        const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
         if (cancelButton) {
-          cancelButton.style.backgroundColor = '#ff4d4d';
+          cancelButton.style.backgroundColor = '#e74c3c';
           cancelButton.style.color = '#ffffff';
           cancelButton.style.padding = '10px 20px';
           cancelButton.style.border = 'none';
@@ -642,12 +657,11 @@ input:-webkit-autofill:not(:focus)
           cancelButton.style.transition = 'all 0.3s ease';
 
           cancelButton.addEventListener('mouseover', () => {
-            cancelButton.style.backgroundColor = '#ffffff';
-            cancelButton.style.color = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#a93226';
           });
 
           cancelButton.addEventListener('mouseout', () => {
-            cancelButton.style.backgroundColor = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#e74c3c';
             cancelButton.style.color = '#ffffff';
           });
         }
@@ -666,9 +680,16 @@ input:-webkit-autofill:not(:focus)
               focusConfirm: false,
               buttonsStyling: false,
               didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
+                // Estilizar contenedor de botones
+                const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+                if (buttonsContainer) {
+                  buttonsContainer.style.display = 'flex';
+                  buttonsContainer.style.justifyContent = 'space-between';
+                  buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+                }
+
+                // Botón de confirmar
+                const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
                 if (confirmButton) {
                   confirmButton.style.backgroundColor = '#ffeba7';
                   confirmButton.style.color = '#2b2e38';
@@ -678,13 +699,33 @@ input:-webkit-autofill:not(:focus)
                   confirmButton.style.transition = 'all 0.3s ease';
 
                   confirmButton.addEventListener('mouseover', () => {
-                    confirmButton.style.backgroundColor = '#000000';
+                    confirmButton.style.backgroundColor = '#1f2029';
                     confirmButton.style.color = '#ffeba7';
                   });
 
                   confirmButton.addEventListener('mouseout', () => {
                     confirmButton.style.backgroundColor = '#ffeba7';
                     confirmButton.style.color = '#2b2e38';
+                  });
+                }
+
+                // Botón de cancelar
+                const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+                if (cancelButton) {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                  cancelButton.style.padding = '10px 20px';
+                  cancelButton.style.border = 'none';
+                  cancelButton.style.borderRadius = '4px';
+                  cancelButton.style.transition = 'all 0.3s ease';
+
+                  cancelButton.addEventListener('mouseover', () => {
+                    cancelButton.style.backgroundColor = '#a93226';
+                  });
+
+                  cancelButton.addEventListener('mouseout', () => {
+                    cancelButton.style.backgroundColor = '#e74c3c';
+                    cancelButton.style.color = '#ffffff';
                   });
                 }
               },
@@ -703,25 +744,52 @@ input:-webkit-autofill:not(:focus)
               focusConfirm: false,
               buttonsStyling: false,
               didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
+                // Estilizar contenedor de botones
+                const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+                if (buttonsContainer) {
+                  buttonsContainer.style.display = 'flex';
+                  buttonsContainer.style.justifyContent = 'space-between';
+                  buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+                }
+
+                // Botón de confirmar
+                const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
                 if (confirmButton) {
-                  confirmButton.style.backgroundColor = '#ff4d4d';
-                  confirmButton.style.color = '#ffffff';
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
                   confirmButton.style.padding = '10px 20px';
                   confirmButton.style.border = 'none';
                   confirmButton.style.borderRadius = '4px';
                   confirmButton.style.transition = 'all 0.3s ease';
 
                   confirmButton.addEventListener('mouseover', () => {
-                    confirmButton.style.backgroundColor = '#ffffff';
-                    confirmButton.style.color = '#ff4d4d';
+                    confirmButton.style.backgroundColor = '#1f2029';
+                    confirmButton.style.color = '#ffeba7';
                   });
 
                   confirmButton.addEventListener('mouseout', () => {
-                    confirmButton.style.backgroundColor = '#ff4d4d';
-                    confirmButton.style.color = '#ffffff';
+                    confirmButton.style.backgroundColor = '#ffeba7';
+                    confirmButton.style.color = '#2b2e38';
+                  });
+                }
+
+                // Botón de cancelar
+                const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+                if (cancelButton) {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                  cancelButton.style.padding = '10px 20px';
+                  cancelButton.style.border = 'none';
+                  cancelButton.style.borderRadius = '4px';
+                  cancelButton.style.transition = 'all 0.3s ease';
+
+                  cancelButton.addEventListener('mouseover', () => {
+                    cancelButton.style.backgroundColor = '#a93226';
+                  });
+
+                  cancelButton.addEventListener('mouseout', () => {
+                    cancelButton.style.backgroundColor = '#e74c3c';
+                    cancelButton.style.color = '#ffffff';
                   });
                 }
               },

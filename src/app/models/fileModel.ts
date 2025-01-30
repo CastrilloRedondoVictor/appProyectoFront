@@ -1,6 +1,6 @@
 export class FileModel {
   constructor(
-      public filename: string,
-      public filecontent: string
-  ){}
+    public filename: string,
+    public filecontent: string
+  ) { }
 }
