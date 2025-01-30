@@ -36,8 +36,6 @@
         <a (click)="eliminarRonda(ronda.idRonda)" class="btnAction"
           ><i class="uis uil-trash-alt"></i
         ></a>
-      </div>
-      <div *ngIf="rolUsuario == '1'">
         <a
           [routerLink]="['charlasRonda/editRonda', ronda.idRonda]"
           class="btnAction btnEditarRonda"
