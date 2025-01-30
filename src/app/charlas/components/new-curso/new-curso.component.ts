@@ -42,7 +42,7 @@ export class NewCursoComponent {
     );
 
     this._service.postCurso(this.curso).subscribe((response) => {
-      this._router.navigate(['/']);
+      this._router.navigate(['/profile']);
 
       Swal.fire({
         title: 'Curso creado',
