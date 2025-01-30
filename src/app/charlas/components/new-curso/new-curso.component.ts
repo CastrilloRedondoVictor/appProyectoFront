@@ -15,6 +15,7 @@ import { CharlasService } from '../../../services/charlas-service.service';
 })
 export class NewCursoComponent {
 
+    @ViewChild('codigoCurso') cajaCodigoCurso!: ElementRef;
     @ViewChild('cajaNombre') cajaNombre!: ElementRef;
     @ViewChild('fechaInicio') cajaFechaInicio!: ElementRef;
     @ViewChild('fechaFin') cajaFechaFin!: ElementRef;
@@ -27,12 +28,13 @@ export class NewCursoComponent {
     ) {}
 
     nuevoCurso() {
+      var codigoCurso = this.cajaCodigoCurso.nativeElement.value;
       var nombre = this.cajaNombre.nativeElement.value;
       var fechaInicio = this.cajaFechaInicio.nativeElement.value;
       var fechaFin = this.cajaFechaFin.nativeElement.value;
 
       this.curso = new Curso(
-        1,
+        codigoCurso,
         nombre,
         fechaInicio,
         fechaFin,
