@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _service: AuthService,
     private charlasService: CharlasService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._service.getPerfil().subscribe((response) => {
@@ -97,9 +97,17 @@ export class ProfileComponent implements OnInit {
           focusConfirm: false,
           buttonsStyling: false,
           didOpen: () => {
+            // Estilizar contenedor de botones
+            const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+            if (buttonsContainer) {
+              buttonsContainer.style.display = 'flex';
+              buttonsContainer.style.justifyContent = 'space-between';
+              buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+            }
+
+            // Botón de confirmar
             const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
             if (confirmButton) {
-              // Estilos iniciales
               confirmButton.style.backgroundColor = '#ffeba7';
               confirmButton.style.color = '#2b2e38';
               confirmButton.style.padding = '10px 20px';
@@ -107,28 +115,47 @@ export class ProfileComponent implements OnInit {
               confirmButton.style.borderRadius = '4px';
               confirmButton.style.transition = 'all 0.3s ease';
 
-              // Hover con JavaScript
               confirmButton.addEventListener('mouseover', () => {
-                confirmButton.style.backgroundColor = '#000000';
+                confirmButton.style.backgroundColor = '#1f2029';
                 confirmButton.style.color = '#ffeba7';
               });
 
               confirmButton.addEventListener('mouseout', () => {
                 confirmButton.style.backgroundColor = '#ffeba7';
-                confirmButton.style.color = '#000000';
+                confirmButton.style.color = '#2b2e38';
               });
             }
-          }
+
+            // Botón de cancelar
+            const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+            if (cancelButton) {
+              cancelButton.style.backgroundColor = '#e74c3c';
+              cancelButton.style.color = '#ffffff';
+              cancelButton.style.padding = '10px 20px';
+              cancelButton.style.border = 'none';
+              cancelButton.style.borderRadius = '4px';
+              cancelButton.style.transition = 'all 0.3s ease';
+
+              cancelButton.addEventListener('mouseover', () => {
+                cancelButton.style.backgroundColor = '#a93226';
+              });
+
+              cancelButton.addEventListener('mouseout', () => {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+              });
+            }
+          },
         });
       },
       error: (err) => {
         console.error('Error al actualizar el estado del curso:', err);
       },
     });
-}
+  }
 
-   // Método para abrir/cerrar la lista de miembros de un curso
-   toggleMiembros(idCurso: number): void {
+  // Método para abrir/cerrar la lista de miembros de un curso
+  toggleMiembros(idCurso: number): void {
     if (this.miembrosCursos[idCurso]) {
       // Si ya existen los miembros, simplemente cerramos la lista
       delete this.miembrosCursos[idCurso];
@@ -152,46 +179,71 @@ export class ProfileComponent implements OnInit {
     miembro.idRole = nuevoRol;
 
     this._service.updateRolUsuario(miembro.idUsuario, nuevoRol).subscribe({
-        next: () => {
-            Swal.fire({
-                    title: `Rol actualizado correctamente a ${nuevoRol === 1 ? 'Profesor' : 'Alumno'}.`,
-                    text: 'El usuario ha sido actualizado correctamente.',
-                    icon: 'success',
-                    confirmButtonText: 'ACEPTAR',
-                    background: '#2b2e38',
-                    color: '#c4c3ca',
-                    focusConfirm: false,
-                    buttonsStyling: false,
-                    didOpen: () => {
-                      const confirmButton = document.querySelector(
-                        '.swal2-confirm'
-                      ) as HTMLElement;
-                      if (confirmButton) {
-                        // Estilos iniciales
-                        confirmButton.style.backgroundColor = '#ffeba7';
-                        confirmButton.style.color = '#2b2e38';
-                        confirmButton.style.padding = '10px 20px';
-                        confirmButton.style.border = 'none';
-                        confirmButton.style.borderRadius = '4px';
-                        confirmButton.style.transition = 'all 0.3s ease';
+      next: () => {
+        Swal.fire({
+          title: `Rol actualizado correctamente a ${nuevoRol === 1 ? 'Profesor' : 'Alumno'}.`,
+          text: 'El usuario ha sido actualizado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'ACEPTAR',
+          background: '#2b2e38',
+          color: '#c4c3ca',
+          focusConfirm: false,
+          buttonsStyling: false,
+          didOpen: () => {
+            // Estilizar contenedor de botones
+            const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+            if (buttonsContainer) {
+              buttonsContainer.style.display = 'flex';
+              buttonsContainer.style.justifyContent = 'space-between';
+              buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+            }
 
-                        // Hover con JavaScript
-                        confirmButton.addEventListener('mouseover', () => {
-                          confirmButton.style.backgroundColor = '#000000';
-                          confirmButton.style.color = '#ffeba7';
-                        });
+            // Botón de confirmar
+            const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+            if (confirmButton) {
+              confirmButton.style.backgroundColor = '#ffeba7';
+              confirmButton.style.color = '#2b2e38';
+              confirmButton.style.padding = '10px 20px';
+              confirmButton.style.border = 'none';
+              confirmButton.style.borderRadius = '4px';
+              confirmButton.style.transition = 'all 0.3s ease';
 
-                        confirmButton.addEventListener('mouseout', () => {
-                          confirmButton.style.backgroundColor = '#ffeba7';
-                          confirmButton.style.color = '#000000';
-                        });
-                      }
-                    },
-                  });
-        },
-        error: (err) => {
-            console.error('Error al actualizar el rol:', err);
-        }
+              confirmButton.addEventListener('mouseover', () => {
+                confirmButton.style.backgroundColor = '#1f2029';
+                confirmButton.style.color = '#ffeba7';
+              });
+
+              confirmButton.addEventListener('mouseout', () => {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+              });
+            }
+
+            // Botón de cancelar
+            const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+            if (cancelButton) {
+              cancelButton.style.backgroundColor = '#e74c3c';
+              cancelButton.style.color = '#ffffff';
+              cancelButton.style.padding = '10px 20px';
+              cancelButton.style.border = 'none';
+              cancelButton.style.borderRadius = '4px';
+              cancelButton.style.transition = 'all 0.3s ease';
+
+              cancelButton.addEventListener('mouseover', () => {
+                cancelButton.style.backgroundColor = '#a93226';
+              });
+
+              cancelButton.addEventListener('mouseout', () => {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+              });
+            }
+          },
+        });
+      },
+      error: (err) => {
+        console.error('Error al actualizar el rol:', err);
+      }
     });
   }
 
@@ -213,9 +265,17 @@ export class ProfileComponent implements OnInit {
           focusConfirm: false,
           buttonsStyling: false,
           didOpen: () => {
+            // Estilizar contenedor de botones
+            const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+            if (buttonsContainer) {
+              buttonsContainer.style.display = 'flex';
+              buttonsContainer.style.justifyContent = 'space-between';
+              buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+            }
+
+            // Botón de confirmar
             const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
             if (confirmButton) {
-              // Estilos iniciales
               confirmButton.style.backgroundColor = '#ffeba7';
               confirmButton.style.color = '#2b2e38';
               confirmButton.style.padding = '10px 20px';
@@ -223,18 +283,37 @@ export class ProfileComponent implements OnInit {
               confirmButton.style.borderRadius = '4px';
               confirmButton.style.transition = 'all 0.3s ease';
 
-              // Hover con JavaScript
               confirmButton.addEventListener('mouseover', () => {
-                confirmButton.style.backgroundColor = '#000000';
+                confirmButton.style.backgroundColor = '#1f2029';
                 confirmButton.style.color = '#ffeba7';
               });
 
               confirmButton.addEventListener('mouseout', () => {
                 confirmButton.style.backgroundColor = '#ffeba7';
-                confirmButton.style.color = '#000000';
+                confirmButton.style.color = '#2b2e38';
               });
             }
-          }
+
+            // Botón de cancelar
+            const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+            if (cancelButton) {
+              cancelButton.style.backgroundColor = '#e74c3c';
+              cancelButton.style.color = '#ffffff';
+              cancelButton.style.padding = '10px 20px';
+              cancelButton.style.border = 'none';
+              cancelButton.style.borderRadius = '4px';
+              cancelButton.style.transition = 'all 0.3s ease';
+
+              cancelButton.addEventListener('mouseover', () => {
+                cancelButton.style.backgroundColor = '#a93226';
+              });
+
+              cancelButton.addEventListener('mouseout', () => {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+              });
+            }
+          },
         });
       },
       error: (err) => {
@@ -249,151 +328,196 @@ export class ProfileComponent implements OnInit {
 
 
   eliminarCurso(idCurso: number) {
-      Swal.fire({
-        title: '¿Estás seguro?',
-        text: 'Eliminarás el curso para siempre.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Eliminar',
-        cancelButtonText: 'Cancelar',
-        background: '#2b2e38',
-        color: '#c4c3ca',
-        focusConfirm: false,
-        buttonsStyling: false,
-        didOpen: () => {
-          // Estilizar contenedor de botones
-          const buttonsContainer = document.querySelector(
-            '.swal2-actions'
-          ) as HTMLElement;
-          if (buttonsContainer) {
-            buttonsContainer.style.display = 'flex';
-            buttonsContainer.style.justifyContent = 'space-between';
-            buttonsContainer.style.gap = '20px'; // Espaciado entre botones
-          }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Eliminarás el curso para siempre.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      background: '#2b2e38',
+      color: '#c4c3ca',
+      focusConfirm: false,
+      buttonsStyling: false,
+      didOpen: () => {
+        // Estilizar contenedor de botones
+        const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+        if (buttonsContainer) {
+          buttonsContainer.style.display = 'flex';
+          buttonsContainer.style.justifyContent = 'space-between';
+          buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+        }
 
-          // Botón de confirmar
-          const confirmButton = document.querySelector(
-            '.swal2-confirm'
-          ) as HTMLElement;
-          if (confirmButton) {
+        // Botón de confirmar
+        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+        if (confirmButton) {
+          confirmButton.style.backgroundColor = '#ffeba7';
+          confirmButton.style.color = '#2b2e38';
+          confirmButton.style.padding = '10px 20px';
+          confirmButton.style.border = 'none';
+          confirmButton.style.borderRadius = '4px';
+          confirmButton.style.transition = 'all 0.3s ease';
+
+          confirmButton.addEventListener('mouseover', () => {
+            confirmButton.style.backgroundColor = '#1f2029';
+            confirmButton.style.color = '#ffeba7';
+          });
+
+          confirmButton.addEventListener('mouseout', () => {
             confirmButton.style.backgroundColor = '#ffeba7';
             confirmButton.style.color = '#2b2e38';
-            confirmButton.style.padding = '10px 20px';
-            confirmButton.style.border = 'none';
-            confirmButton.style.borderRadius = '4px';
-            confirmButton.style.transition = 'all 0.3s ease';
+          });
+        }
 
-            confirmButton.addEventListener('mouseover', () => {
-              confirmButton.style.backgroundColor = '#000000';
-              confirmButton.style.color = '#ffeba7';
-            });
+        // Botón de cancelar
+        const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+        if (cancelButton) {
+          cancelButton.style.backgroundColor = '#e74c3c';
+          cancelButton.style.color = '#ffffff';
+          cancelButton.style.padding = '10px 20px';
+          cancelButton.style.border = 'none';
+          cancelButton.style.borderRadius = '4px';
+          cancelButton.style.transition = 'all 0.3s ease';
 
-            confirmButton.addEventListener('mouseout', () => {
-              confirmButton.style.backgroundColor = '#ffeba7';
-              confirmButton.style.color = '#2b2e38';
-            });
-          }
+          cancelButton.addEventListener('mouseover', () => {
+            cancelButton.style.backgroundColor = '#a93226';
+          });
 
-          // Botón de cancelar
-          const cancelButton = document.querySelector(
-            '.swal2-cancel'
-          ) as HTMLElement;
-          if (cancelButton) {
-            cancelButton.style.backgroundColor = '#ff4d4d';
+          cancelButton.addEventListener('mouseout', () => {
+            cancelButton.style.backgroundColor = '#e74c3c';
             cancelButton.style.color = '#ffffff';
-            cancelButton.style.padding = '10px 20px';
-            cancelButton.style.border = 'none';
-            cancelButton.style.borderRadius = '4px';
-            cancelButton.style.transition = 'all 0.3s ease';
+          });
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.charlasService.deleteCurso(idCurso).subscribe((response) => {
+          Swal.fire({
+            title: 'Curso eliminado',
+            text: 'El curso se ha eliminado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'ACEPTAR',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
+            didOpen: () => {
+              // Estilizar contenedor de botones
+              const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+              if (buttonsContainer) {
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.justifyContent = 'space-between';
+                buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+              }
 
-            cancelButton.addEventListener('mouseover', () => {
-              cancelButton.style.backgroundColor = '#ffffff';
-              cancelButton.style.color = '#ff4d4d';
-            });
+              // Botón de confirmar
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+              if (confirmButton) {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
 
-            cancelButton.addEventListener('mouseout', () => {
-              cancelButton.style.backgroundColor = '#ff4d4d';
-              cancelButton.style.color = '#ffffff';
-            });
-          }
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.charlasService.deleteCurso(idCurso).subscribe((response) => {
-            Swal.fire({
-              title: 'Curso eliminado',
-              text: 'El curso se ha eliminado con éxito.',
-              icon: 'success',
-              confirmButtonText: 'ACEPTAR',
-              background: '#2b2e38',
-              color: '#c4c3ca',
-              focusConfirm: false,
-              buttonsStyling: false,
-              didOpen: () => {
-                const confirmButton = document.querySelector(
-                  '.swal2-confirm'
-                ) as HTMLElement;
-                if (confirmButton) {
-                  // Estilos iniciales
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#1f2029';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                confirmButton.addEventListener('mouseout', () => {
                   confirmButton.style.backgroundColor = '#ffeba7';
                   confirmButton.style.color = '#2b2e38';
-                  confirmButton.style.padding = '10px 20px';
-                  confirmButton.style.border = 'none';
-                  confirmButton.style.borderRadius = '4px';
-                  confirmButton.style.transition = 'all 0.3s ease';
+                });
+              }
 
-                  // Hover con JavaScript
-                  confirmButton.addEventListener('mouseover', () => {
-                    confirmButton.style.backgroundColor = '#000000';
-                    confirmButton.style.color = '#ffeba7';
-                  });
+              // Botón de cancelar
+              const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+              if (cancelButton) {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '4px';
+                cancelButton.style.transition = 'all 0.3s ease';
 
-                  confirmButton.addEventListener('mouseout', () => {
-                    confirmButton.style.backgroundColor = '#ffeba7';
-                    confirmButton.style.color = '#000000';
-                  });
-                }
-              },
-            });
+                cancelButton.addEventListener('mouseover', () => {
+                  cancelButton.style.backgroundColor = '#a93226';
+                });
 
-            this.getCursos();
-          }, (error:any) => {
-                        Swal.fire({
-                          title: 'Error al eliminar el curso',
-                          text: 'No se ha podido eliminar el curso',
-                          icon: 'error',
-                          confirmButtonText: 'ACEPTAR',
-                          background: '#2b2e38',
-                          color: '#c4c3ca',
-                          focusConfirm: false,
-                          buttonsStyling: false,
-                          didOpen: () => {
-                            const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-                            if (confirmButton) {
-                              // Estilos iniciales
-                              confirmButton.style.backgroundColor = '#ffeba7';
-                              confirmButton.style.color = '#2b2e38';
-                              confirmButton.style.padding = '10px 20px';
-                              confirmButton.style.border = 'none';
-                              confirmButton.style.borderRadius = '4px';
-                              confirmButton.style.transition = 'all 0.3s ease';
+                cancelButton.addEventListener('mouseout', () => {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                });
+              }
+            },
+          });
 
-                              // Hover con JavaScript
-                              confirmButton.addEventListener('mouseover', () => {
-                                confirmButton.style.backgroundColor = '#000000';
-                                confirmButton.style.color = '#ffeba7';
-                              });
+          this.getCursos();
+        }, (error: any) => {
+          Swal.fire({
+            title: 'Error al eliminar el curso',
+            text: 'No se ha podido eliminar el curso',
+            icon: 'error',
+            confirmButtonText: 'ACEPTAR',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
+            didOpen: () => {
+              // Estilizar contenedor de botones
+              const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+              if (buttonsContainer) {
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.justifyContent = 'space-between';
+                buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+              }
 
-                              confirmButton.addEventListener('mouseout', () => {
-                                confirmButton.style.backgroundColor = '#ffeba7';
-                                confirmButton.style.color = '#000000';
-                              });
-                            }
-                          },
-                        });
-                      }
-            );
+              // Botón de confirmar
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+              if (confirmButton) {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
+
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#1f2029';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
+                });
+              }
+
+              // Botón de cancelar
+              const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+              if (cancelButton) {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '4px';
+                cancelButton.style.transition = 'all 0.3s ease';
+
+                cancelButton.addEventListener('mouseover', () => {
+                  cancelButton.style.backgroundColor = '#a93226';
+                });
+
+                cancelButton.addEventListener('mouseout', () => {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                });
+              }
+            },
+          });
         }
-      });
-    }
+        );
+      }
+    });
+  }
 }

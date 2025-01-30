@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private charlasService: CharlasService,
     private authService: AuthService,
-  ){}
+  ) { }
 
 
   ngOnInit(): void {
@@ -33,165 +33,210 @@ export class DashboardComponent implements OnInit {
     return Math.floor(tiempo / 60);
   }
 
-  eliminarRonda(idRonda: number){
+  eliminarRonda(idRonda: number) {
 
     Swal.fire({
-          title: '¿Estás seguro?',
-          text: 'Eliminarás la ronda y todas sus charlas.',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Eliminar',
-          cancelButtonText: 'Cancelar',
-          background: '#2b2e38',
-          color: '#c4c3ca',
-          focusConfirm: false,
-          buttonsStyling: false,
-          didOpen: () => {
-            // Estilizar contenedor de botones
-            const buttonsContainer = document.querySelector(
-              '.swal2-actions'
-            ) as HTMLElement;
-            if (buttonsContainer) {
-              buttonsContainer.style.display = 'flex';
-              buttonsContainer.style.justifyContent = 'space-between';
-              buttonsContainer.style.gap = '20px'; // Espaciado entre botones
-            }
+      title: '¿Estás seguro?',
+      text: 'Eliminarás la ronda y todas sus charlas.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      background: '#2b2e38',
+      color: '#c4c3ca',
+      focusConfirm: false,
+      buttonsStyling: false,
+      didOpen: () => {
+        // Estilizar contenedor de botones
+        const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+        if (buttonsContainer) {
+          buttonsContainer.style.display = 'flex';
+          buttonsContainer.style.justifyContent = 'space-between';
+          buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+        }
 
-            // Botón de confirmar
-            const confirmButton = document.querySelector(
-              '.swal2-confirm'
-            ) as HTMLElement;
-            if (confirmButton) {
-              confirmButton.style.backgroundColor = '#ffeba7';
-              confirmButton.style.color = '#2b2e38';
-              confirmButton.style.padding = '10px 20px';
-              confirmButton.style.border = 'none';
-              confirmButton.style.borderRadius = '4px';
-              confirmButton.style.transition = 'all 0.3s ease';
+        // Botón de confirmar
+        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+        if (confirmButton) {
+          confirmButton.style.backgroundColor = '#ffeba7';
+          confirmButton.style.color = '#2b2e38';
+          confirmButton.style.padding = '10px 20px';
+          confirmButton.style.border = 'none';
+          confirmButton.style.borderRadius = '4px';
+          confirmButton.style.transition = 'all 0.3s ease';
 
-              confirmButton.addEventListener('mouseover', () => {
-                confirmButton.style.backgroundColor = '#000000';
-                confirmButton.style.color = '#ffeba7';
-              });
+          confirmButton.addEventListener('mouseover', () => {
+            confirmButton.style.backgroundColor = '#1f2029';
+            confirmButton.style.color = '#ffeba7';
+          });
 
-              confirmButton.addEventListener('mouseout', () => {
+          confirmButton.addEventListener('mouseout', () => {
+            confirmButton.style.backgroundColor = '#ffeba7';
+            confirmButton.style.color = '#2b2e38';
+          });
+        }
+
+        // Botón de cancelar
+        const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+        if (cancelButton) {
+          cancelButton.style.backgroundColor = '#e74c3c';
+          cancelButton.style.color = '#ffffff';
+          cancelButton.style.padding = '10px 20px';
+          cancelButton.style.border = 'none';
+          cancelButton.style.borderRadius = '4px';
+          cancelButton.style.transition = 'all 0.3s ease';
+
+          cancelButton.addEventListener('mouseover', () => {
+            cancelButton.style.backgroundColor = '#a93226';
+          });
+
+          cancelButton.addEventListener('mouseout', () => {
+            cancelButton.style.backgroundColor = '#e74c3c';
+            cancelButton.style.color = '#ffffff';
+          });
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.charlasService.deleteRonda(idRonda).subscribe((response) => {
+          Swal.fire({
+            title: 'Ronda eliminada',
+            text: 'La ronda se ha eliminado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'ACEPTAR',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
+            didOpen: () => {
+              // Estilizar contenedor de botones
+              const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+              if (buttonsContainer) {
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.justifyContent = 'space-between';
+                buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+              }
+
+              // Botón de confirmar
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+              if (confirmButton) {
                 confirmButton.style.backgroundColor = '#ffeba7';
                 confirmButton.style.color = '#2b2e38';
-              });
-            }
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
 
-            // Botón de cancelar
-            const cancelButton = document.querySelector(
-              '.swal2-cancel'
-            ) as HTMLElement;
-            if (cancelButton) {
-              cancelButton.style.backgroundColor = '#ff4d4d';
-              cancelButton.style.color = '#ffffff';
-              cancelButton.style.padding = '10px 20px';
-              cancelButton.style.border = 'none';
-              cancelButton.style.borderRadius = '4px';
-              cancelButton.style.transition = 'all 0.3s ease';
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#1f2029';
+                  confirmButton.style.color = '#ffeba7';
+                });
 
-              cancelButton.addEventListener('mouseover', () => {
-                cancelButton.style.backgroundColor = '#ffffff';
-                cancelButton.style.color = '#ff4d4d';
-              });
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
+                });
+              }
 
-              cancelButton.addEventListener('mouseout', () => {
-                cancelButton.style.backgroundColor = '#ff4d4d';
+              // Botón de cancelar
+              const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+              if (cancelButton) {
+                cancelButton.style.backgroundColor = '#e74c3c';
                 cancelButton.style.color = '#ffffff';
-              });
-            }
-          },
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.charlasService.deleteRonda(idRonda).subscribe((response) => {
-              Swal.fire({
-                      title: 'Ronda eliminada',
-                      text: 'La ronda se ha eliminado con éxito.',
-                      icon: 'success',
-                      confirmButtonText: 'ACEPTAR',
-                      background: '#2b2e38',
-                      color: '#c4c3ca',
-                      focusConfirm: false,
-                      buttonsStyling: false,
-                      didOpen: () => {
-                        const confirmButton = document.querySelector(
-                          '.swal2-confirm'
-                        ) as HTMLElement;
-                        if (confirmButton) {
-                          // Estilos iniciales
-                          confirmButton.style.backgroundColor = '#ffeba7';
-                          confirmButton.style.color = '#2b2e38';
-                          confirmButton.style.padding = '10px 20px';
-                          confirmButton.style.border = 'none';
-                          confirmButton.style.borderRadius = '4px';
-                          confirmButton.style.transition = 'all 0.3s ease';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '4px';
+                cancelButton.style.transition = 'all 0.3s ease';
 
-                          // Hover con JavaScript
-                          confirmButton.addEventListener('mouseover', () => {
-                            confirmButton.style.backgroundColor = '#000000';
-                            confirmButton.style.color = '#ffeba7';
-                          });
+                cancelButton.addEventListener('mouseover', () => {
+                  cancelButton.style.backgroundColor = '#a93226';
+                });
 
-                          confirmButton.addEventListener('mouseout', () => {
-                            confirmButton.style.backgroundColor = '#ffeba7';
-                            confirmButton.style.color = '#000000';
-                          });
-                        }
-                      },
-                    });
-              this.getRondas();
-            }, (error:any) => {
-                      Swal.fire({
-                        title: 'Error al eliminar la ronda',
-                        text: 'No se ha podido eliminar la ronda',
-                        icon: 'error',
-                        confirmButtonText: 'ACEPTAR',
-                        background: '#2b2e38',
-                        color: '#c4c3ca',
-                        focusConfirm: false,
-                        buttonsStyling: false,
-                        didOpen: () => {
-                          const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-                          if (confirmButton) {
-                            // Estilos iniciales
-                            confirmButton.style.backgroundColor = '#ffeba7';
-                            confirmButton.style.color = '#2b2e38';
-                            confirmButton.style.padding = '10px 20px';
-                            confirmButton.style.border = 'none';
-                            confirmButton.style.borderRadius = '4px';
-                            confirmButton.style.transition = 'all 0.3s ease';
+                cancelButton.addEventListener('mouseout', () => {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                });
+              }
+            },
+          });
+          this.getRondas();
+        }, (error: any) => {
+          Swal.fire({
+            title: 'Error al eliminar la ronda',
+            text: 'No se ha podido eliminar la ronda',
+            icon: 'error',
+            confirmButtonText: 'ACEPTAR',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
+            didOpen: () => {
+              // Estilizar contenedor de botones
+              const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+              if (buttonsContainer) {
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.justifyContent = 'space-between';
+                buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+              }
 
-                            // Hover con JavaScript
-                            confirmButton.addEventListener('mouseover', () => {
-                              confirmButton.style.backgroundColor = '#000000';
-                              confirmButton.style.color = '#ffeba7';
-                            });
+              // Botón de confirmar
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+              if (confirmButton) {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
 
-                            confirmButton.addEventListener('mouseout', () => {
-                              confirmButton.style.backgroundColor = '#ffeba7';
-                              confirmButton.style.color = '#000000';
-                            });
-                          }
-                        },
-                      });
-                    }
-          );
-          }
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#1f2029';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
+                });
+              }
+
+              // Botón de cancelar
+              const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+              if (cancelButton) {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '4px';
+                cancelButton.style.transition = 'all 0.3s ease';
+
+                cancelButton.addEventListener('mouseover', () => {
+                  cancelButton.style.backgroundColor = '#a93226';
+                });
+
+                cancelButton.addEventListener('mouseout', () => {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                });
+              }
+            },
+          });
         }
-      );
+        );
+      }
+    }
+    );
 
 
   }
 
   getRondas() {
 
-    if(this.rolUsuario == '3'){
+    if (this.rolUsuario == '3') {
       this.charlasService.getRondasAdmin().subscribe((response: Ronda[]) => {
         this.rondas = response;
       });
-    } else{
+    } else {
       this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
         this.rondas = response;
       });

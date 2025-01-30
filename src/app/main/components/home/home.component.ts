@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this), // Asigna el manejador de clic
   };
 
-  constructor(private charlasService: CharlasService, private authService: AuthService, private router: Router) {}
+  constructor(private charlasService: CharlasService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
           }
         };
       });
-    } else{
+    } else {
       this.charlasService.getRondasCurso().subscribe((response: Ronda[]) => {
         const events = response.map((ronda: Ronda) => {
           const localDate = new Date(ronda.fechaPresentacion);
@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
     const eventId = arg.event.id; // Obtiene el ID del evento clicado
     if (eventId) {
       this.router.navigate(['charlas/charlasRonda', eventId]); // Navega a la ruta con el ID
-      console.log('Entra aqii' + eventId);
+      // console.log('Entra aqii' + eventId);
     }
   }
 }

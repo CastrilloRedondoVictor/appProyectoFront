@@ -34,7 +34,7 @@ export class CharlasRondaComponent implements OnInit {
     private route: ActivatedRoute,
     private charlasService: CharlasService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.idRonda = Number(this.route.snapshot.paramMap.get('idRonda'));
@@ -67,9 +67,9 @@ export class CharlasRondaComponent implements OnInit {
         .getCharlasRonda(this.idRonda)
         .subscribe((response: Charla[]) => {
           this.charlasRonda = response;
-          for(let i = 0; i < this.charlasRonda.length; i++) {
+          for (let i = 0; i < this.charlasRonda.length; i++) {
             this.charlasService.getVotosCharla(this.charlasRonda[i].idCharla).subscribe((response) => {
-              console.log(response.votos)
+              // console.log(response.votos)
               this.votosCharla[i] = response.votos;
             });
           }
@@ -140,8 +140,8 @@ export class CharlasRondaComponent implements OnInit {
 
   getVotosCharla(idCharla: number) {
     this.charlasService.getVotosCharla(idCharla).subscribe((response) => {
-      console.log(idCharla)
-      console.log("Charla " + idCharla + " " + response);
+      // console.log(idCharla)
+      // console.log("Charla " + idCharla + " " + response);
       this.votosCharla[idCharla] = response;
     });
   }
@@ -164,9 +164,7 @@ export class CharlasRondaComponent implements OnInit {
         buttonsStyling: false,
         didOpen: () => {
           // Estilizar contenedor de botones
-          const buttonsContainer = document.querySelector(
-            '.swal2-actions'
-          ) as HTMLElement;
+          const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
           if (buttonsContainer) {
             buttonsContainer.style.display = 'flex';
             buttonsContainer.style.justifyContent = 'space-between';
@@ -174,9 +172,7 @@ export class CharlasRondaComponent implements OnInit {
           }
 
           // Botón de confirmar
-          const confirmButton = document.querySelector(
-            '.swal2-confirm'
-          ) as HTMLElement;
+          const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
           if (confirmButton) {
             confirmButton.style.backgroundColor = '#ffeba7';
             confirmButton.style.color = '#2b2e38';
@@ -186,7 +182,7 @@ export class CharlasRondaComponent implements OnInit {
             confirmButton.style.transition = 'all 0.3s ease';
 
             confirmButton.addEventListener('mouseover', () => {
-              confirmButton.style.backgroundColor = '#000000';
+              confirmButton.style.backgroundColor = '#1f2029';
               confirmButton.style.color = '#ffeba7';
             });
 
@@ -197,11 +193,9 @@ export class CharlasRondaComponent implements OnInit {
           }
 
           // Botón de cancelar
-          const cancelButton = document.querySelector(
-            '.swal2-cancel'
-          ) as HTMLElement;
+          const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
           if (cancelButton) {
-            cancelButton.style.backgroundColor = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#e74c3c';
             cancelButton.style.color = '#ffffff';
             cancelButton.style.padding = '10px 20px';
             cancelButton.style.border = 'none';
@@ -209,12 +203,11 @@ export class CharlasRondaComponent implements OnInit {
             cancelButton.style.transition = 'all 0.3s ease';
 
             cancelButton.addEventListener('mouseover', () => {
-              cancelButton.style.backgroundColor = '#ffffff';
-              cancelButton.style.color = '#ff4d4d';
+              cancelButton.style.backgroundColor = '#a93226';
             });
 
             cancelButton.addEventListener('mouseout', () => {
-              cancelButton.style.backgroundColor = '#ff4d4d';
+              cancelButton.style.backgroundColor = '#e74c3c';
               cancelButton.style.color = '#ffffff';
             });
           }
@@ -240,11 +233,17 @@ export class CharlasRondaComponent implements OnInit {
             focusConfirm: false,
             buttonsStyling: false,
             didOpen: () => {
-              const confirmButton = document.querySelector(
-                '.swal2-confirm'
-              ) as HTMLElement;
+              // Estilizar contenedor de botones
+              const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+              if (buttonsContainer) {
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.justifyContent = 'space-between';
+                buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+              }
+
+              // Botón de confirmar
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
               if (confirmButton) {
-                // Estilos iniciales
                 confirmButton.style.backgroundColor = '#ffeba7';
                 confirmButton.style.color = '#2b2e38';
                 confirmButton.style.padding = '10px 20px';
@@ -252,15 +251,34 @@ export class CharlasRondaComponent implements OnInit {
                 confirmButton.style.borderRadius = '4px';
                 confirmButton.style.transition = 'all 0.3s ease';
 
-                // Hover con JavaScript
                 confirmButton.addEventListener('mouseover', () => {
-                  confirmButton.style.backgroundColor = '#000000';
+                  confirmButton.style.backgroundColor = '#1f2029';
                   confirmButton.style.color = '#ffeba7';
                 });
 
                 confirmButton.addEventListener('mouseout', () => {
                   confirmButton.style.backgroundColor = '#ffeba7';
-                  confirmButton.style.color = '#000000';
+                  confirmButton.style.color = '#2b2e38';
+                });
+              }
+
+              // Botón de cancelar
+              const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+              if (cancelButton) {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '4px';
+                cancelButton.style.transition = 'all 0.3s ease';
+
+                cancelButton.addEventListener('mouseover', () => {
+                  cancelButton.style.backgroundColor = '#a93226';
+                });
+
+                cancelButton.addEventListener('mouseout', () => {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
                 });
               }
             },
@@ -292,9 +310,7 @@ export class CharlasRondaComponent implements OnInit {
       buttonsStyling: false,
       didOpen: () => {
         // Estilizar contenedor de botones
-        const buttonsContainer = document.querySelector(
-          '.swal2-actions'
-        ) as HTMLElement;
+        const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
         if (buttonsContainer) {
           buttonsContainer.style.display = 'flex';
           buttonsContainer.style.justifyContent = 'space-between';
@@ -302,9 +318,7 @@ export class CharlasRondaComponent implements OnInit {
         }
 
         // Botón de confirmar
-        const confirmButton = document.querySelector(
-          '.swal2-confirm'
-        ) as HTMLElement;
+        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
         if (confirmButton) {
           confirmButton.style.backgroundColor = '#ffeba7';
           confirmButton.style.color = '#2b2e38';
@@ -314,7 +328,7 @@ export class CharlasRondaComponent implements OnInit {
           confirmButton.style.transition = 'all 0.3s ease';
 
           confirmButton.addEventListener('mouseover', () => {
-            confirmButton.style.backgroundColor = '#000000';
+            confirmButton.style.backgroundColor = '#1f2029';
             confirmButton.style.color = '#ffeba7';
           });
 
@@ -325,11 +339,9 @@ export class CharlasRondaComponent implements OnInit {
         }
 
         // Botón de cancelar
-        const cancelButton = document.querySelector(
-          '.swal2-cancel'
-        ) as HTMLElement;
+        const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
         if (cancelButton) {
-          cancelButton.style.backgroundColor = '#ff4d4d';
+          cancelButton.style.backgroundColor = '#e74c3c';
           cancelButton.style.color = '#ffffff';
           cancelButton.style.padding = '10px 20px';
           cancelButton.style.border = 'none';
@@ -337,12 +349,11 @@ export class CharlasRondaComponent implements OnInit {
           cancelButton.style.transition = 'all 0.3s ease';
 
           cancelButton.addEventListener('mouseover', () => {
-            cancelButton.style.backgroundColor = '#ffffff';
-            cancelButton.style.color = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#a93226';
           });
 
           cancelButton.addEventListener('mouseout', () => {
-            cancelButton.style.backgroundColor = '#ff4d4d';
+            cancelButton.style.backgroundColor = '#e74c3c';
             cancelButton.style.color = '#ffffff';
           });
         }
@@ -387,70 +398,18 @@ export class CharlasRondaComponent implements OnInit {
           });
 
           this.getCharlas();
-        }, (error:any) => {
-                      Swal.fire({
-                        title: 'Error al eliminar la charla',
-                        text: 'No se ha podido eliminar la charla',
-                        icon: 'error',
-                        confirmButtonText: 'ACEPTAR',
-                        background: '#2b2e38',
-                        color: '#c4c3ca',
-                        focusConfirm: false,
-                        buttonsStyling: false,
-                        didOpen: () => {
-                          const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-                          if (confirmButton) {
-                            // Estilos iniciales
-                            confirmButton.style.backgroundColor = '#ffeba7';
-                            confirmButton.style.color = '#2b2e38';
-                            confirmButton.style.padding = '10px 20px';
-                            confirmButton.style.border = 'none';
-                            confirmButton.style.borderRadius = '4px';
-                            confirmButton.style.transition = 'all 0.3s ease';
-
-                            // Hover con JavaScript
-                            confirmButton.addEventListener('mouseover', () => {
-                              confirmButton.style.backgroundColor = '#000000';
-                              confirmButton.style.color = '#ffeba7';
-                            });
-
-                            confirmButton.addEventListener('mouseout', () => {
-                              confirmButton.style.backgroundColor = '#ffeba7';
-                              confirmButton.style.color = '#000000';
-                            });
-                          }
-                        },
-                      });
-                    }
-          );
-      }
-    });
-  }
-
-  onEstadoChange(): void {
-    this.getCharlas(); // Recargar las charlas basadas en el estado seleccionado.
-  }
-
-  cambiarEstadoCharla(charla: Charla): void {
-    const nuevoEstado = charla.estadoCharla === 'PROPUESTA' ? 2 : 1;
-    this.charlasService
-      .updateEstadoCharla(charla.idCharla, nuevoEstado)
-      .subscribe(
-        (response) => {
-          charla.estadoCharla = nuevoEstado === 1 ? 'PROPUESTA' : 'ACEPTADA'; // Actualizamos el estado localmente.
+        }, (error: any) => {
           Swal.fire({
-            title: 'Estado actualizado',
-            text: `El estado de la charla ha sido cambiado a ${
-              nuevoEstado === 1 ? 'PROPUESTA' : 'ACEPTADA'
-            }.`,
-            icon: 'success',
-            confirmButtonText: 'Aceptar',
+            title: 'Error al eliminar la charla',
+            text: 'No se ha podido eliminar la charla',
+            icon: 'error',
+            confirmButtonText: 'ACEPTAR',
             background: '#2b2e38',
             color: '#c4c3ca',
+            focusConfirm: false,
+            buttonsStyling: false,
             didOpen: () => {
-              const confirmButton = document.querySelector(
-                '.swal2-confirm'
-              ) as HTMLElement;
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
               if (confirmButton) {
                 // Estilos iniciales
                 confirmButton.style.backgroundColor = '#ffeba7';
@@ -469,6 +428,82 @@ export class CharlasRondaComponent implements OnInit {
                 confirmButton.addEventListener('mouseout', () => {
                   confirmButton.style.backgroundColor = '#ffeba7';
                   confirmButton.style.color = '#000000';
+                });
+              }
+            },
+          });
+        }
+        );
+      }
+    });
+  }
+
+  onEstadoChange(): void {
+    this.getCharlas(); // Recargar las charlas basadas en el estado seleccionado.
+  }
+
+  cambiarEstadoCharla(charla: Charla): void {
+    const nuevoEstado = charla.estadoCharla === 'PROPUESTA' ? 2 : 1;
+    this.charlasService
+      .updateEstadoCharla(charla.idCharla, nuevoEstado)
+      .subscribe(
+        (response) => {
+          charla.estadoCharla = nuevoEstado === 1 ? 'PROPUESTA' : 'ACEPTADA'; // Actualizamos el estado localmente.
+          Swal.fire({
+            title: 'Estado actualizado',
+            text: `El estado de la charla ha sido cambiado a ${nuevoEstado === 1 ? 'PROPUESTA' : 'ACEPTADA'
+              }.`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            background: '#2b2e38',
+            color: '#c4c3ca',
+            didOpen: () => {
+              // Estilizar contenedor de botones
+              const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+              if (buttonsContainer) {
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.justifyContent = 'space-between';
+                buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+              }
+
+              // Botón de confirmar
+              const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+              if (confirmButton) {
+                confirmButton.style.backgroundColor = '#ffeba7';
+                confirmButton.style.color = '#2b2e38';
+                confirmButton.style.padding = '10px 20px';
+                confirmButton.style.border = 'none';
+                confirmButton.style.borderRadius = '4px';
+                confirmButton.style.transition = 'all 0.3s ease';
+
+                confirmButton.addEventListener('mouseover', () => {
+                  confirmButton.style.backgroundColor = '#1f2029';
+                  confirmButton.style.color = '#ffeba7';
+                });
+
+                confirmButton.addEventListener('mouseout', () => {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
+                });
+              }
+
+              // Botón de cancelar
+              const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+              if (cancelButton) {
+                cancelButton.style.backgroundColor = '#e74c3c';
+                cancelButton.style.color = '#ffffff';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '4px';
+                cancelButton.style.transition = 'all 0.3s ease';
+
+                cancelButton.addEventListener('mouseover', () => {
+                  cancelButton.style.backgroundColor = '#a93226';
+                });
+
+                cancelButton.addEventListener('mouseout', () => {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
                 });
               }
             },
