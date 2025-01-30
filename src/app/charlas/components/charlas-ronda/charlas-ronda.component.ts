@@ -387,9 +387,7 @@ export class CharlasRondaComponent implements OnInit {
           });
 
           this.getCharlas();
-        }, (error) => {
-
-                    (error:any) => {
+        }, (error:any) => {
                       Swal.fire({
                         title: 'Error al eliminar la ronda',
                         text: 'No se ha podido eliminar la ronda',
@@ -424,7 +422,6 @@ export class CharlasRondaComponent implements OnInit {
                         },
                       });
                     }
-            }
           );
       }
     });
