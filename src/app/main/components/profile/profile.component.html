@@ -28,6 +28,7 @@
   </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '2'">
+    <h1>MIS CHARLAS</h1>
     <div class="charla" *ngFor="let charla of charlasAlumno; let i = index">
       <div class="charla-header">
         <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charla.charla.titulo }}</h4>
