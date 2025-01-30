@@ -1,5 +1,12 @@
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400");
+
 * {
   overflow-x: hidden;
+}
+body {
+
+  font-family: "Poppins", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -88,7 +95,6 @@ mat-sidenav {
 .titulo {
 
   text-align: center;
-  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
   margin-bottom: 20px;

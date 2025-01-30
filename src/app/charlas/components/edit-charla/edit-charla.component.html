@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-12 col-md-8 col-lg-6 mx-auto">
       <h1 class="text-center mb-4 titulo">Editar charla</h1>
-        <div class="upper-buttons">
-          <a [routerLink]="['/charlas/charlasRonda/', idRonda]" class="btn"
-            ><i class="back uil-arrow-left"></i
-          ></a>
-        </div>
+      <div class="upper-buttons">
+        <a [routerLink]="['/charlas/charlasRonda/', idRonda]" class="btn"
+          ><i class="back uil-arrow-left"></i
+        ></a>
+      </div>
       <div class="section">
         <div class="form">
           <div class="form-group">
@@ -14,7 +14,12 @@
               <div class="text-center mb-4">
                 <div class="imagen-contenedor">
                   <img
-                    [src]="fileContent ? fileContent : charla.imagenCharla  || 'assets/images/charlaImagen.jpg'"
+                    [src]="
+                      fileContent
+                        ? fileContent
+                        : charla.imagenCharla ||
+                          'assets/images/charlaImagen.jpg'
+                    "
                     class="imagenCharla"
                     (click)="cambiarImagen()"
                   />

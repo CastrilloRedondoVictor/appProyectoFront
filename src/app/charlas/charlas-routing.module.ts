@@ -7,10 +7,15 @@ import { PostRondaComponent } from './components/post-ronda/post-ronda.component
 import { DetallesCharlaComponent } from './components/detalles-charla/detalles-charla.component';
 import { PostComentarioComponent } from './components/post-comentario/post-comentario.component';
 import { EditCharlaComponent } from './components/edit-charla/edit-charla.component';
+import { EditRondaComponent } from './components/edit-ronda/edit-ronda.component';
+import { NewCursoComponent } from './components/new-curso/new-curso.component';
+
 
 const routes: Routes = [
   { path: 'charlasRonda/new/:idRonda', component: PostCharlaComponent },
   { path: 'charlasRonda/newRonda', component: PostRondaComponent },
+
+  { path: 'cursos/new', component: NewCursoComponent },
   {
     path: 'charlasRonda/detallesCharla/:idRonda/:idCharla',
     component: DetallesCharlaComponent,
@@ -18,6 +23,10 @@ const routes: Routes = [
   {
     path: 'charlasRonda/edit/:idRonda/:idCharla',
     component: EditCharlaComponent,
+  },
+  {
+    path: 'charlasRonda/editRonda/:idRonda',
+    component: EditRondaComponent,
   },
   { path: 'charlasRonda/:idRonda', component: CharlasRondaComponent },
   {
