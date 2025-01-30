@@ -27,4 +27,4 @@ import { NewCursoComponent } from './components/new-curso/new-curso.component';
   ],
   imports: [CommonModule, CharlasRoutingModule, FormsModule],
 })
-export class CharlasModule {}
+export class CharlasModule { }

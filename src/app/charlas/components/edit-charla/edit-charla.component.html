@@ -3,9 +3,7 @@
     <div class="col-12 col-md-8 col-lg-6 mx-auto">
       <h1 class="text-center mb-4 titulo">Editar charla</h1>
       <div class="upper-buttons">
-        <a [routerLink]="['/charlas/charlasRonda/', idRonda]" class="btn"
-          ><i class="back uil-arrow-left"></i
-        ></a>
+        <a [routerLink]="['/charlas/charlasRonda/', idRonda]" class="btn"><i class="back uil-arrow-left"></i></a>
       </div>
       <div class="section">
         <div class="form">
@@ -13,70 +11,33 @@
             <div class="form text-center">
               <div class="text-center mb-4">
                 <div class="imagen-contenedor">
-                  <img
-                    [src]="
+                  <img [src]="
                       fileContent
                         ? fileContent
                         : charla.imagenCharla ||
                           'assets/images/charlaImagen.jpg'
-                    "
-                    class="imagenCharla"
-                    (click)="cambiarImagen()"
-                  />
+                    " class="imagenCharla" (click)="cambiarImagen()" />
                   <button class="editar-boton" (click)="cambiarImagen()">
                     <i class="uil uil-image-edit"></i>
                   </button>
                 </div>
                 <!-- Input oculto para seleccionar archivo -->
-                <input
-                  type="file"
-                  #cajaFile
-                  accept="image/*"
-                  style="display: none"
-                  (change)="subirFichero($event)"
-                />
+                <input type="file" #cajaFile accept="image/*" style="display: none" (change)="subirFichero($event)" />
               </div>
               <div class="form-group mt-2">
-                <input
-                  name="cajaTitulo"
-                  type="text"
-                  class="form-style"
-                  placeholder="Ingrese el título"
-                  #cajaTitulo
-                  [ngModel]="charla.titulo"
-                />
+                <input name="cajaTitulo" type="text" class="form-style" placeholder="Ingrese el título" #cajaTitulo
+                  [ngModel]="charla.titulo" />
                 <i style="color: #ffeba7" class="input-icon uil uil-award"></i>
               </div>
               <div class="form-group mt-2">
-                <textarea
-                  name="cajaDescripcion"
-                  type="text"
-                  class="form-style"
-                  placeholder="Ingrese la descripción"
-                  #cajaDescripcion
-                  (input)="adjustHeight(cajaDescripcion)"
-                  [ngModel]="charla.descripcion"
-                ></textarea>
-                <i
-                  style="color: #ffeba7"
-                  class="input-icon uil uil-wrap-text"
-                ></i>
+                <textarea name="cajaDescripcion" type="text" class="form-style" placeholder="Ingrese la descripción"
+                  #cajaDescripcion (input)="adjustHeight(cajaDescripcion)" [ngModel]="charla.descripcion"></textarea>
+                <i style="color: #ffeba7" class="input-icon uil uil-wrap-text"></i>
               </div>
               <div class="form-group mt-2">
-                <input
-                  name="cajaTiempo"
-                  type="number"
-                  class="form-style"
-                  placeholder="Ingrese el tiempo en minutos"
-                  [(ngModel)]="tiempoIngresado"
-                  (input)="validarTiempo()"
-                  #cajaTiempo
-                  [ngModel]="charla.tiempo"
-                />
-                <small
-                  *ngIf="errors[2]"
-                  style="color: #d9534f; padding: 0 15px"
-                >
+                <input name="cajaTiempo" type="number" class="form-style" placeholder="Ingrese el tiempo en minutos"
+                  [(ngModel)]="tiempoIngresado" (input)="validarTiempo()" #cajaTiempo [ngModel]="charla.tiempo" />
+                <small *ngIf="errors[2]" style="color: #d9534f; padding: 0 15px">
                   El tiempo no puede ser mayor a {{ ronda.duracion }} minutos.
                 </small>
                 <i style="color: #ffeba7" class="input-icon uil uil-clock"></i>

@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment.development';
 
 @Injectable()
 export class ServiceLogin {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   login(login: Login): Observable<any> {
     let json = JSON.stringify(login);

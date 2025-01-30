@@ -13,7 +13,7 @@ export class Charla {
     public idRonda: number,
     public idCurso: number,
     public nombreCurso: string
-  ) {}
+  ) { }
 }
 
 export class CharlaSin {
@@ -27,7 +27,7 @@ export class CharlaSin {
     public idEstadoCharla: number,
     public idRonda: number,
     public imagenCharla: string
-  ) {}
+  ) { }
 }
 
 export class Ronda {
@@ -39,5 +39,5 @@ export class Ronda {
     public duracion: number,
     public descripcionModulo: string,
     public fechaLimiteVotacion: string
-  ) {}
+  ) { }
 }
