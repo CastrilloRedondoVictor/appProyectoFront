@@ -231,7 +231,8 @@
 
 h1 {
   text-align: center;
-  color: #1f2029; /* Tono gris oscuro, ligeramente frío */
+  color: #2b2e38; /* Tono gris oscuro, ligeramente frío */
+  font-weight: 500;
   margin-bottom: 15px;
 }
 
@@ -239,6 +240,9 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+button {
+  overflow-y: hidden;
 }
 
 .charla {

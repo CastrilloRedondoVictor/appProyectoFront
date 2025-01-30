@@ -144,9 +144,6 @@ export class DetallesCharlaComponent implements OnInit {
       title: 'Editar Recurso',
       html: `
         <style>
-        @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
-
-       @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
 
 a:hover {
   text-decoration: none;
@@ -156,17 +153,6 @@ a:hover {
 }
 .link:hover {
   color: #c4c3ca;
-}
-p {
-  font-weight: 500;
-  font-size: 14px;
-}
-h4 {
-  font-weight: 600;
-}
-h6 span {
-  padding: 0 20px;
-  font-weight: 700;
 }
 .section {
   position: relative;
@@ -346,7 +332,7 @@ input:-webkit-autofill:not(:focus)
 
       </style>
       <div class="form-group mt-2">
-                <input 
+                <input
                 id="swal-input-url"
                   class="form-style"
                   placeholder="Ingrese la URL"
@@ -376,7 +362,7 @@ input:-webkit-autofill:not(:focus)
                 ></i>
               </div>
 
-   
+
       `,
       focusConfirm: false,
       showCancelButton: true,
