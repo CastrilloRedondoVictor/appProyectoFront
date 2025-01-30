@@ -11,18 +11,19 @@
           <strong>Estado: </strong>
           <span [ngClass]="perfil.estadoUsuario ? 'active' : 'inactive'">{{
             perfil.estadoUsuario ? "Activo" : "Inactivo"
-          }}</span>
+            }}</span>
         </p>
         <p><strong>Rol: </strong> {{ perfil.role }}</p>
-        <p *ngIf="this.rolUsuario != '3'"><strong>Curso: </strong> {{ perfil.curso }}</p>
-        <p *ngIf="this.rolUsuario != '3'"><strong>ID Curso: </strong> {{ perfil.idCurso }}</p>
+        <p *ngIf="this.rolUsuario != '3'"><strong>Curso: </strong> {{
+          perfil.curso }}</p>
+        <p *ngIf="this.rolUsuario != '3'"><strong>ID Curso: </strong> {{
+          perfil.idCurso }}</p>
       </div>
     </div>
 
     <div class="perfil-footer">
-      <a [routerLink]="['edit', perfil.idUsuario]" class="btn btn-large"
-        >Editar Perfil</a
-      >
+      <a [routerLink]="['edit', perfil.idUsuario]" class="btn btn-large">Editar
+        Perfil</a>
     </div>
   </div>
 
@@ -30,19 +31,17 @@
     <div class="charla" *ngFor="let charla of charlasAlumno; let i = index">
       <div class="charla-header">
         <h4 class="txtLabel">Charla {{ i + 1 }}: {{ charla.charla.titulo }}</h4>
-        <span
-          >Tiempo: {{ getHoras(charla.charla.tiempo) }} horas
-          {{ charla.charla.tiempo % 60 }} minutos</span
-        >
+        <span>Tiempo: {{ getHoras(charla.charla.tiempo) }} horas
+          {{ charla.charla.tiempo % 60 }} minutos</span>
       </div>
       <div class="charla-details">
         <p>
-          <span class="span-charla-details">Descripción: </span
-          >{{ charla.charla.descripcion }}
+          <span class="span-charla-details">Descripción: </span>{{
+          charla.charla.descripcion }}
         </p>
         <p>
-          <span class="span-charla-details">Fecha Propuesta: </span
-          >{{ charla.charla.fechaPropuesta | date : "longDate" : "es" }}
+          <span class="span-charla-details">Fecha Propuesta: </span>{{
+          charla.charla.fechaPropuesta | date : "longDate" : "es" }}
         </p>
         <p>
           <span class="span-charla-details">Estado: </span>
@@ -51,14 +50,12 @@
               charla.charla.estadoCharla == 'PROPUESTA'
                 ? 'spanPropuesta'
                 : 'spanAceptada'
-            "
-            >{{ charla.charla.estadoCharla }}</span
-          >
+            ">{{ charla.charla.estadoCharla }}</span>
         </p>
 
         <p>
-          <span class="span-charla-details">Propuesta por: </span
-          >{{ charla.charla.usuario }}
+          <span class="span-charla-details">Propuesta por: </span>{{
+          charla.charla.usuario }}
         </p>
       </div>
       <a
@@ -67,51 +64,51 @@
           charla.charla.idRonda,
           charla.charla.idCharla
         ]"
-        class="btn"
-        >Ver detalles</a
-      >
+        class="btn">Ver detalles</a>
     </div>
   </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '1'">
     <h2>Mis cursos ({{ alumnosCursos.length }})</h2>
-    <div *ngFor="let alumnosCurso of alumnosCursos" class="perfil-curso-card mb-1 curso-section">
+    <div *ngFor="let alumnosCurso of alumnosCursos"
+      class="perfil-curso-card mb-1 curso-section">
       <div class="perfil-header">
         <div class="perfil-info">
           <h3>
             {{ alumnosCurso.curso.nombre }} ({{ alumnosCurso.numeroAlumnos }})
-            <button (click)="toggleAlumnos(alumnosCurso.curso.idCurso)" class="curso-toggle">
+            <button (click)="toggleAlumnos(alumnosCurso.curso.idCurso)"
+              class="curso-toggle">
               <i
                 [class]="
                   alumnosAbiertos[alumnosCurso.curso.idCurso]
                     ? 'uil uil-minus'
                     : 'uil uil-plus'
-                "
-              ></i>
+                "></i>
             </button>
           </h3>
         </div>
       </div>
 
-      <div *ngIf="alumnosAbiertos[alumnosCurso.curso.idCurso]" class="curso-detalles">
+      <div *ngIf="alumnosAbiertos[alumnosCurso.curso.idCurso]"
+        class="curso-detalles">
         <div
           class="perfil-alumno-card col-12 mb-2"
-          *ngFor="let alumno of alumnosCurso.alumnos"
-        >
+          *ngFor="let alumno of alumnosCurso.alumnos">
           <div class="perfil-header">
             <img
               [src]="alumno.alumno.imagen || 'assets/images/default-profile.png'"
-              class="perfil-img"
-            />
+              class="perfil-img" />
             <div class="perfil-info col-12">
               <p><strong>Nombre: </strong> {{ alumno.alumno.usuario }}</p>
               <p><strong>Correo: </strong> {{ alumno.alumno.email }}</p>
               <p>
                 <strong>Estado: </strong>
-                <span [ngClass]="alumno.alumno.estadoUsuario ? 'active' : 'inactive'">
+                <span
+                  [ngClass]="alumno.alumno.estadoUsuario ? 'active' : 'inactive'">
                   {{ alumno.alumno.estadoUsuario ? 'Activo' : 'Inactivo' }}
                 </span>
-                <button (click)="toggleEstadoUsuario(alumno.alumno)" class="btn-estado btn-estado-usuario">
+                <button (click)="toggleEstadoUsuario(alumno.alumno)"
+                  class="btn-estado btn-estado-usuario">
                   {{ alumno.alumno.estadoUsuario ? 'Desactivar' : 'Activar' }}
                 </button>
               </p>
@@ -123,8 +120,17 @@
   </div>
 
   <div class="mt-5" *ngIf="rolUsuario == '3'">
-    <h2>Lista de Cursos ({{listaCursos.length}})</h2>
-    <div *ngFor="let curso of listaCursos" class="perfil-curso-card mb-1 curso-section">
+    <div class="upper-buttons">
+      <h2>Lista de Cursos ({{listaCursos.length}})</h2>
+
+    <a
+      [routerLink]="['/charlas/cursos/new']"
+      class="btn btn-large"
+      ><i class="uis uil-plus"></i
+    ></a>
+    </div>
+    <div *ngFor="let curso of listaCursos"
+      class="perfil-curso-card mb-1 curso-section">
       <div class="perfil-header">
         <div class="perfil-info">
           <h3>
@@ -136,18 +142,27 @@
                     cursosAbiertos[curso.idCurso]
                       ? 'uil uil-minus'
                       : 'uil uil-plus'
-                  "
-                ></i>
+                  "></i>
               </button>
-              <button (click)="toggleMiembros(curso.idCurso)" class="curso-toggle">
+              <button (click)="toggleMiembros(curso.idCurso)"
+                class="curso-toggle">
                 <i
                   [class]="
                     usersAbiertos[curso.idCurso]
                       ? 'uil uil-user-minus'
                       : 'uil uil-user-plus'
-                  "
-                ></i>
+                  "></i>
               </button>
+              <!-- <a
+          [routerLink]="[
+            '/charlas/cursos/edit',
+            curso.idCurso
+          ]"
+          class="btnAction"
+          ><i class="uis uil-pen"></i>
+        </a> -->
+              <a (click)="eliminarCurso(curso.idCurso)" class="btnAction"><i
+                  class="uis uil-trash-alt"></i></a>
             </div>
           </h3>
           <div *ngIf="cursosAbiertos[curso.idCurso]" class="curso-detalles">
@@ -166,30 +181,37 @@
                 <span [ngClass]="curso.activo ? 'active' : 'inactive'">
                   {{ curso.activo ? "Activo" : "Inactivo" }}
                 </span>
-                <button (click)="toggleActivo(curso)" class="btn-estado" [ngClass]="curso.activo ? 'btn-activo' : 'btn-inactivo'">
+                <button (click)="toggleActivo(curso)" class="btn-estado"
+                  [ngClass]="curso.activo ? 'btn-activo' : 'btn-inactivo'">
                   {{ curso.activo ? "Desactivar" : "Activar" }}
                 </button>
               </p>
             </div>
           </div>
           <div class="mt-3" *ngIf="miembrosCursos[curso.idCurso]">
-            <div *ngFor="let miembro of miembrosCursos[curso.idCurso]" class="perfil-alumno-card mb-1">
-              <img [src]="miembro.imagen || 'assets/images/default-profile.png'" class="perfil-img" />
+            <div *ngFor="let miembro of miembrosCursos[curso.idCurso]"
+              class="perfil-alumno-card mb-1">
+              <img [src]="miembro.imagen || 'assets/images/default-profile.png'"
+                class="perfil-img" />
               <div class="miembro-info">
                 <p><strong>Nombre: </strong> {{ miembro.usuario }}</p>
                 <p><strong>Correo: </strong> {{ miembro.email }}</p>
                 <p><strong>Rol: </strong>
-                  <select [(ngModel)]="miembro.idRole" (change)="cambiarRol(miembro, $event)" class="select-rol ml-2">
+                  <select [(ngModel)]="miembro.idRole"
+                    (change)="cambiarRol(miembro, $event)"
+                    class="select-rol ml-2">
                     <option [value]="1">Profesor</option>
                     <option [value]="2">Alumno</option>
                   </select>
                 </p>
                 <p>
                   <strong>Estado: </strong>
-                  <span [ngClass]="miembro.estadoUsuario ? 'active' : 'inactive'">
+                  <span
+                    [ngClass]="miembro.estadoUsuario ? 'active' : 'inactive'">
                     {{ miembro.estadoUsuario ? 'Activo' : 'Inactivo' }}
                   </span>
-                  <button (click)="toggleEstadoUsuario(miembro)" class="btn-estado btn-estado-usuario">
+                  <button (click)="toggleEstadoUsuario(miembro)"
+                    class="btn-estado btn-estado-usuario">
                     {{ miembro.estadoUsuario ? 'Desactivar' : 'Activar' }}
                   </button>
                 </p>
