@@ -303,9 +303,6 @@ input:-webkit-autofill:not(:focus)
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
-  .swal2-confirm {
-    color: #000000 !important; /* Establecer color negro solo para el texto de "Guardar" */
-  }
 
 .btn {
   border-radius: 4px;
@@ -367,10 +364,59 @@ input:-webkit-autofill:not(:focus)
       focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: 'Guardar',
-      confirmButtonColor: '#ffeba7',
       cancelButtonText: 'Cancelar',
       background: '#2b2e38',
       color: '#c4c3ca',
+      didOpen: () => {
+        // Estilizar contenedor de botones
+        const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+        if (buttonsContainer) {
+          buttonsContainer.style.display = 'flex';
+          buttonsContainer.style.justifyContent = 'space-between';
+          buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+        }
+
+        // Botón de confirmar
+        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+        if (confirmButton) {
+          confirmButton.style.backgroundColor = '#ffeba7';
+          confirmButton.style.color = '#2b2e38';
+          confirmButton.style.padding = '10px 20px';
+          confirmButton.style.border = 'none';
+          confirmButton.style.borderRadius = '4px';
+          confirmButton.style.transition = 'all 0.3s ease';
+
+          confirmButton.addEventListener('mouseover', () => {
+            confirmButton.style.backgroundColor = '#1f2029';
+            confirmButton.style.color = '#ffeba7';
+          });
+
+          confirmButton.addEventListener('mouseout', () => {
+            confirmButton.style.backgroundColor = '#ffeba7';
+            confirmButton.style.color = '#2b2e38';
+          });
+        }
+
+        // Botón de cancelar
+        const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+        if (cancelButton) {
+          cancelButton.style.backgroundColor = '#e74c3c';
+          cancelButton.style.color = '#ffffff';
+          cancelButton.style.padding = '10px 20px';
+          cancelButton.style.border = 'none';
+          cancelButton.style.borderRadius = '4px';
+          cancelButton.style.transition = 'all 0.3s ease';
+
+          cancelButton.addEventListener('mouseover', () => {
+            cancelButton.style.backgroundColor = '#a93226';
+          });
+
+          cancelButton.addEventListener('mouseout', () => {
+            cancelButton.style.backgroundColor = '#e74c3c';
+            cancelButton.style.color = '#ffffff';
+          });
+        }
+      },
       preConfirm: () => {
         const recursoActualizado = {
           idRecurso: recurso.idRecurso,
@@ -402,6 +448,56 @@ input:-webkit-autofill:not(:focus)
               confirmButtonText: 'Aceptar',
               background: '#2b2e38',
               color: '#c4c3ca',
+              didOpen: () => {
+                // Estilizar contenedor de botones
+                const buttonsContainer = document.querySelector('.swal2-actions') as HTMLElement;
+                if (buttonsContainer) {
+                  buttonsContainer.style.display = 'flex';
+                  buttonsContainer.style.justifyContent = 'space-between';
+                  buttonsContainer.style.gap = '20px'; // Espaciado entre botones
+                }
+
+                // Botón de confirmar
+                const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
+                if (confirmButton) {
+                  confirmButton.style.backgroundColor = '#ffeba7';
+                  confirmButton.style.color = '#2b2e38';
+                  confirmButton.style.padding = '10px 20px';
+                  confirmButton.style.border = 'none';
+                  confirmButton.style.borderRadius = '4px';
+                  confirmButton.style.transition = 'all 0.3s ease';
+
+                  confirmButton.addEventListener('mouseover', () => {
+                    confirmButton.style.backgroundColor = '#1f2029';
+                    confirmButton.style.color = '#ffeba7';
+                  });
+
+                  confirmButton.addEventListener('mouseout', () => {
+                    confirmButton.style.backgroundColor = '#ffeba7';
+                    confirmButton.style.color = '#2b2e38';
+                  });
+                }
+
+                // Botón de cancelar
+                const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
+                if (cancelButton) {
+                  cancelButton.style.backgroundColor = '#e74c3c';
+                  cancelButton.style.color = '#ffffff';
+                  cancelButton.style.padding = '10px 20px';
+                  cancelButton.style.border = 'none';
+                  cancelButton.style.borderRadius = '4px';
+                  cancelButton.style.transition = 'all 0.3s ease';
+
+                  cancelButton.addEventListener('mouseover', () => {
+                    cancelButton.style.backgroundColor = '#a93226';
+                  });
+
+                  cancelButton.addEventListener('mouseout', () => {
+                    cancelButton.style.backgroundColor = '#e74c3c';
+                    cancelButton.style.color = '#ffffff';
+                  });
+                }
+              },
             });
 
             const recursosActualizados = this.charlaDetalles.recursos.map((r) =>
